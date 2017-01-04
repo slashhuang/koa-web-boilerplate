@@ -8,6 +8,12 @@
 爱屋吉屋租赁平台
 <!--react spa-->
 <div id="root"></div>
+<script type="text/javascript">
+    window.pageConfig={
+        staticUrl:'<%- staticResourceURL%>',
+        siteUrl:location.href 
+    }
+</script>
 <script src='<%- MethodNameSpace.getURL("common.js")%>'></script>
 <script src='<%- MethodNameSpace.getURL(staticTag+".js")%>'></script>
 </body>
