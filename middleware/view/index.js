@@ -54,7 +54,7 @@ module.exports = function view(settings) {
         let isSPA =  /spa/i.test(subViewName);
         let finalTpl = isSPA ?
             // SPA 外层
-            fileCache.spaTpl||fs.readFileSync(path.join(root, spaLayout + viewExt), 'utf8')
+            fileCache.spaTpl || fs.readFileSync(path.join(root, spaLayout + viewExt), 'utf8')
             // layout外层
             :fileCache.tpl || fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
 

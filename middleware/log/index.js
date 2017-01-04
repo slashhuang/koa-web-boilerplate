@@ -28,7 +28,7 @@ module.exports = function(setting) {
         return next()
             .then()
             .catch(err => {
-                if (env == 'develop') {
+                if (env == 'dev') {
                     console.log(err);
                 }
 

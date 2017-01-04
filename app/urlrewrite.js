@@ -9,7 +9,7 @@ import { successToView } from './response';
 const router = require('koa-router')();
 
 /**
- * index
+ * 单页面应用入口
  */
 router.get('/', (ctx, next) => {
     successToView(ctx, 'spa/index', {
