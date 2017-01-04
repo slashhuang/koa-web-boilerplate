@@ -16,7 +16,7 @@ router.get('/', (ctx, next) => {
         title: '首页',
         staticTag: 'welcome'
     });
-})
+});
 
 /**
  * about
