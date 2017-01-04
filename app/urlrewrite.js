@@ -12,9 +12,9 @@ const router = require('koa-router')();
  * index
  */
 router.get('/', (ctx, next) => {
-    successToView(ctx, 'welcome', {
-        title: '首页',
-        staticTag: 'welcome'
+    successToView(ctx, 'spa/index', {
+        title: '爱屋吉屋租赁平台',
+        staticTag: 'index'
     });
 });
 
@@ -28,7 +28,7 @@ router.get('/github', async(ctx, next) => {
         title: 'github展示',
         staticTag: 'index'
     }, gitData));
-})
+});
 
 
 /**
@@ -39,7 +39,7 @@ router.get('/404', (ctx, next) => {
         title: 'github展示',
         staticTag: 'index'
     }, gitData));
-})
+});
 
 
 router.get('/another/:test', (ctx, next) => {

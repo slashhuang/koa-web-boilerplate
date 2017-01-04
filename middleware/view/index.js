@@ -15,6 +15,7 @@ var defaultSettings = {
     cache: true,
     _with: false, //将所有的值存储到locals大对象里面
     layout: 'layout',
+    spaLayout:"spa/index",//单页面入口
     viewExt: '.html',
     locals: {},
     debug: false,
@@ -46,20 +47,27 @@ module.exports = function view(settings) {
         let {
             root,
             layout,
-            viewExt
+            viewExt,
+            spaLayout
         } = settings;
         let viewPath = path.join(root, subViewName + viewExt);
-        // layout外层
-        let tpl = fileCache.tpl || fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
+        let isSPA =  /spa/i.test(subViewName);
+        let finalTpl = isSPA ?
+            // SPA 外层
+            fileCache.spaTpl||fs.readFileSync(path.join(root, spaLayout + viewExt), 'utf8')
+            // layout外层
+            :fileCache.tpl || fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
+
         // 生产环境缓存layout，减少io操作
-        if (process.env['NODE_ENV'] != 'develop') {
-            fileCache.tpl = tpl;
+        if (process.env['NODE_ENV'] != 'dev') {
+            isSPA? fileCache.tpl = finalTpl
+                 : fileCache.spaTpl = finalTpl;
         }
         // 渲染的模板内容
         Utils.addTemplate(options, { templateName: viewPath });
         Utils.addConst(options);
         Utils.addMethods(options);
-        let renderFn = ejs.compile(tpl, {
+        let renderFn = ejs.compile(finalTpl, {
             localsName: "locals", // 变量的命名空间
             _with: true, //使用with结构渲染
             compileDebug: process.env['NODE_ENV'] != 'production',
