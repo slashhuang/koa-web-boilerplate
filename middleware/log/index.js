@@ -2,7 +2,7 @@
  * @Author: enzo
  * @Date:   2016-11-30 11:08:34
  * @Last Modified by:   slashhuang
- * @Last Modified time: 2016-12-27 10:38:38
+ * @Last Modified time: 2016-1-4 10:38:38
  */
 
 const winston = require('winston');
@@ -26,24 +26,25 @@ module.exports = function(setting) {
 
     return function(ctx, next) {
         return next()
-            .then()
-            .catch(err => {
-                if (env == 'dev') {
-                    console.log(err);
+            .then(()=>{
+                // 重定向
+                winston.info(`origin ${ctx.origin}\nip: ${ctx.ip}\nmethod:${ctx.method}\npath${ctx.path}`);
+                if(ctx.status==404){
+                    global._throw('redirecting to index ',404)
                 }
-
+            })
+            .catch(err => {
                 const { status } = err;
-
                 if (status) {
                     let lv = statusConf[status] || 'error';
                     winston[lv](err.name + '\n' + err.message + '\n' + err.stack);
-                    return next()
+                    status==404 && ctx.redirect('/');
                 } else {
                     //系统错误
                     winston.error(err.name + '\n' + err.message + '\n' + err.stack);
                     ctx.body = err.stack;
                     ctx.status = 500;
-                };
+                }
             })
     }
-}
+};
