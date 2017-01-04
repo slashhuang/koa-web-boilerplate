@@ -9,9 +9,8 @@ import { successToJson } from '../response';
 const resourceName = 'category';
 const describe = '产品分类';
 const actions = [{
-        title: 'get detail v1',
+        description: 'get detail v1',
         url: '/:id',
-        version: 'v1',
         action: async function(ctx, next) {
             successToJson(ctx, {
                 test: 1
@@ -20,16 +19,15 @@ const actions = [{
     },
 
     {
-        title: 'get detail v2',
+        description: 'get detail v2',
         doc: '',
         method: 'get',
-        version: 'v2',
         url: '/:id',
         action: async function(ctx, next) {
 
         }
     }
-]
+];
 
 
 export { actions, resourceName, describe };

@@ -1,8 +1,8 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-08 15:02:53
- * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-23 16:44:36
+ * @Last Modified by:   slashhuang
+ * @Last Modified time: 2016-1-4 16:44:36
  */
 
 const debug = require('debug')('rudy:router');
@@ -17,73 +17,50 @@ const methodReg = /([get|post|del|put]*):?(:?.*)/;
 const jsfileReg = /([a-zA-Z0-9_\-]+)(\.js)$/;
 
 module.exports = function(setting) {
-    let { root, path, website } = setting;
-
-    if (!path) {
-        throw new Error('router setting path');
+    let { root, folder, website } = setting;
+    if (!folder) {
+        throw new Error('router setting folder');
     }
-
-    if (!root) root = '/';
-
-    if (!website) website = '//';
-
-    let appRoot = root != '/' ? '/' + root + '/' : '';
-
-    // all resources
+    root = root || '/';
+    website = website || '//';
+    let appRoot = path.resolve(`/${root}/`);
+    // 资料列表
     let resourcesList = {};
     router.get(appRoot, (ctx, next) => {
         ctx.body = JSON.stringify(resourcesList);
-    })
-
+    });
     // resources parse
-    util.pathls(path).forEach(function(filePath) {
+    util.pathls(folder).forEach(function(filePath) {
 
         if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1) {
             return;
         }
-
-        // require module
-        let apis = require(filePath);
-        let { actions, resourceName, describe } = apis;
+        // 加载子路由
+        let apiList = require(filePath);
+        let { actions, resourceName, describe } = apiList;
         let actionList = [];
-
-        //  must be resourceName
         if (!resourceName) {
             throw new Error(`${filePath} the lack of resourceName`);
         }
-
-        // reg router
-        router.get(`${appRoot}${resourceName}`, (ctx, next) => {
+        let subApiRoute = path.resolve(`${appRoot}/${resourceName}`);
+        //子路由
+        router.get(subApiRoute, (ctx, next) => {
             ctx.body = JSON.stringify(actionList);
-        })
-
-        // add resource
+        });
+        //子路由collection
         resourcesList[`${resourceName}`] = {
             describe: describe || '未添加描述',
-            href: `${website}${appRoot}${resourceName}`
+            href: `${website}${subApiRoute}`
         };
-
-        // parse action
-        actions && actions.length && actions.map((item, index) => {
-            let { method, url, version, action } = item;
-            let routerPath = resourceName;
-
-            !method ? method = 'get' : '';
-            version ? routerPath = `${appRoot}${version}/${routerPath}` :
-                routerPath = `${appRoot}${routerPath}`;
-
-            routerPath = `${routerPath}${url}`;
-
-            delete item.url;
-
+        //挂载handler
+        actions && actions.map((item ) => {
+            let { method, url, action } = item;
+            method = method || 'get';
+            let routerPath = `${appRoot}/${resourceName}${url}`;
             item.href = `${website}${routerPath}`;
-
             actionList.push(item);
-
             router[method](routerPath, action);
         })
-
     });
-
     return router.routes()
 };

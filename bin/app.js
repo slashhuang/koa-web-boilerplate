@@ -58,7 +58,7 @@ app.use(urlrewrite.routes());
 app.use(middleware.api({
     root: 'api',
     website: global._appConfig.website,
-    path: path.join(__dirname, '../app/apis')
+    folder: path.join(__dirname, '../app/apis')
 }));
 
 
