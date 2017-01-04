@@ -1,19 +1,18 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-10 10:20:28
- * @Last Modified by:   enzo
- * @Last Modified time: 2016-11-11 16:31:09
+ * @Last Modified by:   slashhuang
+ * @Last Modified time: 2016-1-4 16:31:09
  */
-import { successToJson } from '../response';
-
-const resourceName = 'category';
+import { successToJson } from '../../response';
+const resourceName = 'houseList';
 const describe = '产品分类';
 const actions = [{
-        description: 'get detail v1',
-        url: '/:id',
+        description: '房源列表',
+        url: '/separate/:id',
         action: async function(ctx, next) {
             successToJson(ctx, {
-                test: 1
+               hello:'world'
             })
         }
     },

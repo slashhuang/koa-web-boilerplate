@@ -32,7 +32,7 @@ module.exports = function(setting) {
     // resources parse
     util.pathls(folder).forEach(function(filePath) {
 
-        if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1) {
+        if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1 || !(/^[A-W]/.test(path.basename(filePath)))) {
             return;
         }
         // 加载子路由
