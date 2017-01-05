@@ -39,9 +39,6 @@ module.exports = function(setting) {
         let apiList = require(filePath);
         let { actions, resourceName, describe } = apiList;
         let actionList = [];
-        if (!resourceName) {
-            throw new Error(`${filePath} the lack of resourceName`);
-        }
         let subApiRoute = path.resolve(`${appRoot}/${resourceName}`);
         //子路由
         router.get(subApiRoute, (ctx, next) => {
@@ -56,7 +53,7 @@ module.exports = function(setting) {
         actions && actions.map((item ) => {
             let { method, url, action } = item;
             method = method || 'get';
-            let routerPath = `${appRoot}/${resourceName}${url}`;
+            let routerPath = path.normalize([appRoot,resourceName,url].join('/'));
             item.href = `${website}${routerPath}`;
             actionList.push(item);
             router[method](routerPath, action);

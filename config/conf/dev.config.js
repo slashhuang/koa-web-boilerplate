@@ -11,7 +11,8 @@ module.exports = {
      */
     staticConfigs: {
         staticResourceConfigURL: 'http://127.0.0.1',
-        staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform'
+        staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
+        datacollectUrl:'http://baidu.com'
     },
 
     "WEBSITE": "http://127.0.0.1:3000"

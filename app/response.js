@@ -47,14 +47,14 @@ export function successToJson(ctx, param, status = 200, msg = SUCCESS_TEXT) {
  * @return {[type]} param   [description]
  */
 
-export function errorToJson(ctx, param, status = 500, msg = ERRER_TEXT) {
+export function errorToJson(ctx, status = 500, msg = ERRER_TEXT) {
     let data = {
-        data: param,
+        data: [],
         status: status,
         msg: msg
-    }
-
+    };
     ctx.body = JSON.stringify(data);
+    ctx.status=400;
 }
 
 
