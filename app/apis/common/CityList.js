@@ -2,10 +2,11 @@
  * Created by huangxiaogang on 17/1/5.
  */
 import { successToJson,errorToJson } from '../../response';
-const resourceName = '';
+const resourceName = 'common';
 const describe = '产品分类';
 const actions = [{
         description: '根据城市Id获取该城市所属的区域列表',
+        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160695',
         url: '/cityList.action',
         serviceApi:'/common/cityList.action?provinceId=2',
         action: async function(ctx, next) {
@@ -23,6 +24,7 @@ const actions = [{
     {
         description: '根据区域Id获取板块列表',
         serviceApi:'/common/townList.action?cityId=2',
+        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160697',
         method: 'get',
         url: '/townList.action',
         action: async function(ctx, next) {
