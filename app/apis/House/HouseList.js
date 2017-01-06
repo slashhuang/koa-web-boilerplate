@@ -30,7 +30,7 @@ const actions = [{
                 floor:13,//楼层
                 layers:1243214,//总楼层
                 spaceArea:1123,//面积
-                status:1,//1：未出租；2：已出租；3：删除
+                status:houseStatus,//1：未出租；2：已出租；3：删除
                 bedroomSum:5,// 卧室数
                 livingRoomSum:1,//厅数
                 wcSum:2,//卫生间数
@@ -39,7 +39,7 @@ const actions = [{
                 orientation:1,//1:东,2:西,3:南,4:北
                 createTime:'2017.1.1',//创建时间
                 updateTime:'',//更新时间
-                rentType:1,//0：整租；1：合租
+                rentType:rentType,//0：整租；1：合租
                 rentPrice:20,//租金
                 imageList:[],//房源图片
                 houseManagerId:11,//二房东ID
