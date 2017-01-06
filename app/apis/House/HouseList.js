@@ -46,17 +46,6 @@ const actions = [{
                 houseManagerName:'slashhuang',//二房东名字
                 houseManagerMobile:'15005162976'//手机号
             }])
-
-        }
-    },
-
-    {
-        description: 'get detail v2',
-        doc: '',
-        method: 'get',
-        url: '/:id',
-        action: async function(ctx, next) {
-
         }
     }
 ];

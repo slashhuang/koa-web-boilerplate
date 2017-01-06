@@ -14,7 +14,7 @@ const actions = [{
             let query  = ctx.query;
             if(query['keyword']){
                 successToJson(ctx, [{
-                    estateName:'小区名称',
+                    estateName:'七韵美地苑',
                     estateId:1111
                 }])
             }
