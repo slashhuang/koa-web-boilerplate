@@ -13,18 +13,11 @@ module.exports = {
      */
     staticConfigs: {
         staticResourceConfigURL: 'http://',
-        staticResourceURL: 'http://iwjw-resource.oss-cn-hangzhou-internal.aliyuncs.com/iwjw-pc/staticResource.properties'
+        staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
+        datacollectUrl:'',
     },
+    rentSOA:'http://rentsoa.iwjwtest.com/',
 
-    "WEBSITE": "http://127.0.0.1:3000",
 
-    cmsSoa: 'http://cmssoa.iwjwtest.com/IWCmsSOA/',
-
-    mbaLiacaiSoa: 'http://30.0.0.12/',
-
-    noticeSoa: 'http://iwnoticeserv.iwjwtest.com/',
-
-    p2pSoa: 'http://30.0.0.12/',
-
-    userSoa: 'http://usersoa.iwjwtest.com/IWUserSOA'
+    "WEBSITE": "http://127.0.0.1:3000"
 }
