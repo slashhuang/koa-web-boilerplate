@@ -31,7 +31,7 @@ module.exports = function(setting) {
     });
     // resources parse
     util.pathls(folder).forEach(function(filePath) {
-
+        //大写开头的文件标示为api文件
         if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1 || !(/^[A-W]/.test(path.basename(filePath)))) {
             return;
         }

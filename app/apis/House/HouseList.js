@@ -5,13 +5,26 @@
  * @Last Modified time: 2016-1-4 16:31:09
  */
 import { successToJson,errorToJson } from '../../response';
-import {houseModel} from './houseModel.js';
 const resourceName = 'house';
 const describe = '房源列表查询';
 const actions = [{
-        description: '房源列表',
-        url: '/list.action',
-        action: async function(ctx, next) {
+    description: '房源列表',
+    url: '/list.action',
+    serviceApi:'/house/list.action?cityId=XX&townId=YY&estateId=TT&rentType=ZZ&houseStatus=WW&startTime=AA&endTime=BB',
+    /**
+     * @req
+     *   cityId：区域Id。所有区域，传空或者不传
+         townId：板块Id。某个区域下面的所有板块，传空或者不传
+         estateId：小区Id。小区不限，传空或者不传
+         rentType：出租方式，0：整租；1：合租。出租方式不限，传空或者不传
+         houseStatus：房源状态，1：为出租；2：已出租。房源状态不限，传空或者不限
+         startTime：起始创建时间。起始时间不限，传空或者不传
+         endTime：终止创建时间。终止时间不限，传空或者不传
+     * @response
+     * @param ctx
+     * @param next
+     */
+    action: async function(ctx, next) {
             let query = ctx.query;
             let {
                 cityId,

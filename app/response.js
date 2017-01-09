@@ -35,7 +35,7 @@ export function successToJson(ctx, param, status = 200, msg = SUCCESS_TEXT) {
         data: param,
         status: status,
         msg: msg
-    }
+    };
 
     ctx.body = JSON.stringify(data);
 }
