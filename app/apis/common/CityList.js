@@ -2,10 +2,12 @@
  * Created by huangxiaogang on 17/1/5.
  */
 import { successToJson,errorToJson } from '../../response';
+import {  S_cityList,S_townList } from '../../services/common/index.js';
 const resourceName = 'common';
 const describe = '产品分类';
 const actions = [{
         description: '根据城市Id获取该城市所属的区域列表',
+        serviceApi:'/common/cityList.action?provinceId=2',
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160695',
         url: '/cityList.action',
     /**
@@ -20,11 +22,11 @@ const actions = [{
      */
         action: async function(ctx, next) {
             let query  = ctx.query;
+            let cityList = await S_cityList({
+                provinceId:2
+            });
             if(query['provinceId']){
-                successToJson(ctx, [{
-                    cityName:'上海',
-                    cityId:'1122'
-                }])
+                successToJson(ctx,cityList)
             }else{
                 errorToJson(ctx,400,'缺少provinceId参数');
             }
@@ -38,13 +40,13 @@ const actions = [{
         url: '/townList.action',
         action: async function(ctx, next) {
             let query  = ctx.query;
-            if(query['provinceId']){
-                successToJson(ctx, [{
-                    townName:'虹口足球场',
-                    townId:'112'
-                }])
+            let townList = await S_townList({
+                cityId:2
+            });
+            if(query['cityId']){
+                successToJson(ctx,townList)
             }else{
-                errorToJson(ctx,400,'缺少provinceId参数');
+                errorToJson(ctx,400,'缺少cityId参数');
             }
         }
     }

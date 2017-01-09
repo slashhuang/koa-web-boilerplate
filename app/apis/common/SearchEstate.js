@@ -10,6 +10,17 @@ const actions = [{
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160715',
         url: '/estateList.action',
         serviceApi:'/common/estateList.action?keyword=XXYY',
+    /**
+     * @request
+     * keyword:<string>
+     * @response
+     * {
+     *  estateName:'七韵美地苑',
+     *  estateId:1111
+     * }
+     * @param ctx
+     * @param next
+     */
         action: async function(ctx, next) {
             let query  = ctx.query;
             if(query['keyword']){

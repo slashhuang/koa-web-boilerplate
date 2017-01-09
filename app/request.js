@@ -84,6 +84,9 @@ export default class Client {
                 return response.data;
             })
             .catch(function(error) {
+                if(process.env['NODE_mock']=='mock'){
+                    return 'mock';
+                }
                 global.throw('SOA请求出错', 500);
             });
     }
