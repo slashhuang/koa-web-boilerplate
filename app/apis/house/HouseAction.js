@@ -11,13 +11,13 @@ import {S_deleteHouse,
         S_updateHouse
 } from '../../services/house/index.js';
 
-const resourceName = 'house';
+const resourceName = 'houseAction';
 const describe = '房源动作';
 const actions = [
     {
         description: '增加房源',
         serviceApi:'POST /house/update.do',
-        url: '/house/add.action',
+        url: '/add.action',
         method:'post',
         action: async function(ctx, next) {
             try{

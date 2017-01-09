@@ -6,7 +6,7 @@
 import { successToJson,errorToJson } from '../../response';
 import { S_houseDetail, S_houseList } from '../../services/house/index.js';
 
-const resourceName = 'house';
+const resourceName = 'houseInfo';
 const describe = '查询房源明细';
 const actions = [{
         description: '查询房源的详细信息',
