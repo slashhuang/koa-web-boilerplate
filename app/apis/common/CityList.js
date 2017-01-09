@@ -8,7 +8,16 @@ const actions = [{
         description: '根据城市Id获取该城市所属的区域列表',
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160695',
         url: '/cityList.action',
-        serviceApi:'/common/cityList.action?provinceId=2',
+    /**
+     * @request
+     * provinceId=2
+     * @response
+     * cityName：区域名称
+       cityId：区域Id
+     *
+     * @param ctx
+     * @param next
+     */
         action: async function(ctx, next) {
             let query  = ctx.query;
             if(query['provinceId']){
