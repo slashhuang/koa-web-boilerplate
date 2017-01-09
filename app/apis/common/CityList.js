@@ -42,7 +42,7 @@ const actions = [{
             let {cityId} = ctx.query;
             try{
                 let townList = await S_townList({
-                    cityId:2
+                    cityId
                 });
                 successToJson(ctx,townList)
             }catch(err){
