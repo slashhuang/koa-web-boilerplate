@@ -4,6 +4,7 @@
  */
 
 import { successToJson,errorToJson } from '../../response';
+import { S_deleteRoom,S_addRoom } from '../../services/room/index.js';
 const resourceName = 'room';
 const describe = '房间动作';
 const actions = [{
@@ -14,16 +15,18 @@ const actions = [{
         /**
          * @request
          * id：房间id
-         * @response
-         * null
-         * @param ctx
-         * @param next
          */
         action: async function(ctx, next) {
             let { id } = ctx.query;
-            successToJson(ctx, {
-                room:id
-            })
+            try{
+                let data = await S_deleteRoom({
+                    id
+                });
+                successToJson(ctx,data)
+            }catch(err){
+                errorToJson(ctx,400,err)
+            }
+
         }
     },
     {
@@ -41,18 +44,15 @@ const actions = [{
              rentPrice:租赁价格
              facilities://配套(01:带独立卫生间,10:带阳台)
              houseId:房源Id
-         * @response
-         *  "status"://状态
-             "msg":"添加成功",
-             "data":null
-         * @param ctx
-         * @param next
          */
         action: async function(ctx, next) {
-            let { id } = ctx.query;
-            successToJson(ctx, {
-                room:id
-            })
+            let { body } = ctx.request;
+            try{
+               let data = await S_addRoom(body);
+                successToJson(ctx,data)
+            }catch(err){
+                errorToJson(ctx,400,err)
+            }
         }
     }
 ];
