@@ -27,8 +27,8 @@ requestInstance.interceptors.response.use(function(response) {
 export default class Client {
 
     constructor() {
-        // soa 从 global._appConfig 获取
-        this.host = '';
+        //租赁服务soa
+        this.host =global._appConfig['rentSOA'];
         // 封装api地址
         this.actions = {};
     }

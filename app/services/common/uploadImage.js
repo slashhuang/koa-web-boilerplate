@@ -8,7 +8,6 @@ import Client from '../../request.js';
 class CommonApi extends Client{
     constructor(){
         super();
-        this.host = '127.0.0.1:3000';
         this.actions = {
             uploadImg : '/common/uploadImage.do'
         }
@@ -17,7 +16,6 @@ class CommonApi extends Client{
 let apiInstance = new CommonApi();
 
 let S_uploadImg = async function(){
-
 
     return apiInstance.fetch({
         url:'uploadImg',

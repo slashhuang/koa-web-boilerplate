@@ -6,10 +6,10 @@ import Client from '../../request.js';
 class CommonApi extends Client{
     constructor(){
         super();
-        this.host = '127.0.0.1:3000';
         this.actions = {
             cityList : '/common/cityList.action',
-            townList : '/common/townList.action'
+            townList : '/common/townList.action',
+            estateList:'/common/estateList.action'
         }
     }
 }
@@ -47,7 +47,30 @@ let S_townList = async function(params){
         return data
     });
 };
+/**
+ * keyword：查询关键字
+ * @param params
+ * @returns {*}
+ * @constructor
+ */
+let S_estateList = async function(params){
+    return apiInstance.fetch({
+        url:'estateList',
+        method:'get',
+        params
+    }).then((data)=>{
+        if(process.env['NODE_mock']=='mock'){
+            let mock =[{
+                estateName:'七韵美地苑',
+                estateId:1111
+            }];
+            return mock;
+        }
+        return data
+    });
+};
 module.exports = {
     S_cityList,
-    S_townList
+    S_townList,
+    S_estateList
 };

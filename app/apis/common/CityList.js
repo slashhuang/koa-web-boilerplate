@@ -2,7 +2,7 @@
  * Created by huangxiaogang on 17/1/5.
  */
 import { successToJson,errorToJson } from '../../response';
-import {  S_cityList,S_townList } from '../../services/common/index.js';
+import {  S_cityList,S_townList,S_estateList } from '../../services/common/index.js';
 const resourceName = 'common';
 const describe = '产品分类';
 const actions = [{
@@ -21,14 +21,14 @@ const actions = [{
      * @param next
      */
         action: async function(ctx, next) {
-            let query  = ctx.query;
-            let cityList = await S_cityList({
-                provinceId:2
-            });
-            if(query['provinceId']){
+            let { provinceId } = ctx.query;
+            try{
+                let cityList = await S_cityList({
+                    provinceId
+                });
                 successToJson(ctx,cityList)
-            }else{
-                errorToJson(ctx,400,'缺少provinceId参数');
+            }catch(err){
+                errorToJson(ctx,400,'服务器错误');
             }
         }
     },
@@ -39,14 +39,42 @@ const actions = [{
         method: 'get',
         url: '/townList.action',
         action: async function(ctx, next) {
-            let query  = ctx.query;
-            let townList = await S_townList({
-                cityId:2
-            });
-            if(query['cityId']){
+            let {cityId} = ctx.query;
+            try{
+                let townList = await S_townList({
+                    cityId:2
+                });
                 successToJson(ctx,townList)
-            }else{
-                errorToJson(ctx,400,'缺少cityId参数');
+            }catch(err){
+                errorToJson(ctx,400,'服务器错误');
+            }
+        }
+    },
+    {
+        description: '根据小区名称或者小区地址模糊查询小区列表',
+        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160715',
+        url: '/estateList.action',
+        serviceApi:'/common/estateList.action?keyword=XXYY',
+        /**
+         * @request
+         * keyword:<string>
+         * @response
+         * {
+     *  estateName:'七韵美地苑',
+     *  estateId:1111
+     * }
+         * @param ctx
+         * @param next
+         */
+        action: async function(ctx, next) {
+            let {keyword} = ctx.query;
+            try{
+                let estateList = await S_estateList({
+                    keyword
+                });
+                successToJson(ctx,estateList)
+            }catch(e){
+                errorToJson(ctx,400,'服务器错误');
             }
         }
     }
