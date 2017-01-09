@@ -17,6 +17,8 @@ class CommonApi extends Client{
 let apiInstance = new CommonApi();
 
 let S_uploadImg = async function(){
+
+
     return apiInstance.fetch({
         url:'uploadImg',
         method:'post'

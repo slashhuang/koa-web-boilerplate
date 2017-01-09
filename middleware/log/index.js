@@ -30,7 +30,7 @@ module.exports = function(setting) {
                 // 重定向
                 winston.info(`origin ${ctx.origin}\nip: ${ctx.ip}\nmethod:${ctx.method}\npath${ctx.path}`);
                 if(ctx.status==404){
-                    global._throw('redirecting to index ',404)
+                    global.throw('redirecting to index ',404)
                 }
             })
             .catch(err => {

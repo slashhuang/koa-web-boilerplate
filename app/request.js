@@ -27,7 +27,6 @@ requestInstance.interceptors.response.use(function(response) {
 export default class Client {
 
     constructor() {
-
         // soa 从 global._appConfig 获取
         this.host = '';
         // 封装api地址
@@ -42,7 +41,6 @@ export default class Client {
     request(param = {}) {
         return requestInstance(param);
     }
-
     /**
      * 合并请求
      * @return Promise
@@ -50,7 +48,6 @@ export default class Client {
     combineRequest() {
 
     }
-
     /**
      * 序列化参数
      * this.serializeData(param)
@@ -58,16 +55,8 @@ export default class Client {
     serializeData(params) {
         return querystring.stringify(params.data || params);
     }
-
     /**
      * 基本的请求数据结构
-     * @param data
-     * @returns {*}
-     * {data: {},
-     * status,
-     * statusText
-     * headers
-     * config
      * }
      */
     async fetch(data) {
