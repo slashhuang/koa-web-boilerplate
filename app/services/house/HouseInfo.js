@@ -5,7 +5,8 @@
  */
 import Client from '../../request.js';
 import _ from 'lodash';
-import {houseDetail,houseList} from './mock.js'
+//数据模拟
+import {M_houseDetail,M_houseList} from './mock.js'
 class CommonApi extends Client{
     constructor(){
         super();
@@ -35,7 +36,7 @@ let S_houseDetail = async function(params){
         params
     }).then((data)=> {
         if(process.env['NODE_mock']=='mock'){
-            return houseDetail;
+            return M_houseDetail;
         }
         return data['data'];
     })
@@ -64,7 +65,7 @@ let S_houseList = async function(params){
         return data['data'];
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
-            return houseList;
+            return M_houseList;
         }
         return Promise.reject(err);
     })

@@ -27,7 +27,6 @@ describe('get house detail', function() {
                 idType:1
             };
             let houseDetail = await S_houseDetail(params);
-            //console.log(houseDetail);
             done()
         })()
     });
@@ -52,7 +51,6 @@ describe('get house list info', function() {
                 houseManagerMobile:''//二房东的手机号。二房东手机号不限，传空或者不传
             };
             let houseList = await S_houseList();
-            //console.log(houseList);
             done()
         })()
     });

@@ -32,7 +32,7 @@ const mockData={
     houseManagerMobile:'15005162976'//手机号
 };
 module.exports=    {
-    houseDetail : mockData,
-    houseList: [mockData]
+    M_houseDetail : mockData,
+    M_houseList: [mockData]
 };
 

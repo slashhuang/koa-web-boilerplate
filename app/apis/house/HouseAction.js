@@ -35,10 +35,10 @@ const actions = [
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160729',
         url: '/delete.action',
         action: async function(ctx, next) {
-            let { houseId } = ctx.query;
+            let { id } = ctx.query;
             try{
                 let data = await S_deleteHouse({
-                    houseId
+                    id
                 });
                 successToJson(ctx,data);
             }catch(e){

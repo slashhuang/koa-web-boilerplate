@@ -19,8 +19,7 @@ const requestInstance = axios.create({
 requestInstance.interceptors.response.use(function(response) {
     return response;
 }, function(error) {
-    global.throw('网络出错', 500);
-    return Promise.reject(error);
+    global.throw(error, 500);
 });
 
 

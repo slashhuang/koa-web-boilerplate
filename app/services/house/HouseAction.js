@@ -67,6 +67,7 @@ let S_deleteHouse = async function(params={}){
  * @constructor
  */
 let S_addHouse = async function(params={}){
+    console.log(params);
     return apiInstance.fetch({
         url:'addHouse',
         method:'post',
@@ -77,6 +78,7 @@ let S_addHouse = async function(params={}){
         }
         return data['data'];
     }).catch((err)=>{
+        console.log('err-----',err,'\n');
         if(process.env['NODE_mock']=='mock'){
             let mock = {
                 msg:'添加房源成功'

@@ -28,7 +28,7 @@ let S_cityList = async function(params){
             };
             return [mock];
         }
-        return data;
+        return data['data'];
     }).catch((err)=>{
         console.log('--err--',err);
     })
@@ -40,14 +40,19 @@ let S_townList = async function(params){
         method:'get',
         params
     }).then((data)=>{
+        if(data['status']==-1){
+            global.throw(data['msg'],400);
+        }
+        return data['data']
+    }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             return [{
                 townName:'虹口足球场',
                 townId:'112'
             }]
         }
-        return data
-    });
+        Promise.reject(err);
+    })
 };
 /**
  * keyword：查询关键字
@@ -61,6 +66,11 @@ let S_estateList = async function(params){
         method:'get',
         params
     }).then((data)=>{
+        if(data['status']==-1){
+            global.throw(data['msg'],400);
+        }
+        return data['data'];
+    }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             let mock =[{
                 estateName:'七韵美地苑',
@@ -68,7 +78,7 @@ let S_estateList = async function(params){
             }];
             return mock;
         }
-        return data['data'];
+        Promise.reject(err);
     });
 };
 module.exports = {
