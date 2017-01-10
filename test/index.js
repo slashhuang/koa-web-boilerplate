@@ -1,7 +1,7 @@
 /**
  * Created by huangxiaogang on 17/1/10.
  * 测试入口
- * mocha issure reference
+ * mocha issue reference
  * https://github.com/mochajs/mocha/issues/2407
  */
 var config = global._appConfig = require('../config/index.js')('dev');
@@ -21,3 +21,4 @@ app.on('error',function(err,ctx){
 });
 
 require('./common/cityList.js');
+require('./house/HouseInfo.js');

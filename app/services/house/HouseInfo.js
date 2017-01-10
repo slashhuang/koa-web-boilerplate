@@ -4,7 +4,7 @@
  * 查询房源列表
  */
 import Client from '../../request.js';
-
+import _ from 'lodash';
 class CommonApi extends Client{
     constructor(){
         super();
@@ -24,6 +24,11 @@ let apiInstance = new CommonApi();
  * @param params
  */
 let S_houseDetail = async function(params){
+    if(!(_.has(params,'id') && _.has(params,'idType'))){
+        return {
+            err:'params missing args id and idType'
+        }
+    }
     return apiInstance.fetch({
         url:'houseDetail',
         method:'get',
