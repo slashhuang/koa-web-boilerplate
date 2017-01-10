@@ -19,17 +19,6 @@ describe('cityList', function() {
         })()
     });
 });
-describe('cityList', function() {
-    it('/common/cityList.action without args should work', function(done) {
-        (async ()=>{
-            let cityList =   await S_cityList({
-                provinceId:''
-            });
-            console.log(cityList);
-            done()
-        })()
-    });
-});
 describe('townList', function() {
     it('/common/townList.action with args cityId should work', function(done) {
         (async ()=>{
@@ -41,19 +30,7 @@ describe('townList', function() {
         })()
     });
 });
-describe('townList', function() {
-    it('/common/townList.action without cityId should work', function(done) {
-        (async ()=>{
-            let townList =   await S_townList({
-                cityId:''
-            });
-            if(townList){
-                console.log(townList['data']);
-                done()
-            }
-        })()
-    });
-});
+
 describe('estateList', function() {
     it('/common/estateList.action should work', function(done) {
         (async ()=>{
