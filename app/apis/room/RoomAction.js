@@ -4,7 +4,7 @@
  */
 
 import { successToJson,errorToJson } from '../../response';
-import { S_deleteRoom,S_addRoom } from '../../services/room/index.js';
+import { S_deleteRoom,S_addRoom } from '../../services/index.js';
 const resourceName = 'room';
 const describe = '房间动作';
 const actions = [{

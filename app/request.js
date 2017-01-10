@@ -65,18 +65,14 @@ export default class Client {
         const param = {
             method: data.method || 'get',
             url: `${this.host}${soaUrl}`,
-            data: data.params
+            params: data.params
         };
-
         return await this.request(param)
             .then(function(response) {
                 return response.data;
             })
             .catch(function(error) {
-                if(process.env['NODE_mock']=='mock'){
-                    return 'mock';
-                }
-                global.throw('SOA请求出错', 500);
+                global.throw(error, 500);
             });
     }
 }

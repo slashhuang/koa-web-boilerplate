@@ -4,7 +4,7 @@
  * 房源列表
  */
 import { successToJson,errorToJson } from '../../response';
-import { S_houseDetail, S_houseList } from '../../services/house/index.js';
+import { S_houseDetail, S_houseList } from '../../services/index.js';
 
 const resourceName = 'houseInfo';
 const describe = '查询房源明细';

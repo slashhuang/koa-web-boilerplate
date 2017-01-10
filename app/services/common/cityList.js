@@ -29,6 +29,8 @@ let S_cityList = async function(params){
             return [mock];
         }
         return data;
+    }).catch((err)=>{
+        console.log('--err--',err);
     })
 };
 //根据区域Id获取板块列表

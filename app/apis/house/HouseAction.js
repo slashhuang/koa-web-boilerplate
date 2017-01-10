@@ -9,7 +9,7 @@ import { successToJson,errorToJson } from '../../response';
 import {S_deleteHouse,
         S_addHouse,
         S_updateHouse
-} from '../../services/house/index.js';
+} from '../../services/index.js';
 
 const resourceName = 'houseAction';
 const describe = '房源动作';
