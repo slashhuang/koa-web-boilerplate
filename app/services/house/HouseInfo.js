@@ -35,7 +35,7 @@ let S_houseDetail = async function(params){
         params
     }).then((data)=> {
         if(process.env['NODE_mock']=='mock'){
-            return mockData;
+            return houseDetail;
         }
         return data['data'];
     })
@@ -64,7 +64,7 @@ let S_houseList = async function(params){
         return data['data'];
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
-            return [mockData];
+            return houseList;
         }
         return Promise.reject(err);
     })
