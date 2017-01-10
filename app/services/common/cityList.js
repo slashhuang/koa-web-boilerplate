@@ -2,7 +2,7 @@
  * Created by huangxiaogang on 17/1/9.
  */
 import Client from '../../request.js';
-
+import {  M_cityList, M_townList,M_estateList} from './mock.js';
 class CommonApi extends Client{
     constructor(){
         super();
@@ -22,11 +22,8 @@ let S_cityList = async function(params){
         params
     }).then((data)=> {
         if(process.env['NODE_mock']=='mock'){
-            let mock = {
-                cityName:'上海',
-                cityId:'1122'
-            };
-            return [mock];
+
+            return M_cityList;
         }
         return data['data'];
     }).catch((err)=>{
@@ -46,10 +43,7 @@ let S_townList = async function(params){
         return data['data']
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
-            return [{
-                townName:'虹口足球场',
-                townId:'112'
-            }]
+            return M_townList
         }
         Promise.reject(err);
     })
@@ -72,11 +66,7 @@ let S_estateList = async function(params){
         return data['data'];
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
-            let mock =[{
-                estateName:'七韵美地苑',
-                estateId:1111
-            }];
-            return mock;
+            return M_estateList;
         }
         Promise.reject(err);
     });

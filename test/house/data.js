@@ -29,7 +29,7 @@ const M_addHouse = {
         facilities:1,//配套设施
         houseRoomNo:'1',//房源的房间编号
         type:1,//房间类型，1：主卧；2：次卧
-        fileUrls:['helo']//图片文件Url数组
+        fileUrls:[]//图片文件url数组
     }]
 };
 module.exports ={
