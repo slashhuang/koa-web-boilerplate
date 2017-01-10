@@ -25,9 +25,7 @@ let apiInstance = new CommonApi();
  */
 let S_houseDetail = async function(params){
     if(!(_.has(params,'id') && _.has(params,'idType'))){
-        return {
-            err:'params missing args id and idType'
-        }
+        global.throw('params missing args id and idType',400);
     }
     return apiInstance.fetch({
         url:'houseDetail',
