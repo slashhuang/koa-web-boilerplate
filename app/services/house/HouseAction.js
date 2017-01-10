@@ -11,8 +11,8 @@ class CommonApi extends Client{
         super();
         this.actions = {
             deleteHouse : '/house/delete.action',
-            addHouse:' /house/add.action',
-            updateHouse:'/house/update.do'
+            addHouse: '/house/add.action',
+            updateHouse: '/house/update.do'
         }
     }
 }
@@ -23,20 +23,21 @@ let apiInstance = new CommonApi();
  * houseId：房源Id
  * @param params
  */
-let S_deleteHouse = async function(params){
+let S_deleteHouse = async function(params={}){
     return apiInstance.fetch({
         url:'deleteHouse',
         method:'get',
         params
     }).then((data)=> {
-        console.log('data');
+        return data['data'];
+    }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             let mock = {
-                msg:'修改成功'
+                msg:'删除成功'
             };
             return mock;
         }
-        return data;
+        return Promise.reject(err);
     })
 };
 /**
@@ -65,19 +66,24 @@ let S_deleteHouse = async function(params){
  ]
  * @constructor
  */
-let S_addHouse = async function(){
+let S_addHouse = async function(params={}){
     return apiInstance.fetch({
         url:'addHouse',
         method:'post',
         params
     }).then((data)=> {
+        if(data['status']==-1){
+            global.throw(data['msg'],400);
+        }
+        return data['data'];
+    }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             let mock = {
-                msg:'修改成功'
+                msg:'添加房源成功'
             };
             return mock;
         }
-        return data;
+        return Promise.reject(err);
     })
 };
 /**
@@ -85,19 +91,24 @@ let S_addHouse = async function(){
  * @returns {*}
  * @constructor
  */
-let S_updateHouse = async function(){
+let S_updateHouse = async function(params={}){
     return apiInstance.fetch({
         url:'updateHouse',
         method:'post',
         params
     }).then((data)=> {
+        if(data['status']==-1){
+            global.throw(data['msg'],400);
+        }
+        return data['data'];
+    }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             let mock = {
-                msg:'修改成功'
+                msg:'更新房源成功'
             };
             return mock;
         }
-        return data;
+        return Promise.reject(err);
     })
 };
 module.exports = {
