@@ -68,7 +68,7 @@ let S_estateList = async function(params){
             }];
             return mock;
         }
-        return data
+        return data['data'];
     });
 };
 module.exports = {

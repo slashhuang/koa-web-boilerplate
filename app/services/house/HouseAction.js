@@ -29,6 +29,7 @@ let S_deleteHouse = async function(params){
         method:'get',
         params
     }).then((data)=> {
+        console.log('data');
         if(process.env['NODE_mock']=='mock'){
             let mock = {
                 msg:'修改成功'

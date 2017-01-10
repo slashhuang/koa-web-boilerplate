@@ -10,7 +10,7 @@ class CommonApi extends Client{
         super();
         this.actions = {
             houseDetail : '/house/detail.do',
-            houseList : ' /house/list.action'
+            houseList : '/house/list.action'
         }
     }
 }
@@ -63,7 +63,7 @@ let S_houseDetail = async function(params){
             };
             return mock;
         }
-        return data;
+        return data['data'];
     })
 };
 /**
@@ -115,7 +115,7 @@ let S_houseList = async function(params){
             }];
             return mock;
         }
-        return data;
+        return data['data'];
     })
 };
 module.exports = {

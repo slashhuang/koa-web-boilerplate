@@ -16,6 +16,7 @@ let actions = {
 
 /**
  * 房源详情
+ * id：房源或者房间Id
  * idType 1：房源；2：房间
  */
 describe('get house detail', function() {
@@ -50,7 +51,8 @@ describe('get house list info', function() {
                 endTime:'',//终止创建时间。终止时间不限，传空或者不传
                 houseManagerMobile:''//二房东的手机号。二房东手机号不限，传空或者不传
             };
-            let houseList = await S_houseList(params);
+            console.log('------listing')
+            let houseList = await S_houseList();
             console.log(houseList);
             done()
         })()

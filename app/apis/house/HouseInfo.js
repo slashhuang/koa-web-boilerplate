@@ -42,12 +42,7 @@ const actions = [{
                 rentType,
                 houseStatus } = ctx.query;
             try{
-                let houseList = await S_houseList(
-                    cityId,
-                    townId,
-                    rentType,
-                    houseStatus
-                );
+                let houseList = await S_houseList();
                 successToJson(ctx,houseList)
             }catch(err){
                 errorToJson(ctx,400,err);

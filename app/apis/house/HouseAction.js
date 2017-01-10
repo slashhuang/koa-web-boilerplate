@@ -23,6 +23,7 @@ const actions = [
             try{
                 let params = ctx.request.body;
                 let data = await S_addHouse(params);
+                console.log(data);
                 successToJson(ctx, data)
             }catch(e){
                 errorToJson(ctx,400,'服务器错误');

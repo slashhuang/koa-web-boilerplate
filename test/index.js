@@ -22,3 +22,4 @@ app.on('error',function(err,ctx){
 
 require('./common/cityList.js');
 require('./house/HouseInfo.js');
+require('./house/HouseAction.js');

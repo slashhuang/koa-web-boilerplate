@@ -12,15 +12,15 @@ import {S_deleteHouse,
 /**
  * 添加房源
  */
-describe('update house', function() {
-    it(' /house/update.do should work', function(done) {
-        (async ()=>{
-            let houseData = await S_addHouse();
-            console.log(houseData);
-            done()
-        })()
-    });
-});
+//describe('update house', function() {
+//    it(' /house/update.do should work', function(done) {
+//        (async ()=>{
+//            let houseData = await S_addHouse();
+//            console.log(houseData);
+//            done()
+//        })()
+//    });
+//});
 /**
  * 入参数
  * houseId：房源Id
