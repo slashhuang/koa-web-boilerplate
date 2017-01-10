@@ -19,6 +19,7 @@ const mockData={
     bedroomSum:5,// 卧室数
     livingRoomSum:1,//厅数
     wcSum:2,//卫生间数
+    facilities: [],//房屋配套
     decorateType:1,//1:毛坯；2:普装；3:精装；4:豪装
     picNum:1,//图片数目
     orientation:1,//1:东,2:西,3:南,4:北
