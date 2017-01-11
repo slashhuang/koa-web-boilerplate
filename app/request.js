@@ -66,7 +66,6 @@ export default class Client {
             params: data.params,
             data: data.data
         };
-        console.log(param);
         return await this.request(param)
             .then(function(response) {
                 return response.data;

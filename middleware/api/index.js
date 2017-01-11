@@ -69,7 +69,7 @@ module.exports = function(setting) {
     for (let subAPI in actionCollection.subAPIList) {
         let value = actionCollection.subAPIList[subAPI];
         router.get(`${appRoot}/${subAPI}`, (ctx, next) => {
-            ctx.body = JSON.stringify(value);
+            ctx.body = JSON.stringify(Object.assign(global._appConfig,value));
         });
     }
     return router.routes()

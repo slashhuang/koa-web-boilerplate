@@ -9,7 +9,7 @@ import {
     S_houseDetail,
     S_houseList
 } from '../../app/services/index.js';
-import { M_listParam } from './data.js';
+import { M_listParam,M_detailParam } from './data.js';
 let actions = {
     houseDetail : '/house/detail.do',
     houseList : ' /house/list.action'
@@ -23,11 +23,9 @@ let actions = {
 describe('get house detail', function() {
     it(`${actions['houseDetail']} should work`, function(done) {
         (async ()=>{
-            let params = {
-                id:2,
-                idType:1
-            };
-            let houseDetail = await S_houseDetail(params);
+
+            let houseDetail = await S_houseDetail(M_detailParam);
+            console.log(houseDetail);
             done()
         })()
     });
@@ -42,7 +40,6 @@ describe('get house list info', function() {
     it(`${actions['houseList']} should work`, function(done) {
         (async ()=>{
             let houseList = await S_houseList(M_listParam);
-            console.log(houseList);
             done()
         })()
     });
