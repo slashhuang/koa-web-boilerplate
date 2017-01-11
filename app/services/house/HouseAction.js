@@ -35,6 +35,7 @@ let S_deleteHouse = async function(params={}){
         }
         return data['data'];
     }).catch((err)=>{
+        console.log(err);
         if(process.env['NODE_mock']=='mock'){
             let mock = {
                 msg:'删除成功'
@@ -74,7 +75,7 @@ let S_addHouse = async function(params={}){
     return apiInstance.fetch({
         url:'addHouse',
         method:'post',
-        host:'http://10.7.251.73:9090',
+        //host:'http://10.7.251.73:9090',
         data:params
     }).then((data)=> {
         if(data['status']==-1){

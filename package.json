@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=dev NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./server.js",
     "prod": "NODE_ENV=prod ./node_modules/.bin/nodemon --use_strict ./server.js",
     "mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 3000 ./test/test.js",
-    "api-mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 10000 ./test/test.js"
+    "api-mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 4000 ./test/test.js"
   },
   "repository": {
     "type": "git",

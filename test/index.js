@@ -20,9 +20,9 @@ app.on('error',function(err,ctx){
     console.error("server error",err,ctx);
 });
 
-require('./common/CityList.js');
-require('./common/RoomList.js');
-require('./common/BuildingList.js');
-require('./common/SubEstateList.js');
+//require('./common/CityList.js');
+//require('./common/RoomList.js');
+//require('./common/BuildingList.js');
+//require('./common/SubEstateList.js');
 require('./house/HouseInfo.js');
 require('./house/HouseAction.js');
