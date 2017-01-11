@@ -13,7 +13,7 @@ import querystring from 'querystring';
  * 请求数据配置
  */
 const requestInstance = axios.create({
-    timeout: global._appConfig.timeout || 5000
+    timeout: global._appConfig.timeout || 10000
 });
 
 requestInstance.interceptors.response.use(function(response) {
@@ -56,16 +56,17 @@ export default class Client {
     }
     /**
      * 基本的请求数据结构
-     * }
      */
     async fetch(data) {
         let soaUrl = data.url && this.actions[data.url];
-
+        //可以通过data.host覆盖全局host，方便做单元测试
         const param = {
             method: data.method || 'get',
-            url: `${this.host}${soaUrl}`,
-            params: data.params
+            url: `${data.host||this.host}${soaUrl}`,
+            params: data.params,
+            data: data.data
         };
+        console.log(param);
         return await this.request(param)
             .then(function(response) {
                 return response.data;

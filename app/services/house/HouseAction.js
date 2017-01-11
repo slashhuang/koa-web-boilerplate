@@ -71,11 +71,11 @@ let S_deleteHouse = async function(params={}){
  * @constructor
  */
 let S_addHouse = async function(params={}){
-    console.log(params);
     return apiInstance.fetch({
         url:'addHouse',
         method:'post',
-        params
+        host:'http://10.7.251.73:9090',
+        data:params
     }).then((data)=> {
         if(data['status']==-1){
             global.throw(data['msg'],400);

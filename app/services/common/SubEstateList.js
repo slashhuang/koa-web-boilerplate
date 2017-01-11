@@ -1,23 +1,22 @@
 /**
  * Created by huangxiaogang on 17/1/11.
- * 楼栋信息
+ * 根据小区Id获取小区子划分列表
  */
 import Client from '../../request.js';
-import {  M_buildingList } from './mock.js';
+import {  M_subEstateList } from './mock.js';
 class CommonApi extends Client{
     constructor(){
         super();
         this.actions = {
-            buildingList : '/common/buildingList.action'
+            subEstateList : '/common/subEstateList.action'
         }
     }
 }
 let apiInstance = new CommonApi();
-//根据子划分Id查询楼栋信息
-
-let S_buildingList = async function(params){
+//根据小区Id获取小区子划分列表
+let S_subEstateList = async function(params){
     return apiInstance.fetch({
-        url:'buildingList',
+        url:'subEstateList',
         method:'get',
         params
     }).then((data)=> {
@@ -27,11 +26,11 @@ let S_buildingList = async function(params){
         return data['data']
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
-            return M_buildingList['data'];
+            return M_subEstateList;
         }
         Promise.reject(err);
     })
 };
 module.exports = {
-    S_buildingList
+    S_subEstateList
 };

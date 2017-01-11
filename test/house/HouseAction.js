@@ -18,7 +18,7 @@ const API = {
 /**
  * 添加房源
  */
-describe('add house', function() {
+describe('add house----------', function() {
     it(`${API['addHouse']} should work`, function(done) {
         (async ()=>{
             let houseData = await S_addHouse(M_addHouse).then((data)=>{

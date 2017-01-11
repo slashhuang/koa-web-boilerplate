@@ -28,11 +28,14 @@ const M_buildingList={
     "msg":"Ok",
     "status":1
 };
+//根据小区Id获取小区子划分列表
+const M_subEstateList= [{"address":"中山南路1711号","id":83728}];
 module.exports=    {
     M_cityList,
     M_townList,
     M_estateList,
     M_roomList,
-    M_buildingList
+    M_buildingList,
+    M_subEstateList
 };
 
