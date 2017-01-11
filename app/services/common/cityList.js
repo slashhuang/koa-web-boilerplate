@@ -63,7 +63,7 @@ let S_estateList = async function(params){
         if(data['status']==-1){
             global.throw(data['msg'],400);
         }
-        return data['data'];
+        return Promise.resolve(data['data']);
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             return M_estateList;
