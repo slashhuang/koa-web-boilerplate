@@ -36,13 +36,8 @@ const actions = [{
         url: '/list.action',
         serviceApi:'/house/list.action?cityId=XX&townId=YY&estateId=TT&rentType=ZZ&houseStatus=WW&startTime=AA&endTime=BB',
         action: async function(ctx, next) {
-            let {
-                cityId,
-                townId,
-                rentType,
-                houseStatus } = ctx.query;
             try{
-                let houseList = await S_houseList();
+                let houseList = await S_houseList(ctx.query);
                 successToJson(ctx,houseList)
             }catch(err){
                 errorToJson(ctx,400,err);
