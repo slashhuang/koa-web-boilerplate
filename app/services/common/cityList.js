@@ -21,13 +21,15 @@ let S_cityList = async function(params){
         method:'get',
         params
     }).then((data)=> {
-        if(process.env['NODE_mock']=='mock'){
-
-            return M_cityList;
+        if(data['status']==-1){
+            global.throw(data['msg'],400);
         }
-        return data['data'];
+        return data['data']
     }).catch((err)=>{
-        console.log('--err--',err);
+        if(process.env['NODE_mock']=='mock'){
+            return M_cityList
+        }
+        Promise.reject(err);
     })
 };
 //根据区域Id获取板块列表

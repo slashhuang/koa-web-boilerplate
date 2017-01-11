@@ -21,5 +21,6 @@ app.on('error',function(err,ctx){
 });
 
 require('./common/cityList.js');
+require('./common/RoomList.js');
 require('./house/HouseInfo.js');
 require('./house/HouseAction.js');

@@ -40,6 +40,7 @@ const actions = [
                 let data = await S_deleteHouse({
                     id
                 });
+                console.log('api--',data)
                 successToJson(ctx,data);
             }catch(e){
                 errorToJson(ctx,400,'服务器错误');
