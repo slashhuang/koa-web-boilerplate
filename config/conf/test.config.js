@@ -12,8 +12,8 @@ module.exports = {
      * 静态资源配置
      */
     staticConfigs: {
-        staticResourceConfigURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-pc_test/staticResourceConfig.properties',
-        staticResourceURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-pc_test/staticResource.properties',
+        staticResourceConfigURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-rent-platform_test/staticResourceConfig.properties',
+        staticResourceURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-rent-platform_test/staticResource.properties',
         devResourceURL:  'http://127.0.0.1/iwjw-rent-platform/',
 
     //staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
