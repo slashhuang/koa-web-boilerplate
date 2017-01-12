@@ -25,4 +25,4 @@ COPY . $HOME/iwjw-rent-platform
 RUN chown -R app:app $HOME/*
 USER app
 
-CMD pm2-docker ./server.js
+CMD NODE_ENV=test pm2-docker ./server.js
