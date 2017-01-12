@@ -26,8 +26,8 @@ if(proxyPort){
     server.listen(proxyPort);
     console.log('启动端口' +proxyPort);
 }else{
-    server.listen(config.port);
-    console.log('启动端口' +config.port);
+    server.listen(config['port']);
+    console.log('启动端口' +config['port']);
 }
 require('./utils/index')['StaticResourceManager']['startLoadProperties']();
 

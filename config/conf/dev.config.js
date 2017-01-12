@@ -10,9 +10,11 @@ module.exports = {
      * 静态资源配置
      */
     staticConfigs: {
-        staticResourceConfigURL: 'http://127.0.0.1',
-        staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
-        devResourceURL:  'http://127.0.0.1/iwjw-rent-platform',
+        staticResourceURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-rent-platform_test/staticResource.properties',
+        staticResourceConfigURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-rent-platform_test/staticResourceConfig.properties',
+        devResourceURL:  'http://127.0.0.1/iwjw-rent-platform/',
+
+        //staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
         datacollectUrl:''
     },
     //租赁服务

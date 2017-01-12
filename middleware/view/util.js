@@ -4,7 +4,7 @@
  */
 const path = require('path');
 let { staticConfigs } = global._appConfig;
-const STATIC_RESOURCE_NAME = "staticResource.properties";
+const STATIC_RESOURCE_NAME = "staticResource";
 
 let {
         staticResourceConfigURL,
@@ -21,8 +21,8 @@ let MethodNameSpace = {
     getURL : (tagName)=>{
         try{
             //加载远程资源
-            const staticJson = path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}`);
-            console.log()
+            const staticJson = path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}.json`);
+            console.log('static json ------ ',staticJson);
             let staticCollection = require(staticJson);
             return staticCollection[tagName]
         }catch(err){

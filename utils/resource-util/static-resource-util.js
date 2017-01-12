@@ -6,6 +6,8 @@ import crypto from "crypto";
 import _ from "lodash";
 import { propFileToJsonSync } from "./properties-to-json";
 
+const path = require('path');
+
 const C_W_D = process.cwd();
 const NODE_ENV = process.env['NODE_ENV'] || "dev";
 const config = global._appConfig;
@@ -58,16 +60,15 @@ class PropertiesUtil{
             if(!this.isEmpty(this.staticResourceMD5) && this.staticResourceMD5 === this.tmpStaticResourceMD5){
                 this.isAutoReloadStaticResource = false;
             }
-
-            callback && callback()
+            callback && callback();
             console.log("load file " + STATIC_CONFIG_NAME + " finish.");
         }).catch((err)=>{
             console.log(err) ;
         });
     }
     /**
+     *
      * 加载staticResource.properties文件
-     * @returns
      * @memberOf PropertiesUtil
      */
     loadStaticResource(){
@@ -111,6 +112,7 @@ class PropertiesUtil{
     }
     // 拉取文件入口方法
     startLoadProperties(){
+        fs.emptyDirSync(path.normalize(C_W_D+STATIC_PATH));
         let staticConfigs = config.staticConfigs;
         if(!staticConfigs){
             throw new Error("staticConfigs error!");

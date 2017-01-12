@@ -1,14 +1,13 @@
 {
-  "restartable": "rs",
   "ignore": [
     ".git",
     "assets",
+    "logs",
     "node_modules/**/node_modules"
   ],
   "verbose": true,
-  "watch": [
-    "test/fixtures/",
-    "test/samples/"
-  ],
+  "events": {
+    "restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
+  },
   "ext": "js json"
 }
