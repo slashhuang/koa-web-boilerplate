@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=dev NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./server.js",
     "prod": "NODE_ENV=prod ./node_modules/.bin/nodemon --use_strict ./server.js",
     "mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 3000 ./test/test.js",
-    "api-mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 4000 ./test/test.js",
+    "api-mocha":"NODE_ENV=test ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 4000 ./test/test.js",
     "proxy": "./node_modules/.bin/nodemon --use_strict --use_strict ./server.js --proxyPort=8004"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "debug": "^2.3.0",
     "ejs": "^2.5.2",
     "formidable": "^1.0.17",
+    "fs-extra": "^1.0.0",
     "http-proxy": "^1.16.2",
     "images": "^3.0.0",
     "koa": "^2.0.0",

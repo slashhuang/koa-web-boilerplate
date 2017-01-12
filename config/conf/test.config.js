@@ -12,8 +12,9 @@ module.exports = {
      * 静态资源配置
      */
     staticConfigs: {
-        staticResourceConfigURL: 'http://',
-        staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
+        staticResourceConfigURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-pc_test/staticResourceConfig.properties',
+        staticResourceURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-pc_test/staticResource.properties',
+        //staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
         datacollectUrl:''
     },
     rentSOA:'http://rentsoa.iwjwtest.com',

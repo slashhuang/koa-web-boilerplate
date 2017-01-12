@@ -4,7 +4,7 @@
  * mocha issue reference
  * https://github.com/mochajs/mocha/issues/2407
  */
-var config = global._appConfig = require('../config/index.js')('dev');
+var config = global._appConfig = require('../config/index.js')('test');
 var app = require('../bin/app');
 var server = require('http').createServer(app.callback());
 
@@ -24,6 +24,9 @@ app.on('error',function(err,ctx){
 //require('./common/RoomList.js');
 //require('./common/BuildingList.js');
 //require('./common/SubEstateList.js');
-require('./common/UploadImage.js');
-require('./house/HouseInfo.js');
-require('./house/HouseAction.js');
+require('./static/resourceUtil');
+//require('./common/UploadImage.js');
+//require('./house/HouseInfo.js');
+//require('./house/HouseAction.js');
+
+

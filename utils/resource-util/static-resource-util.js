@@ -7,8 +7,8 @@ import _ from "lodash";
 import {propFileToJsonSync} from "./properties-to-json";
 
 const C_W_D = process.cwd();
-const NODE_ENV = process.env['NODE_ENV'].toLowerCase() || "dev";
-const config = require(C_W_D + '/config/conf')(NODE_ENV);
+const NODE_ENV = process.env['NODE_ENV'] || "dev";
+const config = global._appConfig;
 
 const ANNOTATION_G_RE = /\s*#[^\n]*/g;
 const SPACE_H_OR_F_RE = /(^\s)|(\s$)/g;
@@ -20,15 +20,11 @@ const STATIC_CONFIG_NAME = "staticResourceConfig.properties";
 const STATIC_PATH = "/assets/resource/";
 
 /**
- * 
- * 
  * @class PropertiesUtil
  */
 class PropertiesUtil{
     /**
      * Creates an instance of PropertiesUtil.
-     * 
-     * 
      * @memberOf PropertiesUtil
      */
     constructor(){
@@ -94,14 +90,13 @@ class PropertiesUtil{
      * @memberOf PropertiesUtil
      */
     loadStaticResourceConfig(){
-        let self = this;
-        let localPh = self.getLocalUrl(STATIC_CONFIG_NAME);
-        self.downloadToLocal(self.staticResourceConfigURL,localPh).then(()=>{
+        let localPh = this.getLocalUrl(STATIC_CONFIG_NAME);
+        this.downloadToLocal(this.staticResourceConfigURL,localPh).then(()=>{
             let newJson = propFileToJsonSync(localPh);
-            self.tmpStaticResourceMD5 = newJson["staticResourceMD5"];
-            self.isAutoReloadStaticResource = self.parseBool(newJson["autoReload"]);
-            if(!self.isEmpty(self.staticResourceMD5) && self.staticResourceMD5 === self.tmpStaticResourceMD5){
-                self.isAutoReloadStaticResource = false;
+            this.tmpStaticResourceMD5 = newJson["staticResourceMD5"];
+            this.isAutoReloadStaticResource = self.parseBool(newJson["autoReload"]);
+            if(!this.isEmpty(self.staticResourceMD5) && self.staticResourceMD5 === self.tmpStaticResourceMD5){
+                this.isAutoReloadStaticResource = false;
             }
             console.log("load file " + STATIC_CONFIG_NAME + " finish.");
         }).catch((err)=>{
@@ -117,14 +112,14 @@ class PropertiesUtil{
      */
     loadStaticResource(){
         let self = this;
-        if(!self.isAutoReloadStaticResource && !self.isEmptyObj(this.staticResourceJSON)){
+        if(!this.isAutoReloadStaticResource && !this.isEmptyObj(this.staticResourceJSON)){
             console.log("load file " + STATIC_RESOURCE_NAME + " suspended.");
             return;
         }
-        let localPath = self.getLocalUrl(STATIC_RESOURCE_NAME);
+        let localPath = this.getLocalUrl(STATIC_RESOURCE_NAME);
         
-        if(self.isAutoReloadStaticResource || !fs.existsSync(localPath)){
-            self.downloadToLocal(self.staticResourceURL,localPath).then(()=>{
+        if(this.isAutoReloadStaticResource || !fs.existsSync(localPath)){
+            this.downloadToLocal(this.staticResourceURL,localPath).then(()=>{
                 this.staticResourceJSON = propFileToJsonSync(localPath);
                 console.log("load file " + STATIC_RESOURCE_NAME + " finish.");
             });
