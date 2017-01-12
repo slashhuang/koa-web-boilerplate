@@ -1,8 +1,8 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-07 18:56:35
- * @Last Modified by:   slashhuang
- * @Last Modified time: 2016-12-29 16:10:29
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2017-01-12 15:54:30
  * 配置信息都将挂在global对象下
  */
 
@@ -23,6 +23,5 @@ module.exports = {
     //proxyTarget:'http://rentsoa.iwjwtest.com',
     proxyTarget:'http://10.7.251.73:9090',
 
-
-    "WEBSITE": "http://127.0.0.1:3000"
+    website: 'http://192.168.1.121:7000'
 };
