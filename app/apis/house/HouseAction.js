@@ -35,7 +35,7 @@ const actions = [
         description: '删除指定的房源',
         serviceApi:'GET   /house/delete.action?id=XX',
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160729',
-        url: '/delete.action',
+        url: '/delete.action/',
         action: async function(ctx, next) {
             let { id } = ctx.query;
             try{

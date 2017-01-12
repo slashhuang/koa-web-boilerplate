@@ -1,4 +1,4 @@
-docker build -t ailicai-im:latest .
-docker ps -a -q -f name=ailicai | xargs -I {} docker stop {}
-docker ps -a -q -f name=ailicai | xargs -I {} docker rm {}
-docker run -d -p 3000:3000 --name ailicai ailicai-im:latest
+docker build -t iwjw-rent-platform-im:latest .
+docker ps -a -q -f name=iwjw-rent-platform | xargs -I {} docker stop {}
+docker ps -a -q -f name=iwjw-rent-platform | xargs -I {} docker rm {}
+docker run -d -p 7000:7000 --name iwjw-rent-platform iwjw-rent-platform-im:latest

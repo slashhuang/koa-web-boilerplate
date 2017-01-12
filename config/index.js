@@ -2,12 +2,12 @@
  * @Author: enzo
  * @Date:   2016-11-08 11:39:58
  * @Last Modified by:   enzo
- * @Last Modified time: 2016-12-28 17:38:25
+ * @Last Modified time: 2017-01-12 14:30:09
  */
 const baseConfig = {
 
     // 应用端口
-    port: 3000,
+    port: 7000,
 
     // 测试端口
     testPort: 3001,
