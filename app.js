@@ -26,7 +26,7 @@ if(proxyPort){
     server.listen(proxyPort);
     console.log('启动端口' +proxyPort);
 }else{
-    server.listen(3000);
-    console.log('启动端口' +3000);
+    server.listen(config.port);
+    console.log('启动端口' +config.port);
 }
 
