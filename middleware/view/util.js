@@ -21,7 +21,9 @@ let MethodNameSpace = {
     getURL : (tagName)=>{
         try{
             //加载远程资源
-            let staticCollection = require(path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}`));
+            const staticJson = path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}`);
+            console.log()
+            let staticCollection = require(staticJson);
             return staticCollection[tagName]
         }catch(err){
             console.log('err----',err);
