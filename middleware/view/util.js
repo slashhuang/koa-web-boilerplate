@@ -8,7 +8,8 @@ const STATIC_RESOURCE_NAME = "staticResource.properties";
 
 let {
         staticResourceConfigURL,
-        staticResourceURL
+        staticResourceURL,
+        devResourceURL
     } = staticConfigs;
 
 /**
@@ -23,9 +24,9 @@ let MethodNameSpace = {
             let staticCollection = require(path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}`));
             return staticCollection[tagName]
         }catch(err){
-            console.log(err);
+            console.log('err----',err);
             //加载本地静态资源
-            return staticResourceURL + '/' + tagName;
+            return devResourceURL + tagName;
         }
     }
 };

@@ -48,7 +48,7 @@ class PropertiesUtil{
      * 加载staticResourceConfig.properties文
      * @memberOf PropertiesUtil
      */
-    loadStaticResourceConfig(){
+    loadStaticResourceConfig(callback){
         let localPh = this.getLocalUrl(STATIC_CONFIG_NAME);
         this.downloadToLocal(this.staticResourceConfigURL,localPh).then(()=>{
             let newJson = propFileToJsonSync(localPh);
@@ -58,6 +58,8 @@ class PropertiesUtil{
             if(!this.isEmpty(this.staticResourceMD5) && this.staticResourceMD5 === this.tmpStaticResourceMD5){
                 this.isAutoReloadStaticResource = false;
             }
+
+            callback && callback()
             console.log("load file " + STATIC_CONFIG_NAME + " finish.");
         }).catch((err)=>{
             console.log(err) ;
@@ -96,20 +98,6 @@ class PropertiesUtil{
         }
         
     }
-    getMD5(url){
-        if(!fs.existsSync(url)){
-            reject();
-            throw new Error("got md5 fail: file is not exists");
-            return "";
-        }
-        var rfs = fs.readFileSync(url,'utf8');
-        let str = rfs.replace(ANNOTATION_G_RE,"").trim().replace(END_OF_EACH_LINE_RE,"$1, $2");
-        str = "{" + str + "}";
-        var hash = crypto.createHash("md5");
-        hash.update(str);
-        let md5 = hash.digest('hex');
-        return md5;
-    }
     downloadToLocal(url, local){
         return new Promise((resolve,reject)=>{
             axios.get(url).then((response)=>{
@@ -136,30 +124,23 @@ class PropertiesUtil{
         fs.ensureDir("."+STATIC_PATH,(err)=>{
             if(err)console.log(err);
         });
+        this.loadStaticResourceConfig(()=>{
+            this.loadStaticResource();
+        });
         // 开发环境使用本地静态文件
         if (NODE_ENV !== "dev") {
             // 每一分钟定时装载staticResourceConfig任务
-            this.loadStaticResourceConfig();
-            this.loadStaticResource();
+
             var setTimeLoad = ()=>{
                 this.__TIMER = setTimeout(() => {
-                    this.loadStaticResourceConfig();
-                    this.loadStaticResource();
+                    this.loadStaticResourceConfig(()=>{
+                        this.loadStaticResource();
+                    });
                     setTimeLoad();
                 },60*1000);
             };
             setTimeLoad();
         }
-    }
-    getURL(key){
-        if(this.isEmptyObj(this.staticResourceJSON))return;
-        if(!key)return "";
-        if(NODE_ENV !== "prod" && arguments[1]){
-            return arguments[1] + key;
-        }else{
-            if(NODE_ENV === "dev")return self.staticResourceURL + key;
-            return this.staticResourceJSON[key] || "";
-        }  
     }
 }  
 module.exports = new PropertiesUtil();

@@ -4,7 +4,7 @@
   "description": "koa",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/nodemon --use_strict ./server.js",
+    "test": "NODE_ENV=test node --use_strict ./server.js",
     "dev": "NODE_ENV=dev NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./server.js",
     "prod": "NODE_ENV=prod ./node_modules/.bin/nodemon --use_strict ./server.js",
     "mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 3000 ./test/test.js",
