@@ -19,14 +19,7 @@ const STATIC_RESOURCE_NAME = "staticResource.properties";
 const STATIC_CONFIG_NAME = "staticResourceConfig.properties";
 const STATIC_PATH = "/assets/resource/";
 
-/**
- * @class PropertiesUtil
- */
 class PropertiesUtil{
-    /**
-     * Creates an instance of PropertiesUtil.
-     * @memberOf PropertiesUtil
-     */
     constructor(){
         this.isAutoReloadStaticResource = false;
         this.staticResourceConfigURL = "";
@@ -44,49 +37,22 @@ class PropertiesUtil{
      * 根据文件名获取完整本地路径
      * @param {any} fileName
      * @returns string
-     * 
      * @memberOf PropertiesUtil
      */
     getLocalUrl(fileName){
         return C_W_D + STATIC_PATH + fileName;
     }
-    /**
-     * 
-     * string转换成bool类型
-     * @param {any} str
-     * @returns
-     * 
-     * @memberOf PropertiesUtil
-     */
     parseBool(str){
         return typeof str ==="boolean" ? str : (typeof str === "string" && str.toLowerCase() === "true");
     }
-    /**
-     * 
-     * 判断字符串为空
-     * @param {any} str
-     * @returns
-     * 
-     * @memberOf PropertiesUtil
-     */
     isEmpty(str){
         return !str || (typeof str === 'string' && !str.trim());
     }
-    /**
-     * 
-     * 判断空对象
-     * @param {any} obj
-     * @returns
-     * 
-     * @memberOf PropertiesUtil
-     */
     isEmptyObj(obj){
         return typeof obj === "object" && _.isEmpty(obj);
     }
     /**
-     * 
-     * 加载staticResourceConfig.properties文件
-     * 
+     * 加载staticResourceConfig.properties文
      * @memberOf PropertiesUtil
      */
     loadStaticResourceConfig(){
@@ -104,10 +70,8 @@ class PropertiesUtil{
         });
     }
     /**
-     * 
      * 加载staticResource.properties文件
      * @returns
-     * 
      * @memberOf PropertiesUtil
      */
     loadStaticResource(){
@@ -135,7 +99,6 @@ class PropertiesUtil{
      * 获取url对应文件的md5
      * @param {any} url
      * @returns
-     * 
      * @memberOf PropertiesUtil
      */
     getMD5(url){
@@ -152,15 +115,6 @@ class PropertiesUtil{
         let md5 = hash.digest('hex');
         return md5;
     }
-    /**
-     * 
-     * 加载远程文件到本地
-     * @param {any} 远程url
-     * @param {any} 本地路径
-     * @returns
-     * 
-     * @memberOf PropertiesUtil
-     */
     downloadToLocal(url, local){
         let self = this;
         return new Promise((resolve,reject)=>{
@@ -173,13 +127,6 @@ class PropertiesUtil{
             });
         });
     }
-    
-    /**
-     * 开始开启properties文件处理逻辑
-     * @description start load properties files
-     * 
-     * @memberOf PropertiesUtil
-     */
     startLoadProperties(){
         let self = this;
         let staticConfigs = config.staticConfigs;
@@ -203,9 +150,6 @@ class PropertiesUtil{
             // 每一分钟定时装载staticResourceConfig任务
             self.loadStaticResourceConfig();
             self.loadStaticResource();
-            /**
-             * 
-             */
             function setTimeLoad(){
                 self.__TIMER = setTimeout(() => {
                     self.loadStaticResourceConfig();
@@ -216,14 +160,6 @@ class PropertiesUtil{
             setTimeLoad();
         }
     }
-    /**
-     * 
-     * 根据properties中的key获取value，也就是完整路径
-     * @param {any} key
-     * @returns the key's value(url)
-     * 
-     * @memberOf PropertiesUtil
-     */
     getURL(key){
         if(this.isEmptyObj(this.staticResourceJSON))return;
         if(!key)return "";
