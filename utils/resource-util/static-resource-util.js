@@ -52,6 +52,7 @@ class PropertiesUtil{
         let localPh = this.getLocalUrl(STATIC_CONFIG_NAME);
         this.downloadToLocal(this.staticResourceConfigURL,localPh).then(()=>{
             let newJson = propFileToJsonSync(localPh);
+            fs.writeJsonSync("."+STATIC_PATH + "staticResourceConfig.json",newJson); 
             this.tmpStaticResourceMD5 = newJson["staticResourceMD5Order"];
             this.isAutoReloadStaticResource = this.parseBool(newJson["autoReload"]);
             if(!this.isEmpty(this.staticResourceMD5) && this.staticResourceMD5 === this.tmpStaticResourceMD5){
@@ -78,14 +79,22 @@ class PropertiesUtil{
         if(this.isAutoReloadStaticResource || !fs.existsSync(localPath)){
             this.downloadToLocal(this.staticResourceURL,localPath).then(()=>{
                 this.staticResourceJSON = propFileToJsonSync(localPath);
+                self.staticResourceMD5 = self.tmpStaticResourceMD5;
+                // console.log(this.staticResourceJSON);
+                fs.writeJsonSync("."+STATIC_PATH + "staticResource.json",this.staticResourceJSON);
                 console.log("load file " + STATIC_RESOURCE_NAME + " finish.");
             });
         }
-        let md5 = self.getMD5(localPath);
-        if(!self.isEmpty(self.tmpStaticResourceMD5) && md5 !== self.tmpStaticResourceMD5){
-            return;
+        // let md5 = self.getMD5(localPath);
+        if(!self.isEmpty(self.tmpStaticResourceMD5) && self.staticResourceMD5 !== self.tmpStaticResourceMD5){
+            this.downloadToLocal(this.staticResourceURL,localPath).then(()=>{
+                this.staticResourceJSON = propFileToJsonSync(localPath);
+                self.staticResourceMD5 = self.tmpStaticResourceMD5;
+                fs.writeJsonSync("."+STATIC_PATH + "staticResource.json",this.staticResourceJSON);
+                console.log("load file " + STATIC_RESOURCE_NAME + " finish.");
+            });
         }
-        self.staticResourceMD5 = self.tmpStaticResourceMD5;
+        
     }
     getMD5(url){
         if(!fs.existsSync(url)){
