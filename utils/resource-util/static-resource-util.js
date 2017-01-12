@@ -118,7 +118,8 @@ class PropertiesUtil{
         if(!staticConfigs){
             throw new Error("staticConfigs error!");
         }
-        let { staticResourceConfigURL,staticResourceURL} = staticConfigs;
+        this.staticResourceConfigURL = staticConfigs.staticResourceConfigURL;
+        this.staticResourceURL = staticConfigs.staticResourceURL;
         if (this.isEmpty(staticResourceConfigURL) || this.isEmpty(staticResourceURL)) {
             throw Error("staticConfig properties error!");
         }
