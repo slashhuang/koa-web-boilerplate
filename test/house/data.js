@@ -44,10 +44,14 @@ const M_listParam={
 };
 const M_detailParam={
     id:0,
-    idType:1
+    idType:2
+};
+const M_deleteParam={
+    id:0
 };
 module.exports ={
     M_addHouse,
     M_listParam,
-    M_detailParam
+    M_detailParam,
+    M_deleteParam
 };

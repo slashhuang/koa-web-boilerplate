@@ -9,7 +9,7 @@ import {S_deleteHouse,
         S_addHouse,
         S_updateHouse
 } from '../../app/services/index.js';
-import { M_addHouse } from './data.js';
+import { M_addHouse,M_deleteParam } from './data.js';
 const API = {
     deleteHouse : '/house/delete.action',
     addHouse: '/house/add.action',
@@ -33,10 +33,10 @@ describe('add house----------', function() {
 /**
  * 更新房源
  */
-describe('update house', function() {
+describe('update house ------', function() {
     it(`${API['updateHouse']} should work`, function(done) {
         (async ()=>{
-            let houseData = await S_updateHouse().then((data)=>{
+            let houseData = await S_updateHouse(M_addHouse).then((data)=>{
                 console.log('update house',data);
                 return 1
             });
@@ -50,12 +50,10 @@ describe('update house', function() {
  * houseId：房源Id
  * @param params
  */
-describe('delete house', function() {
+describe('delete house -------', function() {
     it(`${API['deleteHouse']} should work`, function(done) {
         (async ()=>{
-            let houseData = await S_deleteHouse({
-                id:1
-            }).then((err)=>{
+            let houseData = await S_deleteHouse(M_deleteParam).then((err)=>{
                 console.log('delete house',err);
                 return 1
             });

@@ -17,6 +17,7 @@ const actions = [
     {
         description: '增加房源',
         serviceApi:'POST /house/update.do',
+        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160731',
         url: '/add.action',
         method:'post',
         action: async function(ctx, next) {
@@ -32,6 +33,7 @@ const actions = [
     },
     {
         description: '删除指定的房源',
+        serviceApi:'GET   /house/delete.action?id=XX',
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160729',
         url: '/delete.action',
         action: async function(ctx, next) {
@@ -50,6 +52,7 @@ const actions = [
     {
         description: '更新房源信息',
         serviceApi:'POST /house/update.do',
+        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160754',
         url: '/update.action',
         method:'post',
         action: async function(ctx, next) {
