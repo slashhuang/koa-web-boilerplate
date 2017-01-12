@@ -102,7 +102,6 @@ class PropertiesUtil{
         return md5;
     }
     downloadToLocal(url, local){
-        let self = this;
         return new Promise((resolve,reject)=>{
             axios.get(url).then((response)=>{
                 fs.outputFileSync(local,response.data);
@@ -113,17 +112,14 @@ class PropertiesUtil{
             });
         });
     }
+    // 拉取文件入口方法
     startLoadProperties(){
-        let self = this;
         let staticConfigs = config.staticConfigs;
         if(!staticConfigs){
             throw new Error("staticConfigs error!");
         }
-        self.staticResourceConfigURL = staticConfigs["staticResourceConfigURL"];
-        self.staticResourceURL = staticConfigs["staticResourceURL"];
-        // contentUrlPre = staticConfigs["contentUrlPre"];
-
-        if (self.isEmpty(self.staticResourceConfigURL) || self.isEmpty(self.staticResourceURL)) {
+        let { staticResourceConfigURL,staticResourceURL} = staticConfigs;
+        if (this.isEmpty(staticResourceConfigURL) || this.isEmpty(staticResourceURL)) {
             throw Error("staticConfig properties error!");
         }
         //初始化静态目录
@@ -133,15 +129,15 @@ class PropertiesUtil{
         // 开发环境使用本地静态文件
         if (NODE_ENV !== "dev") {
             // 每一分钟定时装载staticResourceConfig任务
-            self.loadStaticResourceConfig();
-            self.loadStaticResource();
-            function setTimeLoad(){
-                self.__TIMER = setTimeout(() => {
-                    self.loadStaticResourceConfig();
-                    self.loadStaticResource();
+            this.loadStaticResourceConfig();
+            this.loadStaticResource();
+            var setTimeLoad = ()=>{
+                this.__TIMER = setTimeout(() => {
+                    this.loadStaticResourceConfig();
+                    this.loadStaticResource();
                     setTimeLoad();
                 },60*1000);
-            }
+            };
             setTimeLoad();
         }
     }
