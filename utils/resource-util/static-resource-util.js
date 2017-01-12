@@ -52,9 +52,9 @@ class PropertiesUtil{
         let localPh = this.getLocalUrl(STATIC_CONFIG_NAME);
         this.downloadToLocal(this.staticResourceConfigURL,localPh).then(()=>{
             let newJson = propFileToJsonSync(localPh);
-            this.tmpStaticResourceMD5 = newJson["staticResourceMD5"];
-            this.isAutoReloadStaticResource = self.parseBool(newJson["autoReload"]);
-            if(!this.isEmpty(self.staticResourceMD5) && self.staticResourceMD5 === self.tmpStaticResourceMD5){
+            this.tmpStaticResourceMD5 = newJson["staticResourceMD5Order"];
+            this.isAutoReloadStaticResource = this.parseBool(newJson["autoReload"]);
+            if(!this.isEmpty(this.staticResourceMD5) && this.staticResourceMD5 === this.tmpStaticResourceMD5){
                 this.isAutoReloadStaticResource = false;
             }
             console.log("load file " + STATIC_CONFIG_NAME + " finish.");
@@ -120,7 +120,7 @@ class PropertiesUtil{
         }
         this.staticResourceConfigURL = staticConfigs.staticResourceConfigURL;
         this.staticResourceURL = staticConfigs.staticResourceURL;
-        if (this.isEmpty(staticResourceConfigURL) || this.isEmpty(staticResourceURL)) {
+        if (this.isEmpty(this.staticResourceConfigURL) || this.isEmpty(this.staticResourceURL)) {
             throw Error("staticConfig properties error!");
         }
         //初始化静态目录
