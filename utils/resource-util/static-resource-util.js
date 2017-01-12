@@ -4,7 +4,7 @@ import axios from "axios";
 import fs from "fs-extra";
 import crypto from "crypto";
 import _ from "lodash";
-import {propFileToJsonSync} from "./properties-to-json";
+import { propFileToJsonSync } from "./properties-to-json";
 
 const C_W_D = process.cwd();
 const NODE_ENV = process.env['NODE_ENV'] || "dev";
@@ -32,13 +32,6 @@ class PropertiesUtil{
         fs.ensureFileSync(localProp);
         this.staticResourceJSON = propFileToJsonSync(localProp);
     }
-    /**
-     * 
-     * 根据文件名获取完整本地路径
-     * @param {any} fileName
-     * @returns string
-     * @memberOf PropertiesUtil
-     */
     getLocalUrl(fileName){
         return C_W_D + STATIC_PATH + fileName;
     }
@@ -94,13 +87,6 @@ class PropertiesUtil{
         }
         self.staticResourceMD5 = self.tmpStaticResourceMD5;
     }
-    /**
-     * 
-     * 获取url对应文件的md5
-     * @param {any} url
-     * @returns
-     * @memberOf PropertiesUtil
-     */
     getMD5(url){
         if(!fs.existsSync(url)){
             reject();
@@ -140,7 +126,6 @@ class PropertiesUtil{
         if (self.isEmpty(self.staticResourceConfigURL) || self.isEmpty(self.staticResourceURL)) {
             throw Error("staticConfig properties error!");
         }
-
         //初始化静态目录
         fs.ensureDir("."+STATIC_PATH,(err)=>{
             if(err)console.log(err);
