@@ -24,19 +24,26 @@ const actions = [{
         method:'post',
         serviceApi:'/common/uploadImage.do',
         action: async function(ctx, next) {
+            //默认采用请求转发的方式
             if(!argv['proxyPort']){
-                console.log(`---- proxy to target ${proxyTarget}`);
                 await new Promise((resolve,reject)=>{
+                    //非dev环境下，将url切换成soa地址
+                    console.log('url is '+ ctx.url);
+                    console.log(`---- proxy to target ${proxyTarget}`);
+                    if(process.env['NODE_ENV']!='dev'){
+                        ctx.url = '/common/uploadImage.do'
+                    }
+                    console.log(`--- proxy to ${proxyTarget}${ctx.url}`)
                     proxy.web(ctx.req, ctx.res, {
                         target: proxyTarget
                     });
-                    resolve(' ----- proxy passed')
+                    console.log(' ----- proxy passed');
                 });
-
             }else{
+                //本地模拟图片上传
                 let form = new formidable.IncomingForm(),
                     fields = {};
-                await new Promise((resolve,reject)=>{
+                await new Promise((resolve)=>{
                     form.uploadDir = 'TEST_TMP';
                     form.keepExtensions = true;
                     form.maxFieldsSize = 10 * 1024;

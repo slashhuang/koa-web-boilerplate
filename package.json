@@ -10,7 +10,6 @@
     "mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 3000 ./test/test.js",
     "api-mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 4000 ./test/test.js",
     "proxy": "./node_modules/.bin/nodemon --use_strict --use_strict ./server.js --proxyPort=8004"
-
   },
   "repository": {
     "type": "git",
@@ -49,6 +48,7 @@
     "koa-send": "^3.2.0",
     "lodash": "^4.17.2",
     "qr-image": "^3.1.0",
+    "request": "^2.79.0",
     "shelljs": "^0.7.5",
     "underscore": "^1.8.3",
     "winston": "^2.3.0",

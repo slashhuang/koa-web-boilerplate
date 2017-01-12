@@ -24,5 +24,6 @@ app.on('error',function(err,ctx){
 //require('./common/RoomList.js');
 //require('./common/BuildingList.js');
 //require('./common/SubEstateList.js');
+require('./common/UploadImage.js');
 require('./house/HouseInfo.js');
 require('./house/HouseAction.js');

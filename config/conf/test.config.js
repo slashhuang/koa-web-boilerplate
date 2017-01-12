@@ -19,7 +19,8 @@ module.exports = {
     rentSOA:'http://rentsoa.iwjwtest.com',
 
     //图片上传转发
-    proxyTarget:'http://127.0.0.1:8004',
+    //proxyTarget:'http://rentsoa.iwjwtest.com',
+    proxyTarget:'http://10.7.251.73:9090',
 
 
     "WEBSITE": "http://127.0.0.1:3000"
