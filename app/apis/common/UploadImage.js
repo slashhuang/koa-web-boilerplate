@@ -24,18 +24,13 @@ const actions = [{
         method:'post',
         serviceApi:'/common/uploadImage.do',
         action: async function(ctx, next) {
-            console.log('proxying--- here')
             if(!argv['proxyPort']){
                 console.log(`---- proxy to target ${proxyTarget}`);
-                proxy.on('error', function (err, req, res) {
-                    res.end('------ Error occurred'+ err);
-                });
                 await new Promise((resolve,reject)=>{
-                    console.log('proxing----')
                     proxy.web(ctx.req, ctx.res, {
-                        target: proxyTarget,
-                        changeOrigin: true
+                        target: proxyTarget
                     });
+                    resolve(' ----- proxy passed')
                 });
 
             }else{
