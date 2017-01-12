@@ -20,10 +20,11 @@ global.throw = function(msg = '这一个默认的错误msg', status = 500) {
 
 const app = require('./bin/app');
 const server = require('http').createServer(app.callback());
-
-if(argv.proxyPort){
-    server.listen(argv.proxyPort);
-    console.log('启动端口' +argv.proxyPort);
+//模拟请求转发到图片服务器
+let {proxyPort} = argv;
+if(proxyPort){
+    server.listen(proxyPort);
+    console.log('启动端口' +proxyPort);
 }else{
     server.listen(3000);
     console.log('启动端口' +3000);

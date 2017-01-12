@@ -11,9 +11,10 @@ const util = require('util');
 const httpProxy = require('http-proxy');
 
 //创建proxy转发request到图片服务器
-const proxy = httpProxy.createProxyServer({});
+const proxy = httpProxy.createProxyServer();
 
 const argv = require('yargs').argv;
+const { proxyTarget } = global._appConfig;
 
 
 const actions = [{
@@ -23,8 +24,20 @@ const actions = [{
         method:'post',
         serviceApi:'/common/uploadImage.do',
         action: async function(ctx, next) {
-            if(!argv.proxyPort){
-                proxy.web(ctx.req, ctx.res, { target: `http://127.0.0.1:${argv.proxyPort}` });
+            console.log('proxying--- here')
+            if(!argv['proxyPort']){
+                console.log(`---- proxy to target ${proxyTarget}`);
+                proxy.on('error', function (err, req, res) {
+                    res.end('------ Error occurred'+ err);
+                });
+                await new Promise((resolve,reject)=>{
+                    console.log('proxing----')
+                    proxy.web(ctx.req, ctx.res, {
+                        target: proxyTarget,
+                        changeOrigin: true
+                    });
+                });
+
             }else{
                 let form = new formidable.IncomingForm(),
                     fields = {};

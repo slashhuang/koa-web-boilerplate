@@ -8,7 +8,9 @@
     "dev": "NODE_ENV=dev NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./server.js",
     "prod": "NODE_ENV=prod ./node_modules/.bin/nodemon --use_strict ./server.js",
     "mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 3000 ./test/test.js",
-    "api-mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 4000 ./test/test.js"
+    "api-mocha": "./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 4000 ./test/test.js",
+    "proxy": "./node_modules/.bin/nodemon --use_strict --use_strict ./server.js --proxyPort=8004"
+
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,11 @@
     "node",
     "rudy"
   ],
-  "author": ["slashhuang","zongqinli","enzo"],
+  "author": [
+    "slashhuang",
+    "zongqinli",
+    "enzo"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/iwfe/koa-rudy/issues"

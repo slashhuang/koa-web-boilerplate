@@ -31,3 +31,4 @@ test.js
 npm-debug.log.*
 
 .vscode
+TEST_TMP
