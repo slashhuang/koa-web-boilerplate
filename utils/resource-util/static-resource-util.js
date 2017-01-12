@@ -4,7 +4,7 @@ import axios from "axios";
 import fs from "fs-extra";
 import crypto from "crypto";
 import _ from "lodash";
-import {propFileToJsonSync} from "./properties-to-json";
+import { propFileToJsonSync } from "./properties-to-json";
 
 const C_W_D = process.cwd();
 const NODE_ENV = process.env['NODE_ENV'] || "dev";
@@ -32,13 +32,6 @@ class PropertiesUtil{
         fs.ensureFileSync(localProp);
         this.staticResourceJSON = propFileToJsonSync(localProp);
     }
-    /**
-     * 
-     * 根据文件名获取完整本地路径
-     * @param {any} fileName
-     * @returns string
-     * @memberOf PropertiesUtil
-     */
     getLocalUrl(fileName){
         return C_W_D + STATIC_PATH + fileName;
     }
@@ -94,13 +87,6 @@ class PropertiesUtil{
         }
         self.staticResourceMD5 = self.tmpStaticResourceMD5;
     }
-    /**
-     * 
-     * 获取url对应文件的md5
-     * @param {any} url
-     * @returns
-     * @memberOf PropertiesUtil
-     */
     getMD5(url){
         if(!fs.existsSync(url)){
             reject();
@@ -116,7 +102,6 @@ class PropertiesUtil{
         return md5;
     }
     downloadToLocal(url, local){
-        let self = this;
         return new Promise((resolve,reject)=>{
             axios.get(url).then((response)=>{
                 fs.outputFileSync(local,response.data);
@@ -127,20 +112,16 @@ class PropertiesUtil{
             });
         });
     }
+    // 拉取文件入口方法
     startLoadProperties(){
-        let self = this;
         let staticConfigs = config.staticConfigs;
         if(!staticConfigs){
             throw new Error("staticConfigs error!");
         }
-        self.staticResourceConfigURL = staticConfigs["staticResourceConfigURL"];
-        self.staticResourceURL = staticConfigs["staticResourceURL"];
-        // contentUrlPre = staticConfigs["contentUrlPre"];
-
-        if (self.isEmpty(self.staticResourceConfigURL) || self.isEmpty(self.staticResourceURL)) {
+        let { staticResourceConfigURL,staticResourceURL} = staticConfigs;
+        if (this.isEmpty(staticResourceConfigURL) || this.isEmpty(staticResourceURL)) {
             throw Error("staticConfig properties error!");
         }
-
         //初始化静态目录
         fs.ensureDir("."+STATIC_PATH,(err)=>{
             if(err)console.log(err);
@@ -148,15 +129,15 @@ class PropertiesUtil{
         // 开发环境使用本地静态文件
         if (NODE_ENV !== "dev") {
             // 每一分钟定时装载staticResourceConfig任务
-            self.loadStaticResourceConfig();
-            self.loadStaticResource();
-            function setTimeLoad(){
-                self.__TIMER = setTimeout(() => {
-                    self.loadStaticResourceConfig();
-                    self.loadStaticResource();
+            this.loadStaticResourceConfig();
+            this.loadStaticResource();
+            var setTimeLoad = ()=>{
+                this.__TIMER = setTimeout(() => {
+                    this.loadStaticResourceConfig();
+                    this.loadStaticResource();
                     setTimeLoad();
                 },60*1000);
-            }
+            };
             setTimeLoad();
         }
     }
