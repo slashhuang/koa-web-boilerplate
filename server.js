@@ -4,7 +4,7 @@
  * 16.12.23
  */
 
-if (process.env.NODE_ENV == 'dev' ||  process.env.NODE_ENV == 'test') {
+if (process.env.NODE_ENV == 'dev') {
     require("babel-register");
 }
 

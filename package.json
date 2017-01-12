@@ -9,7 +9,8 @@
     "prod": "NODE_ENV=prod ./node_modules/.bin/nodemon --use_strict ./server.js",
     "mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 3000 ./test/test.js",
     "api-mocha":"NODE_ENV=test ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 4000 ./test/test.js",
-    "proxy": "./node_modules/.bin/nodemon --use_strict --use_strict ./server.js --proxyPort=8004"
+    "proxy": "./node_modules/.bin/nodemon --use_strict --use_strict ./server.js --proxyPort=8004",
+    "deploy":"open http://192.168.1.121:8080/job/iwjw-rent-platform/"
   },
   "repository": {
     "type": "git",
