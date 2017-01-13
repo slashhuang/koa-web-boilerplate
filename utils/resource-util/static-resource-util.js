@@ -1,18 +1,18 @@
 /**
  * 静态资源拉取模块
- * @maintainer [zongqin.li, slashhuang]
+ * @maintainers [zongqin.li, slash.huang]
  */
+//工具相关
 import axios from "axios";
 import fs from "fs-extra";
 import _ from 'lodash';
+import  path from 'path';
 import { propFileToJsonSync,parseBool } from "./properties-to-json";
-
-const path = require('path');
+//node环境
 const C_W_D = process.cwd();
 const NODE_ENV = process.env['NODE_ENV'];
-
-const config = global._appConfig;
-
+// 静态资源相关
+const STATIC_CONFIGS = global._appConfig.staticConfigs;
 const STATIC_RESOURCE_NAME = "staticResource.properties";
 const STATIC_CONFIG_NAME = "staticResourceConfig.properties";
 const STATIC_PATH = "/assets/resource/";
@@ -20,13 +20,12 @@ const STATIC_PATH = "/assets/resource/";
 class PropertiesUtil{
     constructor(){
         //拉取状态控制变量
-        this.isAutoReloadStaticResource = false;
         this.staticResourceMD5 = "";
         //静态资源文件路径
         this.static_resource_file_path = C_W_D + STATIC_PATH + STATIC_RESOURCE_NAME;
         this.static_config_file_path = C_W_D + STATIC_PATH + STATIC_CONFIG_NAME;
         // dev 环境不做静态资源拉取，使用本地文件
-        if (NODE_ENV == "dev") {
+        if (NODE_ENV != "dev") {
             //创建资源目录
             fs.ensureDir("."+STATIC_PATH,(err)=>{
                 if(err)console.log(err);
@@ -36,12 +35,11 @@ class PropertiesUtil{
         }
         //基本的数据检查
         try{
-            let staticConfigs = config.staticConfigs;
-            if(!staticConfigs){
+            if(!STATIC_CONFIGS){
                 throw new Error("staticConfigs error!");
             }
-            this.staticResourceConfigURL = staticConfigs.staticResourceConfigURL;
-            this.staticResourceURL = staticConfigs.staticResourceURL;
+            this.staticResourceConfigURL = STATIC_CONFIGS.staticResourceConfigURL;
+            this.staticResourceURL = STATIC_CONFIGS.staticResourceURL;
             if (!_.trim(this.staticResourceConfigURL) || !_.trim(this.staticResourceURL)) {
                 throw Error("staticResourceConfigURL or staticResourceURL config error!");
             }
@@ -60,23 +58,21 @@ class PropertiesUtil{
             let newJson = propFileToJsonSync(static_resource_file_path);
             fs.writeJsonSync("."+STATIC_PATH + "staticResourceConfig.json",newJson);
             console.log("load file " + STATIC_CONFIG_NAME + " finish.");
-
             let tmpMD5 = newJson["staticResourceMD5Order"];
-            this.isAutoReloadStaticResource = parseBool(newJson["autoReload"]);
             //如果本地存储的md5和远程的md5不同，或者本地没有resource文件，则进行后续property文件更新操作
             if(this.staticResourceMD5 != tmpMD5 || !fs.existsSync(static_config_file_path)){
                 this.staticResourceMD5 = tmpMD5;
-                callback && callback();
+                callback && callback(parseBool(newJson["autoReload"]));
             }
         });
     }
     /**
      * 加载staticResource.properties文件
      */
-    loadStaticResource(){
+    loadStaticResource(autoLoad=false){
         let static_config_file_path = this.static_config_file_path;
         //自动拉取或者文件不存在，则去更新信息
-        if(this.isAutoReloadStaticResource){
+        if(autoLoad){
             this.downloadToLocal(this.staticResourceURL,static_config_file_path).then(()=>{
                 let resourceJson = propFileToJsonSync(static_config_file_path);
                 fs.writeJsonSync("."+STATIC_PATH + "staticResource.json",resourceJson);
@@ -104,15 +100,15 @@ class PropertiesUtil{
         }
         console.log('------ start loading static resource info -------');
         this.loadStaticResourceConfig(()=>{
-            this.loadStaticResource();
+            this.loadStaticResource(true);
         });
         if (NODE_ENV != "dev") {
             // 每一分钟定时装载staticResourceConfig任务
             var setTimeLoad = ()=>{
                 setTimeout(() => {
                     console.log('------ timeout check for  static resource -------');
-                    this.loadStaticResourceConfig(()=>{
-                        this.loadStaticResource();
+                    this.loadStaticResourceConfig((boolean)=>{
+                        this.loadStaticResource(boolean);
                     });
                     setTimeLoad();
                 },6*1000);
