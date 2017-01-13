@@ -7,7 +7,7 @@ import Client from '../../app/request.js';
 
 import { S_subEstateList } from '../../app/services/index.js';
 const API = {
-    subEstateList : '/common/subEstateList.action'
+    subEstateList : '/common/estateDetail.action'
 };
 describe('subEstateList---', function() {
     it(`${API.subEstateList} should work`, function(done) {
