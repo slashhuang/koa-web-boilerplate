@@ -27,7 +27,7 @@ node_modules
 .lock-wscript
 .idea
 document
-test.js
+# test.js
 npm-debug.log.*
 
 .vscode

@@ -58,11 +58,11 @@ module.exports = function view(settings) {
             // layout外层
             :fileCache.tpl || fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
 
-        // 生产环境缓存layout，减少io操作
-        if (process.env['NODE_ENV'] != 'dev') {
-            isSPA? fileCache.tpl = finalTpl
-                 : fileCache.spaTpl = finalTpl;
-        }
+        // 生产环境缓存layout，减少io操作，去除缓存
+        //if (process.env['NODE_ENV'] != 'dev') {
+        //    isSPA? fileCache.tpl = finalTpl
+        //         : fileCache.spaTpl = finalTpl;
+        //}
         // 渲染的模板内容
         Utils.addTemplate(options, { templateName: viewPath });
         Utils.addConst(options);
