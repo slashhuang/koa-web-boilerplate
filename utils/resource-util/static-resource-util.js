@@ -58,7 +58,7 @@ class PropertiesUtil{
             let tmpMD5 = newJson["staticResourceMD5Order"];
             //如果本地存储的md5和远程的md5不同，或者本地没有resource文件，则进行后续property文件更新操作
             //先默认无论如何都更新
-            if(true || this.staticResourceMD5 != tmpMD5 || !fs.existsSync(static_config_file_path)){
+            if( this.staticResourceMD5 != tmpMD5 || !fs.existsSync(static_config_file_path)){
                 this.staticResourceMD5 = tmpMD5;
                 callback && callback(parseBool(newJson["autoReload"]));
             }
