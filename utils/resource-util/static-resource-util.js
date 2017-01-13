@@ -103,7 +103,7 @@ class PropertiesUtil{
             this.loadStaticResource(true);
         });
         if (NODE_ENV != "dev") {
-            // 每一分钟定时装载staticResourceConfig任务
+            // 每半分钟定时装载staticResourceConfig任务
             var setTimeLoad = ()=>{
                 setTimeout(() => {
                     console.log('------ timeout check for  static resource -------');
@@ -111,7 +111,7 @@ class PropertiesUtil{
                         this.loadStaticResource(boolean);
                     });
                     setTimeLoad();
-                },6*1000);
+                },30*1000);
             };
             setTimeLoad();
         }
