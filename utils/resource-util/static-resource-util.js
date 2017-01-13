@@ -24,15 +24,12 @@ class PropertiesUtil{
         //静态资源文件路径
         this.static_resource_file_path = C_W_D + STATIC_PATH + STATIC_RESOURCE_NAME;
         this.static_config_file_path = C_W_D + STATIC_PATH + STATIC_CONFIG_NAME;
-        // dev 环境不做静态资源拉取，使用本地文件
-        if (NODE_ENV != "dev") {
-            //创建资源目录
-            fs.ensureDir("."+STATIC_PATH,(err)=>{
-                if(err)console.log(err);
-            });
-            //清空资源目录
-            fs.emptyDirSync(path.normalize(C_W_D+STATIC_PATH));
-        }
+        //创建资源目录
+        fs.ensureDir("."+STATIC_PATH,(err)=>{
+            if(err)console.log(err);
+        });
+        //清空资源目录
+        fs.emptyDirSync(path.normalize(C_W_D+STATIC_PATH));
         //基本的数据检查
         try{
             if(!STATIC_CONFIGS){
@@ -69,9 +66,9 @@ class PropertiesUtil{
     /**
      * 加载staticResource.properties文件
      */
-    loadStaticResource(autoLoad=false){
+    loadStaticResource(autoLoad=true){
         let static_config_file_path = this.static_config_file_path;
-        //自动拉取或者文件不存在，则去更新信息
+        //自动拉取才去更新信息，第一次的时候默认自动拉取
         if(autoLoad){
             this.downloadToLocal(this.staticResourceURL,static_config_file_path).then(()=>{
                 let resourceJson = propFileToJsonSync(static_config_file_path);
@@ -100,7 +97,7 @@ class PropertiesUtil{
         }
         console.log('------ start loading static resource info -------');
         this.loadStaticResourceConfig(()=>{
-            this.loadStaticResource(true);
+            this.loadStaticResource();
         });
         if (NODE_ENV != "dev") {
             // 每半分钟定时装载staticResourceConfig任务
