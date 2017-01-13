@@ -3,6 +3,4 @@
  */
 
 import StaticResourceManager from './resource-util/static-resource-util.js';
-module.exports = {
-    StaticResourceManager
-};
+module.exports = StaticResourceManager;

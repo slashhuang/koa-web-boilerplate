@@ -84,6 +84,10 @@
 
 ## 部署
 
+```bash
+    npm run deploy
+```
+
 dockerFile + Jenkins
 
 ## 技术提示

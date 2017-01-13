@@ -8,7 +8,7 @@ class CommonApi extends Client{
     constructor(){
         super();
         this.actions = {
-            subEstateList : '/common/subEstateList.action'
+            subEstateList : '/common/estateDetail.action'
         }
     }
 }

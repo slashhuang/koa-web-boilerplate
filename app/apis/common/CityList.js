@@ -2,7 +2,7 @@
  * Created by huangxiaogang on 17/1/5.
  */
 import { successToJson,errorToJson } from '../../response';
-import {  S_cityList,S_townList,S_estateList } from '../../services/index.js';
+import {  S_cityList,S_townList,S_estateList,S_subEstateList } from '../../services/index.js';
 const resourceName = 'common';
 const describe = '产品分类';
 const actions = [{
@@ -77,8 +77,41 @@ const actions = [{
                 errorToJson(ctx,400,'服务器错误');
             }
         }
+    },
+    {
+        description: '根据小区Id获取小区详情',
+        doc:'hhttp://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160853',
+        url: '/estateDetail.action',
+        serviceApi:'/common/estateDetail.action?estateId=30',
+        /**
+         * @request
+         * estateId:小区id
+         * @response
+         * {
+         * "city":"黄浦区",
+         * "cityId":3,
+         * "estateId":28,
+         * "estateName":"百汇公寓",
+         * "subEstateList":[{"address":"陆家浜路468弄<div>","id":83489}],
+         * "town":"蓬莱公园",
+         * "townId":25
+         * }
+         * @param ctx
+         * @param next
+         */
+        action: async function(ctx, next) {
+            let {estateId} = ctx.query;
+            try{
+                let estateDetail = await S_subEstateList({
+                    estateId
+                });
+                
+                successToJson(ctx,estateDetail)
+            }catch(e){
+                errorToJson(ctx,400,'服务器错误');
+            }
+        }
     }
 ];
-
 
 export { actions, resourceName, describe };
