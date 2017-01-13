@@ -29,5 +29,6 @@ if(proxyPort){
     server.listen(config['port']);
     console.log('启动端口' +config['port']);
 }
-require('./utils/index')['StaticResourceManager']['startLoadProperties']();
+//启动静态资源拉取任务
+require('./utils/index')['startLoadProperties']();
 
