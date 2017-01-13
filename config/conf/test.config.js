@@ -1,28 +1,15 @@
 /*
- * @Author: enzo
- * @Date:   2016-11-07 18:56:35
- * @Last Modified by:   enzo
- * @Last Modified time: 2017-01-12 15:54:30
- * 配置信息都将挂在global对象下
+ * @Author: slashhuang
  */
 
+import {checkoutENV} from './util.js';
 
 module.exports = {
     /**
      * 静态资源配置
      */
 
-
-
-
-    staticConfigs: {
-        staticResourceURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-rent-platform_test/staticResource.properties',
-        staticResourceConfigURL:'http://house-test-water.oss.aliyuncs.com/resource/iwjw-rent-platform_test/staticResourceConfig.properties',
-        devResourceURL:  'http://127.0.0.1/iwjw-rent-platform/',
-
-    //staticResourceURL: 'http://127.0.0.1/iwjw-rent-platform',
-        datacollectUrl:''
-    },
+    staticConfigs: checkoutENV(),
 
     rentSOA:'http://rentsoa.iwjwtest.com',
 

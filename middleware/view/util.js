@@ -39,7 +39,7 @@ let addTemplate = function(source,tagOption){
     return Object.assign(source,tagOption)
 };
 let addConst = function(source){
-    return Object.assign(source,staticConfigs)
+    return Object.assign(source,staticConfigs,{datacollectUrl:''})
 };
 let addMethods = function(source){
     return source.MethodNameSpace = MethodNameSpace
