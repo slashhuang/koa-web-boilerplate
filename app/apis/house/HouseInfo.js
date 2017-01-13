@@ -4,7 +4,7 @@
  * 房源列表
  */
 import { successToJson,errorToJson } from '../../response';
-import { S_houseDetail, S_houseList } from '../../services/index.js';
+import { S_houseDetail, S_houseList} from '../../services/index.js';
 
 const resourceName = 'houseInfo';
 const describe = '查询房源明细';
@@ -26,7 +26,7 @@ const actions = [{
                    id,
                    idType
                });
-               successToJson(ctx, detailData)
+                successToJson(ctx, detailData)
             }catch(err){
                 errorToJson(ctx,400,err);
             }

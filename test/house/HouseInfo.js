@@ -23,7 +23,7 @@ let actions = {
 describe('get house detail', function() {
     it(`${actions['houseDetail']} should work`, function(done) {
         (async ()=>{
-
+            console.log(`house detail params are  ${JSON.stringify(M_detailParam)}`);
             let houseDetail = await S_houseDetail(M_detailParam);
             console.log(houseDetail);
             done()

@@ -6,7 +6,8 @@
 import Client from '../../request.js';
 import _ from 'lodash';
 //数据模拟
-import {M_houseDetail,M_houseList} from './mock.js'
+import {M_houseDetail,M_houseList} from './mock.js';
+import {U_transStringToBinary} from './util.js';
 class CommonApi extends Client{
     constructor(){
         super();
@@ -38,7 +39,9 @@ let S_houseDetail = async function(params){
         if(data['status']==-1){
             global.throw(data['msg'],400);
         }
-        return data['data'];
+        let detailRawData = data['data'];
+        detailRawData['facilities'] = U_transStringToBinary(detailRawData['facilities'] );
+        return detailRawData;
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             return M_houseDetail;
