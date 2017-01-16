@@ -52,9 +52,9 @@ const actions = [{
     },
     {
         description: '根据小区名称或者小区地址模糊查询小区列表',
-        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160715',
+        doc: 'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160715',
         url: '/estateList.action',
-        serviceApi:'/common/estateList.action?keyword=XXYY',
+        serviceApi: '/common/estateList.action?keyword=XXYY',
         /**
          * @request
          * keyword:<string>
@@ -66,49 +66,15 @@ const actions = [{
          * @param ctx
          * @param next
          */
-        action: async function(ctx, next) {
+        action: async function (ctx, next) {
             let {keyword} = ctx.query;
-            try{
+            try {
                 let estateList = await S_estateList({
                     keyword
                 });
-                successToJson(ctx,estateList)
-            }catch(e){
-                errorToJson(ctx,400,'服务器错误');
-            }
-        }
-    },
-    {
-        description: '根据小区Id获取小区详情',
-        doc:'hhttp://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160853',
-        url: '/estateDetail.action',
-        serviceApi:'/common/estateDetail.action?estateId=30',
-        /**
-         * @request
-         * estateId:小区id
-         * @response
-         * {
-         * "city":"黄浦区",
-         * "cityId":3,
-         * "estateId":28,
-         * "estateName":"百汇公寓",
-         * "subEstateList":[{"address":"陆家浜路468弄<div>","id":83489}],
-         * "town":"蓬莱公园",
-         * "townId":25
-         * }
-         * @param ctx
-         * @param next
-         */
-        action: async function(ctx, next) {
-            let {estateId} = ctx.query;
-            try{
-                let estateDetail = await S_subEstateList({
-                    estateId
-                });
-                
-                successToJson(ctx,estateDetail)
-            }catch(e){
-                errorToJson(ctx,400,'服务器错误');
+                successToJson(ctx, estateList)
+            } catch (e) {
+                errorToJson(ctx, 400, '服务器错误');
             }
         }
     }
