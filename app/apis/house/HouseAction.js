@@ -21,13 +21,21 @@ const actions = [
         url: '/add.action',
         method:'post',
         action: async function(ctx, next) {
+            console.log('-------------\n --测试--');
             try{
-                let params = ctx.request.body;
+                //let buffer = '';
+                //ctx.req.on('data',(buf)=>{
+                //    buffer = buffer + buf
+                //});
+                //ctx.req.on('end',()=>{
+                //    console.log('buffer', buffer);
+                //});
+                //console.log('---------',params);
                 let data = await S_addHouse(params);
                 console.log(data);
                 successToJson(ctx, data)
             }catch(e){
-                errorToJson(ctx,400,'服务器错误');
+                //errorToJson(ctx,400,'服务器错误');
             }
         }
     },

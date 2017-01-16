@@ -15,8 +15,8 @@
     "deploy":"open http://192.168.1.121:8080/job/iwjw-rent-platform/",
 
     "test-c":"NODE_ENV=test NODE_DEV=dev npm run base -- --project=console",
-    "dev-c":"NODE_ENV=dev NODE_mock=mock NODE_DEV=dev npm run base -- --project=console"
-
+    "dev-c":"NODE_ENV=dev NODE_mock=mock NODE_DEV=dev npm run base -- --project=console",
+    "dev-t":"node ./test.js"
   },
   "repository": {
     "type": "git",

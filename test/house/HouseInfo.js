@@ -40,7 +40,8 @@ describe('get house list info', function() {
     it(`${actions['houseList']} should work`, function(done) {
         (async ()=>{
             let houseList = await S_houseList(M_listParam);
-            done()
+            done();
+            console.log(houseList)
         })()
     });
 });

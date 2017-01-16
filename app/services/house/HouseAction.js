@@ -45,6 +45,7 @@ let S_deleteHouse = async function(params={}){
         return Promise.reject(err);
     })
 };
+//默认application/json;charset=utf-8
 /**
  * 入参
  * buildingId:楼栋Id
@@ -75,7 +76,6 @@ let S_addHouse = async function(params={}){
     return apiInstance.fetch({
         url:'addHouse',
         method:'post',
-        //host:'http://10.7.251.73:9090',
         data:params
     }).then((data)=> {
         if(data['status']==-1){
@@ -102,7 +102,7 @@ let S_updateHouse = async function(params={}){
     return apiInstance.fetch({
         url:'updateHouse',
         method:'post',
-        params
+        data:params
     }).then((data)=> {
         if(data['status']==-1){
             global.throw(data['msg'],400);

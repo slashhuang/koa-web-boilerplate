@@ -5,6 +5,7 @@
  * https://github.com/mochajs/mocha/issues/2407
  */
 var config = global._appConfig = require('../config/index.js')('test');
+console.log(config);
 var app = require('../bin/app');
 var server = require('http').createServer(app.callback());
 
@@ -27,7 +28,7 @@ app.on('error',function(err,ctx){
 //require('./static/resourceUtil');
 require('./house/Util');
 //require('./common/UploadImage.js');
-require('./house/HouseInfo.js');
-//require('./house/HouseAction.js');
+//require('./house/HouseInfo.js');
+require('./house/HouseAction.js');
 
 

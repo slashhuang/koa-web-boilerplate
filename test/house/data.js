@@ -5,10 +5,12 @@
  * http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160731
  */
 const M_addHouse = {
+    id:28,
     buildingId:1,
-    buildingName:'新房子',
+    buildingName:'更新房源名字',
     roomNo:'1',
     estateId:1212,
+    subEstateId:1,//子划分小区id
     rentPrice:200,
     spaceArea:100,
     bedroomSum:2,
@@ -18,7 +20,16 @@ const M_addHouse = {
     orientation:1 ,//朝向（1:东,2:西,3:南,4:北）,
     facilities:1,//配套
     description:'这是个好房子',//房源描述
-    fileUrls:['hello'],//图片文件url数组
+    images:[
+        {
+            id:1,
+            imgUrl:'',//图片地址
+            type:1,// 图片类型(1:封面图,2:厅,3:主卧,4:次卧,5:卫生间,6:厨房,7:阳台,8:室外)
+            description:'cao',//描述
+            source:0,//图片来源(0:未实勘;1:app实勘; 2:pc实勘)
+            scaleType:0//图片比例(0-4:3, 1-5:3)
+        }
+    ],
     rentType:1,//1：整租；2：合租
     floor:5,//当前楼层
     layers:10,//总楼层数
@@ -29,7 +40,16 @@ const M_addHouse = {
         facilities:1,//配套设施
         houseRoomNo:'1',//房源的房间编号
         type:1,//房间类型，1：主卧；2：次卧
-        fileUrls:[]//图片文件url数组
+        images:[
+            {
+                id:'',
+                imgUrl:'',//图片地址
+                type:1,// 图片类型(1:封面图,2:厅,3:主卧,4:次卧,5:卫生间,6:厨房,7:阳台,8:室外)
+                description:'cao',//描述
+                source:0,//图片来源(0:未实勘;1:app实勘; 2:pc实勘)
+                scaleType:0//图片比例(0-4:3, 1-5:3)
+            }
+        ]
     }]
 };
 const M_listParam={
