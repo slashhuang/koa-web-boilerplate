@@ -33,3 +33,5 @@ npm-debug.log.*
 .vscode
 TEST_TMP
 command.js
+
+assets/resource
