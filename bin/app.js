@@ -1,10 +1,10 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-08 11:40:08
- * @Last Modified by:   enzo
- * @Last Modified time: 2016-12-28 19:56:09
+ * @Last Modified by:   slashhuang
+ * @Last Modified time: 2016-1-16
  * 
- * 提示：整个项目的展开都围绕着中间件
+ * 修改中间件结构
  */
 
 const debug = require('debug')('rudy:app');
@@ -19,11 +19,16 @@ const app = new koa();
  * logger
  *
  */
-
 app.use(middleware.log({
     path: path.join(__dirname, '../logs/all-log.log'),
     statusConf: global._appConfig.status
 }));
+
+
+/**
+ * 处理数据
+ */
+app.use(middleware.body());
 
 /**
  * 静态文件
@@ -60,12 +65,6 @@ app.use(middleware.api({
     website: global._appConfig.website,
     folder: path.join(__dirname, '../app/apis')
 }));
-
-
-/**
- * 处理数据
- */
-app.use(middleware.body());
 
 
 module.exports = app;

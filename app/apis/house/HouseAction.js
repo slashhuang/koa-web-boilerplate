@@ -15,31 +15,6 @@ const resourceName = 'houseAction';
 const describe = '房源动作';
 const actions = [
     {
-        description: '增加房源',
-        serviceApi:'POST /house/update.do',
-        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160731',
-        url: '/add.action',
-        method:'post',
-        action: async function(ctx, next) {
-            console.log('-------------\n --测试--');
-            try{
-                //let buffer = '';
-                //ctx.req.on('data',(buf)=>{
-                //    buffer = buffer + buf
-                //});
-                //ctx.req.on('end',()=>{
-                //    console.log('buffer', buffer);
-                //});
-                //console.log('---------',params);
-                let data = await S_addHouse(params);
-                console.log(data);
-                successToJson(ctx, data)
-            }catch(e){
-                //errorToJson(ctx,400,'服务器错误');
-            }
-        }
-    },
-    {
         description: '删除指定的房源',
         serviceApi:'GET   /house/delete.action?id=XX',
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160729',
@@ -55,6 +30,22 @@ const actions = [
                 errorToJson(ctx,400,'服务器错误');
             }
 
+        }
+    },
+    {
+        description: '增加房源',
+        serviceApi:'POST /house/add.do',
+        doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160731',
+        url: '/add.action',
+        method:'post',
+        action: async function(ctx, next) {
+            let params = ctx.request.body;
+            try{
+                let data = await S_addHouse(params);
+                successToJson(ctx, data)
+            }catch(e){
+                errorToJson(ctx,400,'服务器错误');
+            }
         }
     },
     {

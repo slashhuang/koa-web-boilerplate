@@ -59,7 +59,7 @@ module.exports = function(opts) {
       if (onerror) {
         onerror(err, ctx);
       } else {
-        throw err;
+        global.throw(err);
       }
     }
     await next();
