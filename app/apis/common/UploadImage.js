@@ -28,7 +28,6 @@ const actions = [{
             if(!argv['proxyPort']){
                 await new Promise((resolve,reject)=>{
                     //非dev环境下，将url切换成soa地址
-                    console.log('url is '+ ctx.url);
                     console.log(`---- proxy to target ${proxyTarget}`);
                     if(process.env['NODE_ENV']!='dev'){
                         ctx.url = '/common/uploadImage.do'
