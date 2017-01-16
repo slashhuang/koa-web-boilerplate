@@ -33,18 +33,18 @@ const API = {
 /**
  * 更新房源
  */
-//describe('update house ------', function() {
-//    it(`${API['updateHouse']} should work`, function(done) {
-//        (async ()=>{
-//            let houseData = await S_updateHouse(M_addHouse).then((data)=>{
-//                console.log('update house',data);
-//                return 1
-//            }).catch(err=>console.log(err));
-//            console.log('houseData',houseData);
-//            done()
-//        })()
-//    });
-//});
+describe('update house ------', function() {
+    it(`${API['updateHouse']} should work`, function(done) {
+        (async ()=>{
+            let houseData = await S_updateHouse(M_addHouse).then((data)=>{
+                console.log('update house',data);
+                return 1
+            }).catch(err=>console.log(err));
+            console.log('houseData',houseData);
+            done()
+        })()
+    });
+});
 /**
  * 入参数
  * houseId：房源Id

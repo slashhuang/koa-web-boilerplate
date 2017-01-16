@@ -5,7 +5,7 @@
  * http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160731
  */
 const M_addHouse = {
-    id:28,
+    id:1,
     buildingId:1,
     buildingName:'更新房源名字',
     roomNo:'1',
