@@ -13,7 +13,7 @@ describe('estateDetail---', function() {
     it(`${API.estateDetail} should work`, function(done) {
         (async ()=>{
             let buildingList = await S_estateDetail({
-                estateId:29
+                estateId:5379
             });
             console.log(buildingList);
             done();
