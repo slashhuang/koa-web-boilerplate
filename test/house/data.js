@@ -67,7 +67,7 @@ const M_detailParam={
     idType:1
 };
 const M_deleteParam={
-    id:0
+    id:72
 };
 module.exports ={
     M_addHouse,

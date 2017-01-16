@@ -29,11 +29,10 @@ let S_deleteHouse = async function(params={}){
         method:'get',
         params
     }).then((data)=> {
-        console.log(data);
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
+        if(data && data['status']!=-1){
+            return data['data'];
         }
-        return data['data'];
+        global.throw((data && data['msg']) || '数据为空',400);
     }).catch((err)=>{
         console.log(err);
         if(process.env['NODE_mock']=='mock'){

@@ -18,47 +18,47 @@ const API = {
 /**
  * 添加房源
  */
-describe('add house----------', function() {
-    it(`${API['addHouse']} should work`, function(done) {
-        (async ()=>{
-            let houseData = await S_addHouse(M_addHouse).then((data)=>{
-                console.log('add house returns data',data);
-                return data;
-            });
-            console.log('houseData',houseData);
-            done()
-        })()
-    });
-});
+//describe('add house----------', function() {
+//    it(`${API['addHouse']} should work`, function(done) {
+//        (async ()=>{
+//            let houseData = await S_addHouse(M_addHouse).then((data)=>{
+//                console.log('add house returns data',data);
+//                return data;
+//            });
+//            console.log('houseData',houseData);
+//            done()
+//        })()
+//    });
+//});
 /**
  * 更新房源
  */
-describe('update house ------', function() {
-    it(`${API['updateHouse']} should work`, function(done) {
-        (async ()=>{
-            let houseData = await S_updateHouse(M_addHouse).then((data)=>{
-                console.log('update house',data);
-                return 1
-            }).catch(err=>console.log(err));
-            console.log('houseData',houseData);
-            done()
-        })()
-    });
-});
+//describe('update house ------', function() {
+//    it(`${API['updateHouse']} should work`, function(done) {
+//        (async ()=>{
+//            let houseData = await S_updateHouse(M_addHouse).then((data)=>{
+//                console.log('update house',data);
+//                return 1
+//            }).catch(err=>console.log(err));
+//            console.log('houseData',houseData);
+//            done()
+//        })()
+//    });
+//});
 /**
  * 入参数
  * houseId：房源Id
  * @param params
  */
-//describe('delete house -------', function() {
-//    it(`${API['deleteHouse']} should work`, function(done) {
-//        (async ()=>{
-//            let houseData = await S_deleteHouse(M_deleteParam).then((err)=>{
-//                console.log('delete house',err);
-//                return 1
-//            });
-//            console.log(houseData);
-//            done()
-//        })()
-//    });
-//});
+describe('delete house -------', function() {
+    it(`${API['deleteHouse'] +  JSON.stringify(M_deleteParam)} should work`, function(done) {
+        (async ()=>{
+            let houseData = await S_deleteHouse(M_deleteParam).then((err)=>{
+                console.log('delete house',err);
+                return 1
+            });
+            console.log(houseData);
+            done()
+        })()
+    });
+});

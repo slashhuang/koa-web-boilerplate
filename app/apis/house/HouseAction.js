@@ -43,6 +43,7 @@ const actions = [
         action: async function(ctx, next) {
             let params = ctx.request.body;
             params['facilities'] = U_arrayToDecimal(params['facilities']);
+            console.log(params);
             try{
                 let data = await S_addHouse(params);
                 successToJson(ctx, data)

@@ -24,11 +24,11 @@ app.on('error',function(err,ctx){
 //require('./common/CityList.js');
 //require('./common/RoomList.js');
 //require('./common/BuildingList.js');
-require('./common/EstateDetail.js');
+//require('./common/EstateDetail.js');
 //require('./static/resourceUtil');
 //require('./house/Util');
 //require('./common/UploadImage.js');
 //require('./house/HouseInfo.js');
-//require('./house/HouseAction.js');
+require('./house/HouseAction.js');
 
 
