@@ -13,7 +13,7 @@ const baseConfig = {
     testPort: 3001,
 
     // 接口超时时间
-    timeout: 5000,
+    timeout: 10000,
 
     // api site
     website: 'http://127.0.0.1:3000',

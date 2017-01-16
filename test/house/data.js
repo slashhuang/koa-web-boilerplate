@@ -63,7 +63,7 @@ const M_listParam={
     //houseManagerMobile:''//二房东的手机号。二房东手机号不限，传空或者不传
 };
 const M_detailParam={
-    id:30,
+    id:75,
     idType:1
 };
 const M_deleteParam={
