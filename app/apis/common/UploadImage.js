@@ -31,7 +31,8 @@ const actions = [{
                     ctx.url = '/common/uploadImage.do';
                     console.log(`--- proxy to  target ${proxyTarget}${ctx.url}`);
                     proxy.web(ctx.req, ctx.res, {
-                        target: proxyTarget
+                        target: proxyTarget,
+                        changeOrigin:true
                     });
                 });
             }else{
