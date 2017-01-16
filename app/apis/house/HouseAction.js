@@ -10,6 +10,8 @@ import {S_deleteHouse,
         S_addHouse,
         S_updateHouse
 } from '../../services/index.js';
+import {U_arrayToDecimal} from '../../util.js';
+
 
 const resourceName = 'houseAction';
 const describe = '房源动作';
@@ -40,6 +42,7 @@ const actions = [
         method:'post',
         action: async function(ctx, next) {
             let params = ctx.request.body;
+            params['facilities'] = U_arrayToDecimal(params['facilities']);
             try{
                 let data = await S_addHouse(params);
                 successToJson(ctx, data)
@@ -57,6 +60,7 @@ const actions = [
         action: async function(ctx, next) {
             try{
                 let params = ctx.request.body;
+                params['facilities'] = U_arrayToDecimal(params['facilities']);
                 let data = await S_updateHouse(params);
                 successToJson(ctx, data)
             }catch(e){

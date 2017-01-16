@@ -3,7 +3,7 @@
  * 根据小区Id获取小区子划分列表
  */
 import Client from '../../request.js';
-import {  M_subEstateList } from './mock.js';
+import {  M_subEstateDetail } from './mock.js';
 class CommonApi extends Client{
     constructor(){
         super();
@@ -28,7 +28,7 @@ let S_estateDetail = async function(params){
             return data['data']
         }).catch((err)=>{
             if(process.env['NODE_mock']=='mock'){
-                return M_subEstateList;
+                return M_subEstateDetail;
             }
             Promise.reject(err);
         })

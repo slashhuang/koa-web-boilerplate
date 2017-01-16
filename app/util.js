@@ -18,3 +18,7 @@ exports.U_transStringToBinary=(data)=>{
             return pre
         },[])
 };
+/**
+ * [1,2,4,8] => 15
+ */
+exports.U_arrayToDecimal=(data)=>data.reduce((pre,cur)=>pre+cur,0);

@@ -9,6 +9,9 @@ module.exports = {
     staticConfigs: checkoutENV(),
     //租赁服务
     rentSOA:'http://rentsoa.iwjwtest.com',
+    //请求转发
+    //proxyTarget:"http://192.168.1.35:1313",
+    proxyTarget:'http://rentsoa.iwjwtest.com',
 
     "WEBSITE": "http://127.0.0.1:3000"
 };

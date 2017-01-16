@@ -27,10 +27,6 @@ const M_estateList = [{
         estateId: 33,
         estateName: '拉了'
     }];
-//根据楼栋查询室号
-const M_roomList=[{
-    1:["0101","0102","0103","0109","0113"]
-}];
 //根据子划分Id查询楼栋信息
 const M_buildingList={
     "data":[
@@ -40,14 +36,29 @@ const M_buildingList={
     "msg":"Ok",
     "status":1
 };
+//根据楼栋查询室号
+const M_roomList = {
+    1: ["0101", "0102", "0103", "0109", "0113"],
+    2: ["0201", "0202", "0203", "0209"]
+}
 //根据小区Id获取小区子划分列表
-const M_subEstateList= [{"address":"中山南路1711号","id":83728}];
+const M_subEstateDetail= {
+    "city":"虹桥",
+    cityId:2,
+    town:'航中路',
+    townId:"200",
+    subEstateList:[
+        {
+            "address":"原平路758弄","id":86650
+        }
+    ],
+    "id":83728
+};
 module.exports=    {
     M_cityList,
     M_townList,
-    M_estateList,
+    M_subEstateDetail,
     M_roomList,
-    M_buildingList,
-    M_subEstateList
+    M_buildingList
 };
 

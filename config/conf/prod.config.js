@@ -13,6 +13,8 @@ module.exports = {
         staticResourceConfigURL: 'http://',
         staticResourceURL: 'http://iwjw-resource.oss-cn-hangzhou-internal.aliyuncs.com/iwjw-pc/staticResource.properties'
     },
+    // 应用端口
+    port: 80,
 
     "WEBSITE": "http://127.0.0.1:3000"
 };

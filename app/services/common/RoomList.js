@@ -3,7 +3,7 @@
  * 楼栋信息
  */
 import Client from '../../request.js';
-import {  M_buildingList } from './mock.js';
+import {  M_roomList } from './mock.js';
 class CommonApi extends Client{
     constructor(){
         super();
@@ -26,7 +26,7 @@ let S_buildingRoomList = async function(params){
         return data['data']
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
-            return M_buildingList['data'];
+            return M_roomList;
         }
         Promise.reject(err);
     })

@@ -34,7 +34,6 @@ const actions = [
                 let estateDetail = await S_estateDetail({
                     estateId
                 });
-
                 successToJson(ctx,estateDetail)
             }catch(e){
                 errorToJson(ctx,400,'服务器错误');

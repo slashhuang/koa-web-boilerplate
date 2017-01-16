@@ -7,7 +7,7 @@ import Client from '../../request.js';
 import _ from 'lodash';
 //数据模拟
 import {M_houseDetail,M_houseList} from './mock.js';
-import {U_transStringToBinary} from './util.js';
+import {U_transStringToBinary} from '../../util.js';
 class CommonApi extends Client{
     constructor(){
         super();

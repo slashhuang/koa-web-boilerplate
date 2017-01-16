@@ -28,15 +28,11 @@ const actions = [{
             if(!argv['proxyPort']){
                 await new Promise((resolve,reject)=>{
                     //非dev环境下，将url切换成soa地址
-                    console.log(`---- proxy to target ${proxyTarget}`);
-                    if(process.env['NODE_ENV']!='dev'){
-                        ctx.url = '/common/uploadImage.do'
-                    }
-                    console.log(`--- proxy to ${proxyTarget}${ctx.url}`)
+                    ctx.url = '/common/uploadImage.do';
+                    console.log(`--- proxy to  target ${proxyTarget}${ctx.url}`);
                     proxy.web(ctx.req, ctx.res, {
                         target: proxyTarget
                     });
-                    console.log(' ----- proxy passed');
                 });
             }else{
                 //本地模拟图片上传
