@@ -1,8 +1,8 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-08 11:40:08
- * @Last Modified by:   enzo
- * @Last Modified time: 2016-12-28 19:59:04
+ * @Last Modified by:   slashhuang
+ * @Last Modified time: 2017-1-16 18:59:04
  */
 import { successToView } from './response';
 
