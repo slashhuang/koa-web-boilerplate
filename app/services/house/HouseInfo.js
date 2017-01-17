@@ -18,6 +18,18 @@ class CommonApi extends Client{
     }
 }
 let apiInstance = new CommonApi();
+//工具
+const utilSpace={
+    /*将facilities由十进制转换为数组*/
+    changeDecimal_arr:(params)=>{
+        params['facilities'] = U_transStringToBinary(params['facilities']);
+        params['roomInfo'] = params['roomInfo'] && params['roomInfo'].map((infoObj)=>{
+                infoObj['facilities'] = U_transStringToBinary(infoObj['facilities']);
+                return infoObj
+            });
+        return params;
+    }
+};
 
 //根据城市Id获取该城市所属的区域列表
 /**
@@ -39,9 +51,7 @@ let S_houseDetail = async function(params){
         if(data['status']==-1){
             global.throw(data['msg'],400);
         }
-        let detailRawData = data['data'];
-        detailRawData['facilities'] = U_transStringToBinary(detailRawData['facilities'] );
-        return detailRawData;
+        return utilSpace.changeDecimal_arr( data['data']);
     }).catch((err)=>{
         if(process.env['NODE_mock']=='mock'){
             return M_houseDetail;

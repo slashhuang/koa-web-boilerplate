@@ -3,6 +3,7 @@
  * 视图渲染工具类
  */
 const path = require('path');
+const fs = require('fs');
 let { staticConfigs } = global._appConfig;
 const STATIC_RESOURCE_NAME = "staticResource";
 
@@ -23,9 +24,10 @@ let MethodNameSpace = {
         try{
             //加载远程资源
             const staticJson = path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}.json`);
-            let staticCollection = require(staticJson);
+            let staticCollection =JSON.parse(fs.readFileSync(staticJson,'utf-8'));
             resourceName = staticCollection[tagName]
         }catch(err){
+            console.log(err);
             //加载本地静态资源
             resourceName =  devResourceURL + tagName;
         }

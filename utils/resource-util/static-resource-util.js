@@ -30,18 +30,23 @@ class PropertiesUtil{
         });
         //清空资源目录
         fs.emptyDirSync(path.normalize(C_W_D+STATIC_PATH));
-        //基本的数据检查
-        try{
-            if(!STATIC_CONFIGS){
-                throw new Error("staticConfigs error!");
+        console.log('empty dir-------',path.normalize(C_W_D+STATIC_PATH));
+
+        // 开发环境用本地资源
+        if(process.env['NODE_ENV'] != 'dev'){
+            //基本的数据检查
+            try{
+                if(!STATIC_CONFIGS){
+                    throw new Error("staticConfigs error!");
+                }
+                this.staticResourceConfigURL = STATIC_CONFIGS.staticResourceConfigURL;
+                this.staticResourceURL = STATIC_CONFIGS.staticResourceURL;
+                if (!_.trim(this.staticResourceConfigURL) || !_.trim(this.staticResourceURL)) {
+                    throw Error("staticResourceConfigURL or staticResourceURL config error!");
+                }
+            }catch(err){
+                this.errorHandler=err;
             }
-            this.staticResourceConfigURL = STATIC_CONFIGS.staticResourceConfigURL;
-            this.staticResourceURL = STATIC_CONFIGS.staticResourceURL;
-            if (!_.trim(this.staticResourceConfigURL) || !_.trim(this.staticResourceURL)) {
-                throw Error("staticResourceConfigURL or staticResourceURL config error!");
-            }
-        }catch(err){
-            this.errorHandler=err;
         }
     }
     /**
@@ -57,8 +62,8 @@ class PropertiesUtil{
             let tmpMD5 = newJson["staticResourceMD5Order"];
             //如果本地存储的md5和远程的md5不同，或者本地没有resource文件，则进行后续property文件更新操作
             //先默认无论如何都更新
+            console.log(`this.staticResourceMD5,${this.staticResourceMD5} --- tmpMD5,${tmpMD5}`)
             if( this.staticResourceMD5 != tmpMD5 || !fs.existsSync(static_resource_file_path)){
-                console.log(tmpMD5)
                 this.staticResourceMD5 = tmpMD5;
                 callback && callback(parseBool(newJson["autoReload"]));
             }
@@ -92,6 +97,11 @@ class PropertiesUtil{
     }
     // 拉取文件入口方法
     startLoadProperties(){
+        //本地开发环境不用拉取静态资源
+        if(process.env['NODE_ENV'] == 'dev'){
+            return ;
+        }
+        console.log('process.env-----',process.env['NODE_ENV'])
         if(this.errorHandler){
             console.log('error happened , pull resource data from origin suspended--');
             return ;

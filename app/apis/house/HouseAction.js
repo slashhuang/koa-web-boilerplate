@@ -15,6 +15,17 @@ import {U_arrayToDecimal} from '../../util.js';
 
 const resourceName = 'houseAction';
 const describe = '房源动作';
+const utilSpace={
+    /*将facilities由数组转换为十进制数字*/
+    changeArr_decimal:(params)=>{
+        params['facilities'] = U_arrayToDecimal(params['facilities']);
+        params['roomInfo'] = params['roomInfo'] && params['roomInfo'].map((infoObj)=>{
+            infoObj['facilities'] = U_arrayToDecimal(infoObj['facilities']);
+            return infoObj
+        });
+        return params;
+    }
+};
 const actions = [
     {
         description: '删除指定的房源',
@@ -42,10 +53,9 @@ const actions = [
         method:'post',
         action: async function(ctx, next) {
             let params = ctx.request.body;
-            params['facilities'] = U_arrayToDecimal(params['facilities']);
-            console.log(params);
+            let postData = utilSpace.changeArr_decimal(params);
             try{
-                let data = await S_addHouse(params);
+                let data = await S_addHouse(postData);
                 successToJson(ctx, data)
             }catch(e){
                 errorToJson(ctx,400,'服务器错误');
@@ -61,8 +71,8 @@ const actions = [
         action: async function(ctx, next) {
             try{
                 let params = ctx.request.body;
-                params['facilities'] = U_arrayToDecimal(params['facilities']);
-                let data = await S_updateHouse(params);
+                let postData = utilSpace.changeArr_decimal(params);
+                let data = await S_updateHouse(postData);
                 successToJson(ctx, data)
             }catch(e){
                 errorToJson(ctx,400,'服务器错误');

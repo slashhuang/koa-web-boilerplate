@@ -72,6 +72,7 @@ let S_deleteHouse = async function(params={}){
  * @constructor
  */
 let S_addHouse = async function(params={}){
+    console.log(params);
     //修正数据格式
     return apiInstance.fetch({
         url:'addHouse',
