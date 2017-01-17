@@ -34,6 +34,19 @@ const mockData={
 };
 module.exports=    {
     M_houseDetail : mockData,
-    M_houseList: [mockData]
+    M_houseList: {
+        houseList:((total)=>{
+            let arr = [],i=0;
+            while(i<total){
+                if(i>=total-20){
+                    arr.push(Object.assign({},mockData,{cityName:'mock 数据改变'}))
+                }else{
+                    arr.push(mockData);
+                }
+                i++;
+            }
+            return arr
+        })(60)
+    }
 };
 

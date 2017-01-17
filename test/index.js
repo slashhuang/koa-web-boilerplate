@@ -28,7 +28,7 @@ app.on('error',function(err,ctx){
 //require('./static/resourceUtil');
 //require('./house/Util');
 //require('./common/UploadImage.js');
-//require('./house/HouseInfo.js');
-require('./house/HouseAction.js');
+require('./house/HouseInfo.js');
+//require('./house/HouseAction.js');
 
 
