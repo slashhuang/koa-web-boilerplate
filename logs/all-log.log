@@ -1,0 +1,4 @@
+{"level":"info","message":"origin http://localhost:7000\nip: ::1\nmethod:GET\npath/api","timestamp":"2017-01-17T12:40:09.477Z"}
+{"level":"info","message":"origin http://localhost:7000\nip: ::1\nmethod:GET\npath/favicon.ico","timestamp":"2017-01-17T12:40:09.546Z"}
+{"level":"warn","message":"Error\nredirecting to index \nError: redirecting to index \n    at global.throw (/Users/huangxiaogang/iwjw/iwjw-node/node-rent-platform/app.js:15:15)\n    at next.then (/Users/huangxiaogang/iwjw/iwjw-node/node-rent-platform/middleware/log/index.js:33:21)","timestamp":"2017-01-17T12:40:09.579Z"}
+{"level":"info","message":"origin http://localhost:7000\nip: ::1\nmethod:GET\npath/","timestamp":"2017-01-17T12:40:09.595Z"}
