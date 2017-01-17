@@ -39,6 +39,7 @@ describe('get house detail', function() {
 describe('get house list info', function() {
     it(`${actions['houseList']} should work`, function(done) {
         (async ()=>{
+            console.log(`house detail params are  ${JSON.stringify(M_listParam)}`);
             let houseList = await S_houseList(M_listParam);
             done();
             console.log(houseList)
