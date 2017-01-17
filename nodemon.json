@@ -9,5 +9,5 @@
   "events": {
     "restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
   },
-  "ext": "js json"
+  "ext": "js json html"
 }

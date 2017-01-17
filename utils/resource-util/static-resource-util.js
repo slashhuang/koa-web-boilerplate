@@ -42,7 +42,6 @@ class PropertiesUtil{
             }
         }catch(err){
             this.errorHandler=err;
-            console.log(err);
         }
     }
     /**

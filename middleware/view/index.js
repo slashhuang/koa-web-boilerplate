@@ -40,9 +40,6 @@ module.exports = function view(settings) {
 
     copy(defaultSettings).to(settings);
 
-    //用于IO数据缓存
-    let fileCache = {};
-
     async function render(subViewName, options) {
         let {
             root,
@@ -53,11 +50,8 @@ module.exports = function view(settings) {
         let viewPath = path.join(root, subViewName + viewExt);
         let isSPA =  /spa/i.test(subViewName);
         let finalTpl = isSPA ?
-            // SPA 外层
-            fileCache.spaTpl || fs.readFileSync(path.join(root, spaLayout + viewExt), 'utf8')
-            // layout外层
-            :fileCache.tpl || fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
-
+            fs.readFileSync(path.join(root, spaLayout + viewExt), 'utf8'):
+            fs.readFileSync(path.join(root, layout + viewExt), 'utf8');
         // 生产环境缓存layout，减少io操作，去除缓存
         //if (process.env['NODE_ENV'] != 'dev') {
         //    isSPA? fileCache.tpl = finalTpl
@@ -87,6 +81,7 @@ module.exports = function view(settings) {
                 var context = {};
                 copy(_context).to(context);
                 var html = await render(view, context);
+                console.log('read spa html \n',html);
                 ctx.type = 'html';
                 ctx.body = html;
             }

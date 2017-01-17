@@ -19,17 +19,18 @@ let {
 let MethodNameSpace = {
 
     getURL : (tagName)=>{
+        var resourceName = '';
         try{
             //加载远程资源
             const staticJson = path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}.json`);
-            console.log('static json ------ ',staticJson);
             let staticCollection = require(staticJson);
-            return staticCollection[tagName]
+            resourceName = staticCollection[tagName]
         }catch(err){
-            console.log('err----',err);
             //加载本地静态资源
-            return devResourceURL + tagName;
+            resourceName =  devResourceURL + tagName;
         }
+        console.log(`using  resource ${resourceName}`);
+        return resourceName;
     }
 };
 /**
