@@ -51,14 +51,15 @@ class PropertiesUtil{
     loadStaticResourceConfig(callback){
         let  static_resource_file_path = this.static_resource_file_path;
         let static_config_file_path = this.static_config_file_path;
-        this.downloadToLocal(this.staticResourceConfigURL,static_resource_file_path).then(()=>{
-            let newJson = propFileToJsonSync(static_resource_file_path);
+        this.downloadToLocal(this.staticResourceConfigURL,static_config_file_path).then(()=>{
+            let newJson = propFileToJsonSync(static_config_file_path);
             fs.writeJsonSync("."+STATIC_PATH + "staticResourceConfig.json",newJson);
             console.log("load file " + STATIC_CONFIG_NAME + " finish.");
             let tmpMD5 = newJson["staticResourceMD5Order"];
             //如果本地存储的md5和远程的md5不同，或者本地没有resource文件，则进行后续property文件更新操作
             //先默认无论如何都更新
-            if( this.staticResourceMD5 != tmpMD5 || !fs.existsSync(static_config_file_path)){
+            if( this.staticResourceMD5 != tmpMD5 || !fs.existsSync(static_resource_file_path)){
+                console.log(tmpMD5)
                 this.staticResourceMD5 = tmpMD5;
                 callback && callback(parseBool(newJson["autoReload"]));
             }
@@ -68,11 +69,11 @@ class PropertiesUtil{
      * 加载staticResource.properties文件
      */
     loadStaticResource(autoLoad=true){
-        let static_config_file_path = this.static_config_file_path;
+        let static_resource_file_path = this.static_resource_file_path;
         //自动拉取才去更新信息，第一次的时候默认自动拉取
         if(autoLoad){
-            this.downloadToLocal(this.staticResourceURL,static_config_file_path).then(()=>{
-                let resourceJson = propFileToJsonSync(static_config_file_path);
+            this.downloadToLocal(this.staticResourceURL,static_resource_file_path).then(()=>{
+                let resourceJson = propFileToJsonSync(static_resource_file_path);
                 fs.writeJsonSync("."+STATIC_PATH + "staticResource.json",resourceJson);
                 console.log("load file " + STATIC_RESOURCE_NAME + " finish.");
             });
