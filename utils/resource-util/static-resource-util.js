@@ -1,6 +1,6 @@
 /**
  * 静态资源拉取模块
- * @maintainers [zongqin.li, slash.huang]
+ * @maintainers [zongqin.li, slashhuang]
  */
 //工具相关
 import axios from "axios";
