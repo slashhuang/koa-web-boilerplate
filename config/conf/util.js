@@ -7,10 +7,21 @@ const argv = require('yargs')['argv'];
 exports.checkoutENV = ()=>{
     let projectName =  argv['project']?`iwjw-rent-${argv['project']}` : 'iwjw-rent-platform';
     console.log(`project -- ${projectName}`);
-    return {
-        staticResourceURL:`http://house-test-water.oss.aliyuncs.com/resource/${projectName}_test/staticResource.properties`,
-        staticResourceConfigURL:`http://house-test-water.oss.aliyuncs.com/resource/${projectName}_test/staticResourceConfig.properties`,
-        //开发环境配置选项
-        devResourceURL: `http://127.0.0.1/${projectName}/`
-    };
+    let env = process.env['NODE_ENV']||'test';
+    if(env!= 'prod'){
+        return {
+            staticResourceURL:`http://house-test-water.oss.aliyuncs.com/resource/${projectName}_${env}/staticResource.properties`,
+            staticResourceConfigURL:`http://house-test-water.oss.aliyuncs.com/resource/${projectName}_${env}/staticResourceConfig.properties`,
+            //开发环境配置选项
+            devResourceURL: `http://127.0.0.1/${projectName}/`
+        };
+    }else{
+        return {
+            staticResourceURL:`http://iwjw-resource.oss-cn-hangzhou-internal.aliyuncs.com/${projectName}/staticResource.properties`,
+            staticResourceConfigURL:`http://iwjw-resource.oss-cn-hangzhou-internal.aliyuncs.com/${projectName}/staticResourceConfig.properties`,
+            //开发环境配置选项
+            devResourceURL: `http://127.0.0.1/${projectName}/`
+        };
+    }
+
 };
