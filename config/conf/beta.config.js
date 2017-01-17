@@ -1,15 +1,18 @@
 /*
  * @Author: slashhuang
  */
-
-import {checkoutENV} from './util.js';
-
+const projectName = 'iwjw-rent-platform';
 module.exports = {
     /**
      * 静态资源配置
      */
 
-    staticConfigs: checkoutENV(),
+    staticConfigs: {
+        staticResourceURL:`http://house-test-water.oss.aliyuncs.com/resource/${projectName}_beta/staticResource.properties`,
+        staticResourceConfigURL:`http://house-test-water.oss.aliyuncs.com/resource/${projectName}_beta/staticResourceConfig.properties`,
+        //开发环境配置选项
+        devResourceURL: `http://127.0.0.1/${projectName}/`
+    },
 
     rentSOA:'http://rentsoa.iwjwbeta.com',
 
