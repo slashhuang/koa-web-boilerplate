@@ -21,17 +21,21 @@ let MethodNameSpace = {
 
     getURL : (tagName)=>{
         var resourceName = '';
-        try{
-            //加载远程资源
-            const staticJson = path.resolve(process.cwd(),`assets/resource/${STATIC_RESOURCE_NAME}.json`);
-            let staticCollection =JSON.parse(fs.readFileSync(staticJson,'utf-8'));
-            resourceName = staticCollection[tagName]
-        }catch(err){
-            console.log(err);
-            //加载本地静态资源
+        //开发环境的静态始终拿本地
+        if(process.env['NODE_ENV'] == 'dev'){
             resourceName =  devResourceURL + tagName;
+        }else {
+            //test:beta ==> 如果本地调线上，则只需要
+            try {
+                let staticJson = require('../../utils/index')['getResourceJSON']();
+                resourceName = staticJson[tagName]
+            } catch (err) {
+                global.log_info(err);
+                //加载本地静态资源
+                resourceName = devResourceURL + tagName;
+            }
         }
-        console.log(`using  resource ${resourceName}`);
+        global.log_info(`using  resource ${resourceName}`);
         return resourceName;
     }
 };

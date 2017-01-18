@@ -24,6 +24,8 @@ class PropertiesUtil{
         //静态资源文件路径
         this.static_resource_file_path = C_W_D + STATIC_PATH + STATIC_RESOURCE_NAME;
         this.static_config_file_path = C_W_D + STATIC_PATH + STATIC_CONFIG_NAME;
+        //静态资源配置JSON对象
+        this.ResourceJSON = {};
         //创建资源目录
         fs.ensureDir("."+STATIC_PATH,(err)=>{
             if(err)console.log(err);
@@ -33,20 +35,18 @@ class PropertiesUtil{
         console.log('empty dir-------',path.normalize(C_W_D+STATIC_PATH));
 
         // 开发环境用本地资源
-        if(process.env['NODE_ENV'] != 'dev'){
-            //基本的数据检查
-            try{
-                if(!STATIC_CONFIGS){
-                    throw new Error("staticConfigs error!");
-                }
-                this.staticResourceConfigURL = STATIC_CONFIGS.staticResourceConfigURL;
-                this.staticResourceURL = STATIC_CONFIGS.staticResourceURL;
-                if (!_.trim(this.staticResourceConfigURL) || !_.trim(this.staticResourceURL)) {
-                    throw Error("staticResourceConfigURL or staticResourceURL config error!");
-                }
-            }catch(err){
-                this.errorHandler=err;
+        //基本的数据检查
+        try{
+            if(!STATIC_CONFIGS){
+                throw new Error("staticConfigs error!");
             }
+            this.staticResourceConfigURL = STATIC_CONFIGS.staticResourceConfigURL;
+            this.staticResourceURL = STATIC_CONFIGS.staticResourceURL;
+            if (!_.trim(this.staticResourceConfigURL) || !_.trim(this.staticResourceURL)) {
+                throw Error("staticResourceConfigURL or staticResourceURL config error!");
+            }
+        }catch(err){
+            this.errorHandler=err;
         }
     }
     /**
@@ -58,12 +58,12 @@ class PropertiesUtil{
         this.downloadToLocal(this.staticResourceConfigURL,static_config_file_path).then(()=>{
             let newJson = propFileToJsonSync(static_config_file_path);
             fs.writeJsonSync("."+STATIC_PATH + "staticResourceConfig.json",newJson);
-            console.log("load file " + STATIC_CONFIG_NAME + " finish.");
+            global.log_info("load file " + STATIC_CONFIG_NAME + " finish.");
             let tmpMD5 = newJson["staticResourceMD5Order"];
             //如果本地存储的md5和远程的md5不同，或者本地没有resource文件，则进行后续property文件更新操作
             //先默认无论如何都更新
-            console.log(`this.staticResourceMD5,${this.staticResourceMD5} --- tmpMD5,${tmpMD5}`)
             if( this.staticResourceMD5 != tmpMD5 || !fs.existsSync(static_resource_file_path)){
+                global.log_info(`begin loading staticResource.properties`);
                 this.staticResourceMD5 = tmpMD5;
                 callback && callback(parseBool(newJson["autoReload"]));
             }
@@ -78,10 +78,17 @@ class PropertiesUtil{
         if(autoLoad){
             this.downloadToLocal(this.staticResourceURL,static_resource_file_path).then(()=>{
                 let resourceJson = propFileToJsonSync(static_resource_file_path);
+                // 缓存json配置
+                this.ResourceJSON = resourceJson;
                 fs.writeJsonSync("."+STATIC_PATH + "staticResource.json",resourceJson);
-                console.log("load file " + STATIC_RESOURCE_NAME + " finish.");
+                global.log_info("load file " + STATIC_RESOURCE_NAME + " finish.");
             });
         }
+    }
+    //对外的resource接口
+    getResourceJSON(){
+        //全局缓存配置文件
+       return this.ResourceJSON
     }
     downloadToLocal(url, local){
         return new Promise((resolve,reject)=>{
@@ -98,15 +105,12 @@ class PropertiesUtil{
     // 拉取文件入口方法
     startLoadProperties(){
         //本地开发环境不用拉取静态资源
-        if(process.env['NODE_ENV'] == 'dev'){
-            return ;
-        }
-        console.log('process.env-----',process.env['NODE_ENV'])
+        global.log_info('process.env-----'+process.env['NODE_ENV']);
         if(this.errorHandler){
-            console.log('error happened , pull resource data from origin suspended--');
+            global.log_info('error happened , pull resource data from origin suspended--');
             return ;
         }
-        console.log('------ start loading static resource info -------');
+        global.log_info('------ start loading static resource info -------');
         this.loadStaticResourceConfig(()=>{
             this.loadStaticResource();
         });
@@ -114,7 +118,7 @@ class PropertiesUtil{
             // 每半分钟定时装载staticResourceConfig任务
             var setTimeLoad = ()=>{
                 setTimeout(() => {
-                    console.log('------ timeout check for  static resource -------');
+                    global.log_info('------ timeout check for  static resource -------');
                     this.loadStaticResourceConfig((boolean)=>{
                         this.loadStaticResource(boolean);
                     });
