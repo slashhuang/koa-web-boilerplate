@@ -14,16 +14,20 @@ const urlrewrite = require('../app/urlrewrite');
 const path = require('path');
 
 const app = new koa();
-
 /**
- * logger
- *
+ * log 相关
+ * logger log中间件
+ * info   log.info
+ * error  log.error
  */
-app.use(middleware.log({
-    path: path.join(__dirname, '../logs/all-log.log'),
-    statusConf: global._appConfig.status
-}));
+const { logger, info, error } = middleware.log;
 
+global.log_info = info;
+global.log_error = error;
+
+app.use(logger({
+    path: path.join(__dirname, '../logs/server.log')
+}));
 
 /**
  * 处理数据

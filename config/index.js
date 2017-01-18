@@ -25,7 +25,5 @@ module.exports = function config(env) {
     env = env || 'dev';
 
     let configFile = require('./conf/' + env + '.config.js');
-    let statusConf = require('./http_code/status.config');
-
-    return Object.assign(baseConfig, configFile, { status: statusConf });
+    return Object.assign(baseConfig, configFile);
 };
