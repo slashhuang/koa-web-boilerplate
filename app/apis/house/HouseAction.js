@@ -54,11 +54,12 @@ const actions = [
         action: async function(ctx, next) {
             let params = ctx.request.body;
             let postData = utilSpace.changeArr_decimal(params);
-            try{
-                let data = await S_addHouse(postData);
+            let data = await S_addHouse(postData);
+            //抛错
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
                 successToJson(ctx, data)
-            }catch(e){
-                errorToJson(ctx,400,'服务器错误');
             }
         }
     },

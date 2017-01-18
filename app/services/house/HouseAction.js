@@ -84,14 +84,10 @@ let S_addHouse = async function(params={}){
         }
         return data['data'];
     }).catch((err)=>{
-        console.log('err-----',err,'\n');
-        if(process.env['NODE_mock']=='mock'){
-            let mock = {
-                msg:'添加房源成功'
-            };
-            return mock;
-        }
-        return Promise.reject(err);
+        global.log_info('err-----',err.message,'\n');
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 /**
@@ -110,12 +106,6 @@ let S_updateHouse = async function(params={}){
         }
         return data['data'];
     }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            let mock = {
-                msg:'更新房源成功'
-            };
-            return mock;
-        }
         return Promise.reject(err);
     })
 };

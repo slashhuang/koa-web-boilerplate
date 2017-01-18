@@ -97,7 +97,7 @@ class PropertiesUtil{
                 fs.outputFileSync(local,response.data);
                 resolve(response.data);
             }).catch((err)=>{
-                console.log(err);
+                console.log(`${url} download failed`);
                 reject(err);
             });
         });
