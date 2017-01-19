@@ -55,7 +55,6 @@
     "formidable": "^1.0.17",
     "fs-extra": "^1.0.0",
     "http-proxy": "^1.16.2",
-    "images": "^3.0.0",
     "koa": "^2.0.0",
     "koa-bodyparser": "^2.3.0",
     "koa-ejs": "^3.0.0",
