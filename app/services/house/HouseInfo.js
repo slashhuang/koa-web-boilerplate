@@ -23,7 +23,7 @@ const utilSpace={
     /*将facilities由十进制转换为数组*/
     changeDecimal_arr:(params)=>{
         params['facilities'] = U_transStringToBinary(params['facilities']);
-        params['roomInfo'] = params['roomInfo'] && params['roomInfo'].map((infoObj)=>{
+        params['roomList'] = params['roomList'] && params['roomList'].map((infoObj)=>{
                 infoObj['facilities'] = U_transStringToBinary(infoObj['facilities']);
                 return infoObj
             });
