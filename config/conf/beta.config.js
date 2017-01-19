@@ -23,5 +23,5 @@ module.exports = {
     //图片上传转发服务器
     proxyTarget:'http://rentsoa.iwjwbeta.com',
 
-    website: 'http://192.168.1.121:7000'
+    website: 'http://118.178.242.96:7000'
 };

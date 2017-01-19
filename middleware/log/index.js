@@ -58,7 +58,7 @@ const logger =   function(setting) {
         return next()
             .then(()=>{
                 // 重定向
-                winston.info(`origin ${ctx.origin}\nip: ${ctx.ip}\nmethod:${ctx.method}\npath${ctx.path}`);
+                winston.info(`origin ${ctx.origin} ip: ${ctx.ip} method:${ctx.method} path${ctx.path}`);
                 if(ctx.status==404){
                     global.throw('redirecting to index ',404)
                 }

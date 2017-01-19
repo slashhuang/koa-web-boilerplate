@@ -17,6 +17,7 @@ const requestInstance = axios.create({
 });
 
 requestInstance.interceptors.response.use(function(response) {
+    global.log_info('response data' + JSON.stringify(response));
     return response;
 }, function(error) {
     global.throw(error, 500);
@@ -71,6 +72,7 @@ export default class Client {
                 headers: {'Content-Type': 'application/json;charset=utf-8'}
             });
         }
+        global.log_info('params data is -- ' + JSON.stringify(param));
         return await this.request(param)
             .then(function(response) {
                 return response.data;
