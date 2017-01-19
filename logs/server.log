@@ -1,14 +1,2 @@
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:34:21.304Z"}
-{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:34:21.385Z"}
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:34:21.348Z"}
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:34:21.417Z"}
-{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:34:21.427Z"}
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:34:21.456Z"}
-{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:34:21.506Z"}
-{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:34:21.525Z"}
-{"level":"info","message":"starting app ondev\n\n --------------","timestamp":"2017-01-19T09:34:21.830Z"}
-{"level":"info","message":"process.env-----dev","timestamp":"2017-01-19T09:34:21.837Z"}
-{"level":"info","message":"------ start loading static resource info -------","timestamp":"2017-01-19T09:34:21.837Z"}
-{"level":"info","message":"load file staticResourceConfig.properties finish.","timestamp":"2017-01-19T09:34:21.984Z"}
-{"level":"info","message":"begin loading staticResource.properties","timestamp":"2017-01-19T09:34:21.985Z"}
-{"level":"info","message":"load file staticResource.properties finish.","timestamp":"2017-01-19T09:34:22.028Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://10.28.28.157:8611//house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T10:01:41.333Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://10.28.28.157:8611//house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T10:01:49.334Z"}
