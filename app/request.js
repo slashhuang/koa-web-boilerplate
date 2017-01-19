@@ -17,7 +17,7 @@ const requestInstance = axios.create({
 });
 
 requestInstance.interceptors.response.use(function(response) {
-    global.log_info('response data' + JSON.stringify(response));
+    global.log_info('response data' + JSON.stringify(response.data));
     return response;
 }, function(error) {
     global.throw(error, 500);
