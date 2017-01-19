@@ -22,8 +22,6 @@ const baseConfig = {
 
 module.exports = function config(env) {
 
-    env = env || 'dev';
-
     let configFile = require('./conf/' + env + '.config.js');
     return Object.assign(baseConfig, configFile);
 };

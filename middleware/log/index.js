@@ -10,6 +10,7 @@ const path = require('path');
 const env = process.env['NODE_ENV'];
 
 const fs = require('fs');
+const fse = require('fs-extra');
 const dateUtils = require("date-utils").language("es");
 
 const heartbeat = 1000 * 60;
@@ -32,6 +33,8 @@ const logger =   function(setting) {
     if (!path) {
         throw new Error(`log path config is null`);
     }
+    fse.removeSync(path);
+
     winston.add(winston.transports.File, {
         filename: path
     });

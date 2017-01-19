@@ -16,7 +16,9 @@
 
 
     "deploy":"open http://192.168.1.121:8080/job/iwjw-rent-platform/",
-    "beta:server":"open http://fort.superjia.com/terminal/?id=581&role=iwjw ",
+    "open:beta":"open http://118.178.242.96:7000",
+    "open:test":"open http://192.168.1.121:7000",
+    "beta:server":"open http://fort.superjia.com",
     "test:server":"ssh iwtest ",
 
 

@@ -29,7 +29,8 @@ if(proxyPort){
     console.log('启动端口' +config['port']);
 }
 //启动静态资源拉取任务
-
+console.log(global.log_info)
+global.log_info(`starting app on`+ process.env['NODE_ENV']+'\n\n --------------');
 require('./utils/index')['startLoadProperties']();
 
 
