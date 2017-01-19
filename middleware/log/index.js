@@ -1,8 +1,8 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-30 11:08:34
- * @Last Modified by:   slashhuang
- * @Last Modified time: 2016-1-4 10:38:38
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2017-01-19 15:43:02
  */
 
 const winston = require('winston');
@@ -58,7 +58,8 @@ const logger =   function(setting) {
         return next()
             .then(()=>{
                 // 重定向
-                winston.info(`origin ${ctx.origin} ip: ${ctx.ip} method:${ctx.method} path${ctx.path}`);
+                winston.info(`${ctx.method} ${ctx.origin}/${ctx.path} ${ctx.status}` );
+                
                 if(ctx.status==404){
                     global.throw('redirecting to index ',404)
                 }
@@ -67,7 +68,8 @@ const logger =   function(setting) {
                 winston.error(err.name + '\n' + err.message + '\n' + err.stack);
                 const { status } = err;
                 if (status) {
-                    status==404 && ctx.redirect('/');
+                    //status==404 && ctx.redirect('/');
+                    ctx.body = err;
                 } else {
                     //系统错误
                     ctx.body = err.stack;
