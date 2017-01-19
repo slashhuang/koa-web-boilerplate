@@ -5,6 +5,7 @@
 
 import { successToJson,errorToJson } from '../../response';
 import { S_deleteRoom,S_addRoom } from '../../services/index.js';
+import {U_arrayToDecimal} from '../../util.js';
 const resourceName = 'room';
 const describe = '房间动作';
 const actions = [{
@@ -34,6 +35,7 @@ const actions = [{
         serviceApi:'POST /room/add.do',
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160724',
         url: '/add.action',
+        method:'post',
         /**
          * @request
          *   fileUrls:图片文件地址数组
@@ -48,6 +50,7 @@ const actions = [{
         action: async function(ctx, next) {
             let { body } = ctx.request;
             try{
+                body['facilities'] = U_arrayToDecimal(body['facilities']);
                let data = await S_addRoom(body);
                 successToJson(ctx,data)
             }catch(err){
