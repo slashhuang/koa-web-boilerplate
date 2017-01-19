@@ -34,7 +34,6 @@ let S_deleteHouse = async function(params={}){
         }
         global.throw((data && data['msg']) || '数据为空',400);
     }).catch((err)=>{
-        console.log(err);
         if(process.env['NODE_mock']=='mock'){
             let mock = {
                 msg:'删除成功'
@@ -84,7 +83,6 @@ let S_addHouse = async function(params={}){
         }
         return data['data'];
     }).catch((err)=>{
-        global.log_info('err-----',err.message,'\n');
         return Promise.resolve({
             err:err.message
         });

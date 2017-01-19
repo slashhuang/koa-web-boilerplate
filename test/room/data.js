@@ -21,7 +21,7 @@ const M_addRoom = {
     rentPrice:25,//租赁价格
     facilities:10,////配套(01:带独立卫生间,10:带阳台)
     houseId:'10',//房源Id
-    hosueRoomNo:20,//房源房间编号
+    houseRoomNo:20,//房源房间编号
     description:'草拟吗'//房间描述
 };
 const M_deleteRoom = {

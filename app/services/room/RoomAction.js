@@ -58,14 +58,13 @@ let S_addRoom = async function(params){
     return apiInstance.fetch({
         url:'addRoom',
         method:'post',
-        params
+        data:params
     }).then((data)=> {
         if(data['status']==-1){
             global.throw(data['msg'],400);
         }
         return data['data'];
     }).catch((err)=>{
-        global.log_info('err-----',err.message,'\n');
         return Promise.resolve({
             err:err.message
         });

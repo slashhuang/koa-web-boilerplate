@@ -83,7 +83,6 @@ let S_houseList = async function(params){
         //测试多条数据
         return data['data'];
     }).catch((err)=>{
-        console.log('err ----- ',err);
         if(process.env['NODE_mock']=='mock'){
             return M_houseList;
         }
