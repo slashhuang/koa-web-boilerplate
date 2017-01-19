@@ -1,8 +1,8 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-08 15:02:53
- * @Last Modified by:   slashhuang
- * @Last Modified time: 2016-1-11 16:44:36
+ * @Last Modified by:   enzo
+ * @Last Modified time: 2017-01-19 14:53:26
  */
 
 const debug = require('debug')('rudy:router');
@@ -31,6 +31,8 @@ let actionCollection={
         return  this.subAPIList[name];
     }
 };
+
+
 module.exports = function(setting) {
     let { root, folder, website } = setting;
     if (!folder) {
@@ -39,15 +41,18 @@ module.exports = function(setting) {
     root = root || '/';
     website = website || '//';
     let appRoot = path.resolve(`/${root}/`);
+
     router.get(appRoot, (ctx, next) => {
         ctx.body = JSON.stringify(actionCollection.resourcesList);
     });
     // resources parse
     util.pathls(folder).forEach(function (filePath) {
+
         //大写开头的文件标示为api文件
         if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1 || !(/^[A-W]/.test(path.basename(filePath)))) {
             return;
         }
+
         // 加载子路由
         let apiList = require(filePath);
         let { actions, resourceName, describe } = apiList;
@@ -62,9 +67,12 @@ module.exports = function(setting) {
             method = method || 'get';
             let routerPath = path.normalize([appRoot, resourceName, url].join('/'));
             item.href = `${website}${routerPath}`;
+
             router[method](routerPath, action);
         });
     });
+
+
     //api层面
     for (let subAPI in actionCollection.subAPIList) {
         let value = actionCollection.subAPIList[subAPI];
