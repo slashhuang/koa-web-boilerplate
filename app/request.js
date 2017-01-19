@@ -66,6 +66,11 @@ export default class Client {
             params: data.params,
             data: data.data
         };
+        if( data.method=='post'){
+            Object.assign(param,{
+                headers: {'Content-Type': 'application/json;charset=utf-8'}
+            });
+        }
         return await this.request(param)
             .then(function(response) {
                 return response.data;

@@ -53,20 +53,23 @@ let S_deleteRoom = async function(params){
  * @returns {*}
  * @constructor
  */
+
 let S_addRoom = async function(params){
     return apiInstance.fetch({
         url:'addRoom',
         method:'post',
         params
-    }).then((data)=>{
-        if(process.env['NODE_mock']=='mock'){
-            let mock = {
-                msg:'添加成功'
-            };
-            return [mock];
+    }).then((data)=> {
+        if(data['status']==-1){
+            global.throw(data['msg'],400);
         }
-        return data
-    });
+        return data['data'];
+    }).catch((err)=>{
+        global.log_info('err-----',err.message,'\n');
+        return Promise.resolve({
+            err:err.message
+        });
+    })
 };
 module.exports = {
     S_deleteRoom,

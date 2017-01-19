@@ -13,9 +13,9 @@ module.exports = {
         devResourceURL: `http://127.0.0.1/${projectName}/`
     },
 
-    rentSOA:'http://rentsoa.iwjwtest.com',
+    //rentSOA:'http://rentsoa.iwjwtest.com',
 
-    //rentSOA:'http://10.7.251.73:9090',
+    rentSOA:'http://10.7.251.73:9090',
     //proxyTarget:'http://10.7.251.73:9090',
     //proxyTarget:"http://192.168.1.35:1313",
 
