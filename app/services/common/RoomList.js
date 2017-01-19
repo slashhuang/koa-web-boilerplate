@@ -28,7 +28,9 @@ let S_buildingRoomList = async function(params){
         if(process.env['NODE_mock']=='mock'){
             return M_roomList;
         }
-        Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 module.exports = {

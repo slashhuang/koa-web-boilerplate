@@ -23,13 +23,14 @@ const actions = [{
      */
     action: async function(ctx, next) {
         let { subEstateId } = ctx.query;
-        try{
-            let buildingList = await S_buildingList({
-                subEstateId
-            });
-            successToJson(ctx,buildingList)
-        }catch(err){
-            errorToJson(ctx,400,'服务器错误');
+        let data = await S_buildingList({
+            subEstateId
+        });
+        //抛错
+        if(data.err){
+            errorToJson(ctx,400,data.err);
+        }else {
+            successToJson(ctx, data)
         }
     }
 }

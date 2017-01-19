@@ -30,7 +30,9 @@ let S_estateDetail = async function(params){
             if(process.env['NODE_mock']=='mock'){
                 return M_subEstateDetail;
             }
-            Promise.reject(err);
+            return Promise.resolve({
+                err:err.message
+            });
         })
 };
 module.exports = {

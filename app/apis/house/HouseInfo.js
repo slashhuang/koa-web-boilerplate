@@ -40,7 +40,6 @@ const actions = [{
         action: async function(ctx, next) {
 
             let data = await S_houseList(ctx.query);
-            successToJson(ctx,data);
             if(data.err){
                 errorToJson(ctx,400,data.err);
             }else {

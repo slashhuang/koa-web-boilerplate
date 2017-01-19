@@ -30,13 +30,14 @@ const actions = [
          */
         action: async function(ctx, next) {
             let {estateId} = ctx.query;
-            try{
-                let estateDetail = await S_estateDetail({
-                    estateId
-                });
-                successToJson(ctx,estateDetail)
-            }catch(e){
-                errorToJson(ctx,400,'服务器错误');
+            let data = await S_estateDetail({
+                estateId
+            });
+            //抛错
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
+                successToJson(ctx, data)
             }
         }
     }

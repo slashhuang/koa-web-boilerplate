@@ -22,14 +22,16 @@ const actions = [{
      */
         action: async function(ctx, next) {
             let { provinceId } = ctx.query;
-            try{
-                let cityList = await S_cityList({
-                    provinceId
-                });
-                successToJson(ctx,cityList)
-            }catch(err){
-                errorToJson(ctx,400,'服务器错误');
+            let data = await S_cityList({
+                provinceId
+            });
+            //抛错
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
+                successToJson(ctx, data)
             }
+
         }
     },
     {
@@ -40,13 +42,14 @@ const actions = [{
         url: '/townList.action',
         action: async function(ctx, next) {
             let {cityId} = ctx.query;
-            try{
-                let townList = await S_townList({
-                    cityId
-                });
-                successToJson(ctx,townList)
-            }catch(err){
-                errorToJson(ctx,400,'服务器错误');
+            let data = await S_townList({
+                cityId
+            });
+            //抛错
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
+                successToJson(ctx, data)
             }
         }
     },
@@ -68,13 +71,14 @@ const actions = [{
          */
         action: async function (ctx, next) {
             let {keyword} = ctx.query;
-            try {
-                let estateList = await S_estateList({
-                    keyword
-                });
-                successToJson(ctx, estateList)
-            } catch (e) {
-                errorToJson(ctx, 400, '服务器错误');
+            let data = await S_estateList({
+                keyword
+            });
+            //抛错
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
+                successToJson(ctx, data)
             }
         }
     }

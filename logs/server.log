@@ -1,14 +1,14 @@
-{"level":"info","message":"starting app ondev\n\n --------------","timestamp":"2017-01-19T09:28:32.600Z"}
-{"level":"info","message":"process.env-----dev","timestamp":"2017-01-19T09:28:32.609Z"}
-{"level":"info","message":"------ start loading static resource info -------","timestamp":"2017-01-19T09:28:32.610Z"}
-{"level":"info","message":"load file staticResourceConfig.properties finish.","timestamp":"2017-01-19T09:28:32.859Z"}
-{"level":"info","message":"begin loading staticResource.properties","timestamp":"2017-01-19T09:28:32.860Z"}
-{"level":"info","message":"load file staticResource.properties finish.","timestamp":"2017-01-19T09:28:32.886Z"}
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:28:33.247Z"}
-{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:28:33.304Z"}
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:28:33.322Z"}
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:28:33.375Z"}
-{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:28:33.394Z"}
-{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:28:33.442Z"}
-{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:28:33.473Z"}
-{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:28:33.679Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:34:21.304Z"}
+{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:34:21.385Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:34:21.348Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:34:21.417Z"}
+{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:34:21.427Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:34:21.456Z"}
+{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:34:21.506Z"}
+{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:34:21.525Z"}
+{"level":"info","message":"starting app ondev\n\n --------------","timestamp":"2017-01-19T09:34:21.830Z"}
+{"level":"info","message":"process.env-----dev","timestamp":"2017-01-19T09:34:21.837Z"}
+{"level":"info","message":"------ start loading static resource info -------","timestamp":"2017-01-19T09:34:21.837Z"}
+{"level":"info","message":"load file staticResourceConfig.properties finish.","timestamp":"2017-01-19T09:34:21.984Z"}
+{"level":"info","message":"begin loading staticResource.properties","timestamp":"2017-01-19T09:34:21.985Z"}
+{"level":"info","message":"load file staticResource.properties finish.","timestamp":"2017-01-19T09:34:22.028Z"}

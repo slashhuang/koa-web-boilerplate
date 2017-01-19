@@ -29,7 +29,9 @@ let S_buildingList = async function(params){
         if(process.env['NODE_mock']=='mock'){
             return M_buildingList['data'];
         }
-        Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 module.exports = {

@@ -30,7 +30,9 @@ let S_cityList = async function(params){
         if(process.env['NODE_mock']=='mock'){
             return M_cityList
         }
-        Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 //根据区域Id获取板块列表
@@ -48,7 +50,9 @@ let S_townList = async function(params){
         if(process.env['NODE_mock']=='mock'){
             return M_townList
         }
-        Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 /**
@@ -71,7 +75,9 @@ let S_estateList = async function(params){
         if(process.env['NODE_mock']=='mock'){
             return M_estateList;
         }
-        Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     });
 };
 module.exports = {
