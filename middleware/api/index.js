@@ -2,7 +2,7 @@
  * @Author: enzo
  * @Date:   2016-11-08 15:02:53
  * @Last Modified by:   enzo
- * @Last Modified time: 2017-01-19 14:30:22
+ * @Last Modified time: 2017-01-19 14:53:26
  */
 
 const debug = require('debug')('rudy:router');
@@ -31,7 +31,8 @@ let actionCollection={
         return  this.subAPIList[name];
     }
 };
-global.log_info('---- api 中间件--: 初始化');
+
+
 module.exports = function(setting) {
     let { root, folder, website } = setting;
     if (!folder) {
@@ -41,20 +42,17 @@ module.exports = function(setting) {
     website = website || '//';
     let appRoot = path.resolve(`/${root}/`);
 
-    global.log_info('---- api 中间件--: 注册api');
     router.get(appRoot, (ctx, next) => {
         ctx.body = JSON.stringify(actionCollection.resourcesList);
     });
     // resources parse
     util.pathls(folder).forEach(function (filePath) {
 
-        global.log_info('---- api 中间件--: '+filePath+' 文件检测');
         //大写开头的文件标示为api文件
         if (!jsfileReg.test(filePath) || filePath.indexOf('_') > -1 || !(/^[A-W]/.test(path.basename(filePath)))) {
             return;
         }
 
-        global.log_info('---- api 中间件--: 开始匹配');
         // 加载子路由
         let apiList = require(filePath);
         let { actions, resourceName, describe } = apiList;
@@ -70,17 +68,14 @@ module.exports = function(setting) {
             let routerPath = path.normalize([appRoot, resourceName, url].join('/'));
             item.href = `${website}${routerPath}`;
 
-            global.log_info('---- api 中间件--: 生成真实路由'+routerPath);
             router[method](routerPath, action);
         });
     });
 
-    global.log_info('---- api 中间件--: 子路由'+actionCollection.subAPIList);
 
     //api层面
     for (let subAPI in actionCollection.subAPIList) {
         let value = actionCollection.subAPIList[subAPI];
-        global.log_info('---- api 中间件--: 子路由'+`${appRoot}/${subAPI}`);
         router.get(`${appRoot}/${subAPI}`, (ctx, next) => {
             ctx.body = JSON.stringify(Object.assign(global._appConfig,value));
         });
