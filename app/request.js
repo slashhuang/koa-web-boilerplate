@@ -20,7 +20,7 @@ requestInstance.interceptors.response.use(function(response) {
     global.log_info('response data' + JSON.stringify(response.data));
     return response;
 }, function(error) {
-    global.throw(error, 500);
+    global.log_error('err' + error);
 });
 
 
