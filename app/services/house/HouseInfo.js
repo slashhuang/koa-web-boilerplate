@@ -56,7 +56,9 @@ let S_houseDetail = async function(params){
         if(process.env['NODE_mock']=='mock'){
             return M_houseDetail;
         }
-        return Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 /**
@@ -86,7 +88,9 @@ let S_houseList = async function(params){
         if(process.env['NODE_mock']=='mock'){
             return M_houseList;
         }
-        return Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 module.exports = {

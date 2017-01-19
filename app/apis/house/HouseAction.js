@@ -34,13 +34,14 @@ const actions = [
         url: '/delete.action/',
         action: async function(ctx, next) {
             let { id } = ctx.query;
-            try{
-                let data = await S_deleteHouse({
-                    id
-                });
-                successToJson(ctx,data);
-            }catch(e){
-                errorToJson(ctx,400,'服务器错误');
+            let data = await S_deleteHouse({
+                id
+            });
+            //抛错
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
+                successToJson(ctx, data)
             }
 
         }
@@ -70,13 +71,14 @@ const actions = [
         url: '/update.action',
         method:'post',
         action: async function(ctx, next) {
-            try{
-                let params = ctx.request.body;
-                let postData = utilSpace.changeArr_decimal(params);
-                let data = await S_updateHouse(postData);
+            let params = ctx.request.body;
+            let postData = utilSpace.changeArr_decimal(params);
+            let data = await S_updateHouse(postData);
+            //抛错
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
                 successToJson(ctx, data)
-            }catch(e){
-                errorToJson(ctx,400,'服务器错误');
             }
         }
     }

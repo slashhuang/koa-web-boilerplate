@@ -4,11 +4,12 @@
  * mocha issue reference
  * https://github.com/mochajs/mocha/issues/2407
  */
-var config = global._appConfig = require('../config/index.js')('test');
-console.log(config);
+var config = global._appConfig = require('../config/index.js')(process.env['NODE_ENV'] || 'test');
 var app = require('../bin/app');
 var server = require('http').createServer(app.callback());
 
+
+console.log(process.env['NODE_ENV'] );
 // 错误日志处理
 global.throw = function(msg, status) {
     var err = new Error(msg);
@@ -28,8 +29,8 @@ app.on('error',function(err,ctx){
 //require('./static/resourceUtil');
 //require('./house/Util');
 //require('./common/UploadImage.js');
-//require('./house/HouseInfo.js');
+require('./house/HouseInfo.js');
 //require('./house/HouseAction.js');
-require('./room/RoomAction');
+//require('./room/RoomAction');
 
 

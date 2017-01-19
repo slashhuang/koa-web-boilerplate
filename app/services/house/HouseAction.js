@@ -40,7 +40,9 @@ let S_deleteHouse = async function(params={}){
             };
             return mock;
         }
-        return Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 //默认application/json;charset=utf-8
@@ -104,7 +106,9 @@ let S_updateHouse = async function(params={}){
         }
         return data['data'];
     }).catch((err)=>{
-        return Promise.reject(err);
+        return Promise.resolve({
+            err:err.message
+        });
     })
 };
 module.exports = {

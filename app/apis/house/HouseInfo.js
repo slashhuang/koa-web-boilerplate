@@ -21,14 +21,14 @@ const actions = [{
      */
         action: async function(ctx, next) {
             let {id,idType} = ctx.query;
-            try{
-               let detailData = await S_houseDetail({
-                   id,
-                   idType
-               });
-                successToJson(ctx, detailData)
-            }catch(err){
-                errorToJson(ctx,400,err);
+            let data = await S_houseDetail({
+                id,
+                idType
+            });
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
+                successToJson(ctx, data)
             }
         }
     },
@@ -38,12 +38,16 @@ const actions = [{
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160673',
         serviceApi:'/house/list.action?cityId=XX&townId=YY&estateId=TT&rentType=ZZ&houseStatus=WW&startTime=AA&endTime=BB',
         action: async function(ctx, next) {
-            try{
-                let houseList = await S_houseList(ctx.query);
-                successToJson(ctx,houseList)
-            }catch(err){
-                errorToJson(ctx,400,err);
+
+            let data = await S_houseList(ctx.query);
+            successToJson(ctx,data);
+            if(data.err){
+                errorToJson(ctx,400,data.err);
+            }else {
+                successToJson(ctx, data)
             }
+
+
         }
     }
 ];

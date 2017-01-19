@@ -1,4 +1,14 @@
-{"level":"info","message":"params data is -- {\"method\":\"post\",\"url\":\"http://rentsoa.iwjwtest.com/room/delete.do\",\"params\":{\"id\":1},\"headers\":{\"Content-Type\":\"application/json;charset=utf-8\"}}","timestamp":"2017-01-19T07:45:39.558Z"}
-{"level":"info","message":"response data{\"data\":\"操作成功\",\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T07:45:41.786Z"}
-{"level":"info","message":"params data is -- {\"method\":\"post\",\"url\":\"http://rentsoa.iwjwtest.com/room/add.do\",\"data\":{\"images\":[{\"id\":1,\"imgUrl\":\"\",\"type\":1,\"description\":\"\",\"source\":0,\"scaleType\":1}],\"type\":1,\"spaceArea\":25,\"orientation\":1,\"rentPrice\":25,\"facilities\":10,\"houseId\":\"10\",\"houseRoomNo\":20,\"description\":\"草拟吗\"},\"headers\":{\"Content-Type\":\"application/json;charset=utf-8\"}}","timestamp":"2017-01-19T07:45:41.790Z"}
-{"level":"info","message":"response data{\"data\":\"操作成功\",\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T07:45:42.125Z"}
+{"level":"info","message":"starting app ondev\n\n --------------","timestamp":"2017-01-19T09:28:32.600Z"}
+{"level":"info","message":"process.env-----dev","timestamp":"2017-01-19T09:28:32.609Z"}
+{"level":"info","message":"------ start loading static resource info -------","timestamp":"2017-01-19T09:28:32.610Z"}
+{"level":"info","message":"load file staticResourceConfig.properties finish.","timestamp":"2017-01-19T09:28:32.859Z"}
+{"level":"info","message":"begin loading staticResource.properties","timestamp":"2017-01-19T09:28:32.860Z"}
+{"level":"info","message":"load file staticResource.properties finish.","timestamp":"2017-01-19T09:28:32.886Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:28:33.247Z"}
+{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:28:33.304Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:28:33.322Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/detail.do\",\"params\":{\"id\":5,\"idType\":1}}","timestamp":"2017-01-19T09:28:33.375Z"}
+{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:28:33.394Z"}
+{"level":"info","message":"response data{\"msg\":\"Failed\",\"status\":-1}","timestamp":"2017-01-19T09:28:33.442Z"}
+{"level":"info","message":"params data is -- {\"method\":\"get\",\"url\":\"http://rentsoa.iwjwbeta.com/house/list.action\",\"params\":{\"limit\":10,\"page\":1,\"keyword\":\"\",\"_\":1484798244901}}","timestamp":"2017-01-19T09:28:33.473Z"}
+{"level":"info","message":"response data{\"data\":{\"houseList\":[],\"total\":0},\"msg\":\"Ok\",\"status\":1}","timestamp":"2017-01-19T09:28:33.679Z"}
