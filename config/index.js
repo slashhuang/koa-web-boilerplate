@@ -18,12 +18,9 @@ const baseConfig = {
     // api site
     website: 'http://127.0.0.1:3000'
 };
-const ConsoleProject = 'iwjw-rent-console';
-const RentProject = 'iwjw-rent-platform';
-
-const name = (require('yargs').argv['project'] || RentProject);
+const PlatformProject = 'iwjw-rent-platform';
 
 module.exports = function config(env) {
-    let configFile = require('./conf/' + env + '.config.js')(name);
+    let configFile = require('./conf/' + env + '.config.js')(PlatformProject);
     return Object.assign(baseConfig, configFile);
 };
