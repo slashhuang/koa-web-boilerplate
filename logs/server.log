@@ -1,8 +1,0 @@
-{"level":"info","message":"starting app onbeta\n\n --------------","timestamp":"2017-01-19T12:54:45.300Z"}
-{"level":"info","message":"process.env-----beta","timestamp":"2017-01-19T12:54:45.308Z"}
-{"level":"info","message":"------ start loading static resource info -------","timestamp":"2017-01-19T12:54:45.308Z"}
-{"level":"info","message":"load file staticResourceConfig.properties finish.","timestamp":"2017-01-19T12:54:45.526Z"}
-{"level":"info","message":"begin loading staticResource.properties","timestamp":"2017-01-19T12:54:45.527Z"}
-{"level":"info","message":"load file staticResource.properties finish.","timestamp":"2017-01-19T12:54:45.589Z"}
-{"level":"info","message":"------ timeout check for  static resource -------","timestamp":"2017-01-19T12:55:15.316Z"}
-{"level":"info","message":"load file staticResourceConfig.properties finish.","timestamp":"2017-01-19T12:55:15.345Z"}

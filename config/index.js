@@ -16,12 +16,14 @@ const baseConfig = {
     timeout: 10000,
 
     // api site
-    website: 'http://127.0.0.1:3000',
+    website: 'http://127.0.0.1:3000'
 };
+const ConsoleProject = 'iwjw-rent-console';
+const RentProject = 'iwjw-rent-platform';
 
+const name = (require('yargs').argv['project'] || RentProject);
 
 module.exports = function config(env) {
-
-    let configFile = require('./conf/' + env + '.config.js');
+    let configFile = require('./conf/' + env + '.config.js')(name);
     return Object.assign(baseConfig, configFile);
 };

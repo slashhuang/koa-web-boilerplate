@@ -12,14 +12,15 @@
     "mock-mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 8000 ./test/test.js",
     "api-mocha": "NODE_ENV=beta ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 8000 ./test/test.js",
     "proxy": "NODE_ENV=dev NODE_mock=mock NODE_DEV=dev ./node_modules/.bin/nodemon --use_strict --use_strict ./server.js --proxyPort=8004",
+
     "deploy": "open http://192.168.1.121:8080/job/iwjw-rent-platform/",
     "open:beta": "open http://118.178.242.96:7000",
     "open:test": "open http://192.168.1.121:7000",
     "beta:server": "open http://fort.superjia.com",
     "test:server": "ssh iwtest ",
-    "test-c": "NODE_ENV=test NODE_DEV=dev npm run base -- --project=console",
-    "dev-c": "NODE_ENV=dev NODE_mock=mock NODE_DEV=dev npm run base -- --project=console",
-    "dev-t": "node ./test.js"
+
+    "test-c": "NODE_ENV=test NODE_DEV=dev npm run base -- --project=iwjw-rent-console",
+    "dev-c": "NODE_ENV=dev NODE_mock=mock NODE_DEV=dev npm run base -- --project=iwjw-rent-console"
   },
   "repository": {
     "type": "git",
