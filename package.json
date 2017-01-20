@@ -17,10 +17,7 @@
     "open:beta": "open http://118.178.242.96:7000",
     "open:test": "open http://192.168.1.121:7000",
     "beta:server": "open http://fort.superjia.com",
-    "test:server": "ssh iwtest ",
-
-    "test-c": "NODE_ENV=test NODE_DEV=dev npm run base -- --project=iwjw-rent-console",
-    "dev-c": "NODE_ENV=dev NODE_mock=mock NODE_DEV=dev npm run base -- --project=iwjw-rent-console"
+    "test:server": "ssh iwtest "
   },
   "repository": {
     "type": "git",
