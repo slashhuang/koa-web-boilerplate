@@ -21,18 +21,8 @@ let S_cityList = async function(params){
         url:'cityList',
         method:'get',
         params
-    }).then((data)=> {
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return data['data']
-    }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            return M_cityList
-        }
-        return Promise.resolve({
-            err:err.message
-        });
+    },{
+        mock: M_cityList
     })
 };
 //根据区域Id获取板块列表
@@ -41,18 +31,8 @@ let S_townList = async function(params){
         url:'townList',
         method:'get',
         params
-    }).then((data)=>{
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return data['data']
-    }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            return M_townList
-        }
-        return Promise.resolve({
-            err:err.message
-        });
+    },{
+        mock: M_townList
     })
 };
 /**
@@ -66,18 +46,8 @@ let S_estateList = async function(params){
         url:'estateList',
         method:'get',
         params
-    }).then((data)=>{
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return Promise.resolve(data['data']);
-    }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            return M_estateList;
-        }
-        return Promise.resolve({
-            err:err.message
-        });
+    },{
+        mock: M_estateList
     });
 };
 module.exports = {

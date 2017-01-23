@@ -20,19 +20,8 @@ let S_estateDetail = async function(params){
         method:'get',
         params
     };
-    return apiInstance.fetch(queryArgs)
-        .then((data)=> {
-            if(data['status']==-1){
-                global.throw(data['msg'],400);
-            }
-            return data['data']
-        }).catch((err)=>{
-            if(process.env['NODE_mock']=='mock'){
-                return M_subEstateDetail;
-            }
-            return Promise.resolve({
-                err:err.message
-            });
+    return apiInstance.fetch(queryArgs,{
+            mock: M_subEstateDetail
         })
 };
 module.exports = {

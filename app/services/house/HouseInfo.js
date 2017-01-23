@@ -47,19 +47,10 @@ let S_houseDetail = async function(params){
         url:'houseDetail',
         method:'get',
         params
-    }).then((data)=> {
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return utilSpace.changeDecimal_arr( data['data']);
-    }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            return M_houseDetail;
-        }
-        return Promise.resolve({
-            err:err.message
-        });
-    })
+    },{
+        mock:M_houseDetail,
+        transDataFn:(data)=>utilSpace.changeDecimal_arr(data)
+    });
 };
 /**
  * 入参数
@@ -78,19 +69,8 @@ let S_houseList = async function(params){
         url:'houseList',
         method:'get',
         params
-    }).then((data)=> {
-        if(data['status']==-1 || !(data['data'])){
-            global.throw(data['msg'],400);
-        }
-        //测试多条数据
-        return data['data'];
-    }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            return M_houseList;
-        }
-        return Promise.resolve({
-            err:err.message
-        });
+    },{
+        mock:M_houseList
     })
 };
 module.exports = {

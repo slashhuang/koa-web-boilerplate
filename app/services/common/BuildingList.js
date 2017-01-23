@@ -20,18 +20,8 @@ let S_buildingList = async function(params){
         url:'buildingList',
         method:'get',
         params
-    }).then((data)=> {
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return data['data']
-    }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            return M_buildingList['data'];
-        }
-        return Promise.resolve({
-            err:err.message
-        });
+    },{
+        mock: M_buildingList['data']
     })
 };
 module.exports = {

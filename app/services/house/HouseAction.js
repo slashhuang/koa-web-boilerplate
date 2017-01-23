@@ -28,21 +28,6 @@ let S_deleteHouse = async function(params={}){
         url:'deleteHouse',
         method:'get',
         params
-    }).then((data)=> {
-        if(data && data['status']!=-1){
-            return data['data'];
-        }
-        global.throw((data && data['msg']) || '数据为空',400);
-    }).catch((err)=>{
-        if(process.env['NODE_mock']=='mock'){
-            let mock = {
-                msg:'删除成功'
-            };
-            return mock;
-        }
-        return Promise.resolve({
-            err:err.message
-        });
     })
 };
 //默认application/json;charset=utf-8
@@ -79,15 +64,6 @@ let S_addHouse = async function(params={}){
         url:'addHouse',
         method:'post',
         data:params
-    }).then((data)=> {
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return data['data'];
-    }).catch((err)=>{
-        return Promise.resolve({
-            err:err.message
-        });
     })
 };
 /**
@@ -100,15 +76,6 @@ let S_updateHouse = async function(params={}){
         url:'updateHouse',
         method:'post',
         data:params
-    }).then((data)=> {
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return data['data'];
-    }).catch((err)=>{
-        return Promise.resolve({
-            err:err.message
-        });
     })
 };
 module.exports = {

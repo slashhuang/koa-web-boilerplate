@@ -58,7 +58,7 @@ export default class Client {
     /**
      * 基本的请求数据结构
      */
-    async fetch(data,options) {
+    async fetch(data, options) {
         let soaUrl = data.url && this.actions[data.url];
         //可以通过data.host覆盖全局host，方便做单元测试
         const param = {
@@ -73,6 +73,9 @@ export default class Client {
             });
         }
         global.log_info('params data is -- ' + JSON.stringify(param));
+
+        //mixin options处理返回数据
+        let { mock,transDataFn } = Object.assign({transDataFn: (data)=>data},options);
         return await this.request(param)
             .then(function(response) {
                 return response.data;
@@ -81,13 +84,14 @@ export default class Client {
                 //统一的错误依据
                 if(data['status']==-1){
                     global.throw(data['msg'],400);
+                }else{
+                    return  transDataFn(data['data']);
                 }
-                return data['data'];
             })
             .catch((err)=>{
                 //mock环境 并且提供数据
-                if(process.env['NODE_mock']=='mock' && options &&  options.mock){
-                    return options.mock
+                if(process.env['NODE_mock']=='mock' && mock){
+                    return transDataFn(mock)
                 }
                 //统一的错误返回
                 return Promise.resolve({
