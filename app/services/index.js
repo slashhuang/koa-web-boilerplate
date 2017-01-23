@@ -8,6 +8,8 @@ import RoomAPI from './room/index.js';
 import LoginAPI from './user/index.js'
 import CustomerAPI from './customer/index.js'
 import RebateTicketAPI from './rebateTicket/index.js'
+import ContractAPI from './contract/index.js';
+
 
 module.exports={
     ...CommonAPI,
@@ -15,5 +17,6 @@ module.exports={
     ...HouseAPI,
     ...LoginAPI,
     ...CustomerAPI,
-    ...RebateTicketAPI
+    ...RebateTicketAPI,
+    ...ContractAPI
 };

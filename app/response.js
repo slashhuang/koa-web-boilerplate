@@ -57,27 +57,3 @@ export function errorToJson(ctx, status = 500, msg = ERRER_TEXT) {
     ctx.status=400;
 }
 
-
-/**
- * 页码封装器
- * @param total:总数
- * @param currentPage:当前页码
- * @param pageSize: 页目
- */
-export function pageBar(total, currentPage, pageSize) {
-    let page = {
-        total: total,
-        currentPage: currentPage,
-        pageSize: pageSize
-    }
-
-    if (total % pageSize == 0) {
-        page.lastPage = total / pageSize;
-    } else {
-        page.lastPage = total / pageSize + 1;
-    }
-
-    if (page.lastPage > 100) page.lastPage = 100;
-
-    return page;
-}

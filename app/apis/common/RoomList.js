@@ -22,15 +22,9 @@ const actions = [{
          */
         action: async function(ctx, next) {
             let { buildingId } = ctx.query;
-            let data = await S_buildingRoomList({
+            return  await S_buildingRoomList({
                 buildingId
             });
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
         }
     }
 ];

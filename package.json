@@ -6,7 +6,7 @@
   "scripts": {
     "base": "./node_modules/.bin/nodemon --use_strict ./server.js",
     "test": "NODE_ENV=test NODE_DEV=dev npm run base ",
-    "dev": "NODE_ENV=dev NODE_mock=mock NODE_DEV=dev npm run base ",
+    "dev": "NODE_ENV=dev NODE_MOCK=mock NODE_DEV=dev npm run base ",
     "prod": "NODE_ENV=prod npm run base",
     "beta": "NODE_ENV=beta NODE_DEV=dev npm run base ",
     "mock-mocha": "NODE_mock=mock ./node_modules/.bin/nodemon --use_strict ./node_modules/.bin/mocha -t 8000 ./test/test.js",

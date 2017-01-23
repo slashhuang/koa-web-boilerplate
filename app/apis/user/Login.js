@@ -1,42 +1,64 @@
 /**
- * Created by huangxiaogang on 17/1/23.
- * 登录相关
+ * Created by huangxiaogang on 17/1/9.
+ * 登录相关接口
  */
-
 import { successToJson,errorToJson } from '../../response';
-import {  S_buildingList  } from '../../services/index.js';
+import {
+    S_sendVerifyCode,
+    S_checkVerifyCode,
+    S_logout
+} from '../../services/index.js';
 const resourceName = 'user';
-const describe = '登录相关接口';
+const describe = '用户登录注册登出';
 const actions = [{
-    description: '获取验证码',
-    serviceApi:'/user/sendVerifyCode.do',
-    doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?title=V1.1&spaceKey=dev',
-    url: '/sendVerifyCode.do',
+    description: '发送验证码',
+    serviceApi:'post /user/sendVerifyCode.do',
+    url: '/sendVerifyCode.action',
     /**
      * @request
-     *  mobile:手机号码
-     * @response
-     *
-     * {
-        status:1 // -1:失败,2:成功
-        msg:"" // 消息
-        data: "s5fy8s"// 返回数据
-       }
-     *
+     *{
+     * mobile : "xxxxx" // 手机号
+     }
      */
-    action: async function(ctx, next) {
-        let { mobile } = ctx.body;
-        let data = await S_buildingList({
+    action: async function(ctx) {
+        let { mobile } = ctx.request.body;
+        return await S_sendVerifyCode({
             mobile
         });
-        //抛错
-        if(data.err){
-            errorToJson(ctx,400,data.err);
-        }else {
-            successToJson(ctx, data)
+    }
+},
+    {
+        description: '根据手机号+收到的验证码获取后台登录密码',
+        serviceApi:'POST /user/getPassword',
+        url: '/getPassword.action',
+        method:'post',
+        /**
+         * @request
+         *   {
+                mobile:"xxxx",
+                verfifyCode:"s5fy8s"
+            }
+         */
+        action: async function(ctx) {
+            let { mobile,verifyCode } = ctx.request.body;
+            return  await S_checkVerifyCode({
+                mobile,
+                verifyCode
+            });
+        }
+    },
+    {
+        description: '用户登录',
+        serviceApi:'GET /user/logout.do',
+        url: '/logout.action',
+        method:'get',
+        /**
+         *
+         */
+        action: async function(ctx, next) {
+            return  await S_logout();
         }
     }
-}
 ];
 
 export { actions, resourceName, describe };

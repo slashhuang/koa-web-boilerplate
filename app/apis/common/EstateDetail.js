@@ -33,12 +33,7 @@ const actions = [
             let data = await S_estateDetail({
                 estateId
             });
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
+            return data;
         }
     }
 ];

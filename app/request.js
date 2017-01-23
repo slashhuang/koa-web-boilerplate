@@ -90,7 +90,7 @@ export default class Client {
             })
             .catch((err)=>{
                 //mock环境 并且提供数据
-                if(process.env['NODE_mock']=='mock' && mock){
+                if(process.env['NODE_MOCK']=='mock' && mock){
                     return transDataFn(mock)
                 }
                 //统一的错误返回

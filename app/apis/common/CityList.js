@@ -25,13 +25,7 @@ const actions = [{
             let data = await S_cityList({
                 provinceId
             });
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
-
+            return data
         }
     },
     {
@@ -45,12 +39,7 @@ const actions = [{
             let data = await S_townList({
                 cityId
             });
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
+            return data
         }
     },
     {
@@ -74,12 +63,7 @@ const actions = [{
             let data = await S_estateList({
                 keyword
             });
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
+            return data;
         }
     }
 ];

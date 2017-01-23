@@ -21,15 +21,10 @@ const actions = [{
      */
         action: async function(ctx, next) {
             let {id,idType} = ctx.query;
-            let data = await S_houseDetail({
+            return  await S_houseDetail({
                 id,
                 idType
-            });
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
+            })
         }
     },
     {
@@ -38,15 +33,7 @@ const actions = [{
         doc:'http://wiki.superjia.com/confluence/pages/viewpage.action?pageId=11160673',
         serviceApi:'/house/list.action?cityId=XX&townId=YY&estateId=TT&rentType=ZZ&houseStatus=WW&startTime=AA&endTime=BB',
         action: async function(ctx, next) {
-
-            let data = await S_houseList(ctx.query);
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
-
-
+            return  await S_houseList(ctx.query);
         }
     }
 ];

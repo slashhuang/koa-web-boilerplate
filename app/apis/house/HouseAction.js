@@ -34,16 +34,9 @@ const actions = [
         url: '/delete.action/',
         action: async function(ctx, next) {
             let { id } = ctx.query;
-            let data = await S_deleteHouse({
+            return await S_deleteHouse({
                 id
             });
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
-
         }
     },
     {
@@ -55,13 +48,7 @@ const actions = [
         action: async function(ctx, next) {
             let params = ctx.request.body;
             let postData = utilSpace.changeArr_decimal(params);
-            let data = await S_addHouse(postData);
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
+            return  await S_addHouse(postData);
         }
     },
     {
@@ -73,13 +60,7 @@ const actions = [
         action: async function(ctx, next) {
             let params = ctx.request.body;
             let postData = utilSpace.changeArr_decimal(params);
-            let data = await S_updateHouse(postData);
-            //抛错
-            if(data.err){
-                errorToJson(ctx,400,data.err);
-            }else {
-                successToJson(ctx, data)
-            }
+            return  await S_updateHouse(postData);
         }
     }
 ];

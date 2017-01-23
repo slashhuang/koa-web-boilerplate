@@ -18,7 +18,7 @@ module.exports = (projectName)=>{
         //proxyTarget:"http://192.168.1.35:1313",
         proxyTarget:'http://rentsoa.iwjwtest.com',
 
-        "WEBSITE": "http://127.0.0.1:3000"
+        "WEBSITE": "http://127.0.0.1:7000"
     };
 };
 

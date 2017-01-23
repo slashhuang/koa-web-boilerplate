@@ -27,10 +27,11 @@ module.exports = function(root, opts) {
 
     opts.root = resolve(root);
 
+    console.log('opts',opts);
+
     if (opts.index !== false) {
         opts.index =  opts.index || 'index.html';
     }
-
     if (!opts.defer) {
         return async function serve(ctx, next) {
             // console.log(ctx.method);
@@ -43,18 +44,20 @@ module.exports = function(root, opts) {
             return next();
         };
     }
-    return async function serve(ctx, next) {
-
-        // console.log(ctx.method);
-        if (ctx.method != 'HEAD' && ctx.method != 'GET') {
-            return next();
-        }
-
-        if (ctx.body != null || ctx.status != 404) {
-            return next();
-        }
-
-        send(ctx, ctx.path, opts);
-        //next();
-    };
+    //return async function serve(ctx, next) {
+    //
+    //
+    //    console.log('serving from ------')
+    //
+    //    if (ctx.method != 'HEAD' && ctx.method != 'GET') {
+    //        return next();
+    //    }
+    //
+    //    if (ctx.body != null || ctx.status != 404) {
+    //        return next();
+    //    }
+    //
+    //    send(ctx, ctx.path, opts);
+    //    //next();
+    //};
 };

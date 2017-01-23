@@ -9,8 +9,7 @@ class CommonApi extends Client{
         super();
         this.actions = {
             sendVerifyCode : '/user/sendVerifyCode.do',
-            getPassword:'/user/getPassword',
-            checkPassword:'/user/checkPassword.do',
+            checkVerifyCode:'/user/checkVerifyCode.do',
             logout:'/user/logout.do'
         }
     }
@@ -33,25 +32,13 @@ let S_sendVerifyCode = async function(params){
 /**
  * 获取密码
  */
-let S_getPassword = async function(params){
+let S_checkVerifyCode = async function(params){
     return apiInstance.fetch({
-        url:'getPassword',
+        url:'checkVerifyCode',
         method:'post',
         data:params
     },{
-        mock:"Mi2x0a" //返回密码
-    })
-};
-/**
- * 验证密码
- */
-let S_checkPassword = async function(params){
-    return apiInstance.fetch({
-        url:'checkPassword',
-        method:'post',
-        data:params
-    },{
-        mock:"密码成功" //返回密码
+        mock:"密码成功" //验证
     })
 };
 /**
@@ -67,7 +54,6 @@ let S_logout = async function(params){
 };
 module.exports = {
     S_sendVerifyCode,
-    S_getPassword,
-    S_checkPassword,
+    S_checkVerifyCode,
     S_logout
 };

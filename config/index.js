@@ -16,7 +16,7 @@ const baseConfig = {
     timeout: 10000,
 
     // api site
-    website: 'http://127.0.0.1:3000'
+    website: 'http://127.0.0.1:7000'
 };
 const PlatformProject = 'iwjw-rent-platform';
 

@@ -19,15 +19,9 @@ const actions = [{
          */
         action: async function(ctx, next) {
             let { id } = ctx.query;
-            try{
-                let data = await S_deleteRoom({
-                    id
-                });
-                successToJson(ctx,data)
-            }catch(err){
-                errorToJson(ctx,400,err)
-            }
-
+            return await S_deleteRoom({
+                id
+            })
         }
     },
     {
@@ -49,13 +43,8 @@ const actions = [{
          */
         action: async function(ctx, next) {
             let { body } = ctx.request;
-            try{
-                body['facilities'] = U_arrayToDecimal(body['facilities']);
-               let data = await S_addRoom(body);
-                successToJson(ctx,data)
-            }catch(err){
-                errorToJson(ctx,400,err)
-            }
+            body['facilities'] = U_arrayToDecimal(body['facilities']);
+            return  await S_addRoom(body);
         }
     }
 ];

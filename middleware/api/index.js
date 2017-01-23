@@ -1,8 +1,9 @@
 /*
  * @Author: enzo
  * @Date:   2016-11-08 15:02:53
- * @Last Modified by:   enzo
- * @Last Modified time: 2017-01-19 15:36:58
+ * @Last Modified by:   slashhuang
+ * @Last Modified time: 2017-01-23 15:36:58
+ * @modified 增加action统一处理行为
  */
 
 const debug = require('debug')('rudy:router');
@@ -41,6 +42,9 @@ module.exports = function(setting) {
     website = website || '//';
     let appRoot = path.resolve(`/${root}/`);
 
+    //包裹action的处理
+    let { wrapperActionHandler } = require(path.resolve(folder,'./wrapperApi'));
+
     router.get(appRoot, (ctx, next) => {
         ctx.body = JSON.stringify(actionCollection.resourcesList);
     });
@@ -68,7 +72,9 @@ module.exports = function(setting) {
             item.href = `${website}${routerPath}`;
 
             console.log('---- api 中间件--: 生成真实路由'+routerPath);
-            router[method](routerPath, action);
+
+            //注入错误处理的逻辑
+            router[method](routerPath, wrapperActionHandler(action));
         });
     });
 

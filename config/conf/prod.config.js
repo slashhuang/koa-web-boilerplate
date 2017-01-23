@@ -27,6 +27,6 @@ module.exports =  (projectName)=>{
          // 应用端口
          port: 80,
 
-         "WEBSITE": "http://127.0.0.1:3000"
+         "WEBSITE": "http://127.0.0.1:7000"
      };
 };
