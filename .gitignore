@@ -26,7 +26,7 @@ node_modules
 .idea
 document
 # test.js
-npm-debug.log.*
+npm-debug.log
 
 .vscode
 TEST_TMP
