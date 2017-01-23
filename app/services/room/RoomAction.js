@@ -19,23 +19,14 @@ let apiInstance = new CommonApi();
 /**
  * 入参
  * id=xxx 房间主键删除房间
- * @param params
- * @returns {*}
- * @constructor
  */
 let S_deleteRoom = async function(params){
     return apiInstance.fetch({
         url:'deleteRoom',
         method:'post',
         params
-    }).then((data)=> {
-        if(process.env['NODE_mock']=='mock'){
-            let mock = {
-               msg:'删除成功'
-            };
-            return [mock];
-        }
-        return data;
+    },{
+        mock:'删除成功'
     })
 };
 /**
@@ -48,10 +39,6 @@ let S_deleteRoom = async function(params){
      rentPrice:租赁价格
      facilities://配套(01:带独立卫生间,10:带阳台)
      houseId:房源Id
- *
- * @param params
- * @returns {*}
- * @constructor
  */
 
 let S_addRoom = async function(params){
@@ -59,15 +46,6 @@ let S_addRoom = async function(params){
         url:'addRoom',
         method:'post',
         data:params
-    }).then((data)=> {
-        if(data['status']==-1){
-            global.throw(data['msg'],400);
-        }
-        return data['data'];
-    }).catch((err)=>{
-        return Promise.resolve({
-            err:err.message
-        });
     })
 };
 module.exports = {
