@@ -1,7 +1,6 @@
 /**
  * Created by huangxiaogang on 17/1/5.
  */
-import { successToJson,errorToJson } from '../../response';
 import {  S_cityList,S_townList,S_estateList,S_subEstateList } from '../../services/index.js';
 const resourceName = 'common';
 const describe = '产品分类';

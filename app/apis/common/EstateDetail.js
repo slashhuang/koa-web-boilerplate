@@ -2,7 +2,6 @@
  * Created by huangxiaogang on 17/1/11.
  * 根据小区Id获取小区子划分列表
  */
-import { successToJson,errorToJson } from '../../response';
 import {  S_estateDetail  } from '../../services/index.js';
 const resourceName = 'common';
 const describe = '楼栋信息';

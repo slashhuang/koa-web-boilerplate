@@ -6,11 +6,14 @@ import { successToJson,errorToJson } from '../response';
 
 exports.wrapperActionHandler=(action)=>async (ctx,next)=>{
     let data = await action(ctx,next);
-    //抛错
-    if(data.err){
-        errorToJson(ctx,400,data.err);
-    }else {
-        successToJson(ctx, data)
+    //有数据的情况说明不是走的proxy
+    if(data){
+        //抛错
+        if(data.err){
+            errorToJson(ctx,400,data.err);
+        }else {
+            successToJson(ctx, data)
+        }
     }
 };
 

@@ -2,7 +2,6 @@
  * Created by huangxiaogang on 17/1/11.
  * 根据楼栋Id查询室号
  */
-import { successToJson,errorToJson } from '../../response';
 import {  S_buildingRoomList  } from '../../services/index.js';
 const resourceName = 'common';
 const describe = '楼栋信息';
