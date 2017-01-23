@@ -1,6 +1,6 @@
 /**
- * Created by huangxiaogang on 17/1/9.
- * 登录相关接口
+ * Created by huangxiaogang on 17/1/23.
+ * 合同相关接口
  */
 import Client from '../../request.js';
 import {
