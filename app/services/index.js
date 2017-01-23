@@ -7,10 +7,13 @@ import HouseAPI from './house/index.js';
 import RoomAPI from './room/index.js';
 import LoginAPI from './user/index.js'
 import CustomerAPI from './customer/index.js'
+import RebateTicketAPI from './rebateTicket/index.js'
+
 module.exports={
     ...CommonAPI,
     ...RoomAPI,
     ...HouseAPI,
     ...LoginAPI,
-    ...CustomerAPI
+    ...CustomerAPI,
+    ...RebateTicketAPI
 };

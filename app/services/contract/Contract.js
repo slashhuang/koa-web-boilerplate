@@ -12,7 +12,8 @@ class CommonApi extends Client{
         super();
         this.actions = {
             contractList : '/contract/list.do',
-            contractDetail:'/contract/detail.do'
+            contractDetail:'/contract/detail.do',
+            contractAudit:'/contract/audit.do'
         }
     }
 }
@@ -38,13 +39,30 @@ let S_contractList = async function(){
 let S_contractDetail = async function(params){
     return apiInstance.fetch({
         url:'contractDetail',
-        method:'post',
         data:params
     },{
         mock:M_contractDetail //返回密码
     })
 };
+/**
+ * 合同审核结果
+ * {
+	id: // 合同主键
+	status : //审核结果(1:审核失败,2:审核成功)
+	memo : "" //审核失败的原因
+}
+ */
+let S_contractAudit = async function(params){
+    return apiInstance.fetch({
+        url:'contractAudit',
+        method:'post',
+        data:params
+    },{
+        mock:'提交成功' //返回密码
+    })
+};
 module.exports = {
     S_contractList,
-    S_contractDetail
+    S_contractDetail,
+    S_contractAudit
 };
