@@ -1,8 +1,13 @@
-# node-rent-platform
-
-## 开发环境
-
-> node -v >=6.9.0
+# koa-web-boilerplate
+# usage 使用
+```javascript
+    npm install 
+    npm run dev
+    # see base web results
+    open localhost:7000
+    # overview of web open apis
+    open localhost:7000/api
+```
 
 ## 功能
 1. 完备的后端模板渲染

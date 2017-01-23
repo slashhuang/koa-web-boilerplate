@@ -11,9 +11,15 @@ const router = require('koa-router')();
 /**
  * 单页面应用入口
  */
-router.get('/', (ctx, next) => {
+router.get('/', (ctx) => {
     successToView(ctx, 'spa/index', {
         title: '首页哦',
+        staticTag: 'index'
+    });
+});
+router.get('/welcome', (ctx) => {
+    successToView(ctx, 'another', {
+        title: '欢迎各位使用koa-web-boilerplate',
         staticTag: 'index'
     });
 });
